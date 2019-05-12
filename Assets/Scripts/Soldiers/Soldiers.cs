@@ -9,10 +9,7 @@ public class Soldiers {
     [SerializeField] private List<Soldier> spearmen = new List<Soldier>();
     [SerializeField] private List<Soldier> swordsmen = new List<Soldier>();
     [SerializeField] private List<Soldier> bowmen = new List<Soldier>();
-    [SerializeField] private List<Soldier> cav = new List<Soldier>();
     [SerializeField] private List<Soldier> cavKnights = new List<Soldier>();
-    [SerializeField] private List<Soldier> giants = new List<Soldier>();
-    [SerializeField] private List<Soldier> dragons = new List<Soldier>();
 
     private List<Soldier> FindSoldiersByType(SoldierType soldierType) {
         switch (soldierType) {
@@ -24,14 +21,8 @@ public class Soldiers {
                 return swordsmen;
             case SoldierType.BOWMEN:
                 return bowmen;
-            case SoldierType.CAV:
-                return cav;
             case SoldierType.CAV_KNIGHTS:
                 return cavKnights;
-            case SoldierType.GIANTS:
-                return giants;
-            case SoldierType.DRAGONS:
-                return dragons;
 
             default:
                 throw new Exception("Invalid SoldierType <" + soldierType + ">: could not be found");
@@ -48,14 +39,8 @@ public class Soldiers {
                 return new Swordsmen();
             case SoldierType.BOWMEN:
                 return new Bowmen();
-            case SoldierType.CAV:
-                return new Cav();
             case SoldierType.CAV_KNIGHTS:
                 return new CavKnights();
-            case SoldierType.GIANTS:
-                return new Giants();
-            case SoldierType.DRAGONS:
-                return new Dragons();
 
             default:
                 throw new Exception("Invalid SoldierType <" + soldierType + ">: could not be found");

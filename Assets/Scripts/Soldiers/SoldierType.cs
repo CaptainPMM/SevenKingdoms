@@ -3,8 +3,5 @@ public enum SoldierType {
     SPEARMEN,
     SWORDSMEN,
     BOWMEN,
-    CAV,
     CAV_KNIGHTS,
-    GIANTS,
-    DRAGONS
 }

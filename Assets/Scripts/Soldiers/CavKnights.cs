@@ -5,13 +5,12 @@ using System.Collections.Generic;
 public class CavKnights : Soldier {
     public CavKnights() {
         HP = 4;
-        soldierName = "Knights";
+        soldierName = "Mounted Knights";
         DP = 2;
         strengths = new Dictionary<SoldierType, float>() {
             { SoldierType.CONSCRIPTS, 5f },
-            { SoldierType.SWORDSMEN, 2.2f },
-            { SoldierType.BOWMEN, 2.6f },
-            { SoldierType.CAV, 2f }
+            { SoldierType.SWORDSMEN, 3f },
+            { SoldierType.BOWMEN, 4f }
         };
     }
 }

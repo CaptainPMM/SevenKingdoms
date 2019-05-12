@@ -8,11 +8,8 @@ public class Spearmen : Soldier {
         soldierName = "Spearmen";
         DP = 2;
         strengths = new Dictionary<SoldierType, float>() {
-            { SoldierType.CONSCRIPTS, 2.3f },
-            { SoldierType.CAV, 3f },
-            { SoldierType.CAV_KNIGHTS, 3f },
-            { SoldierType.GIANTS, 1.5f },
-            { SoldierType.DRAGONS, 1.25f }
+            { SoldierType.CONSCRIPTS, 2.5f },
+            { SoldierType.CAV_KNIGHTS, 4f }
         };
     }
 }

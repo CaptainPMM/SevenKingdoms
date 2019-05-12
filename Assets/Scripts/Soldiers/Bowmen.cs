@@ -10,9 +10,7 @@ public class Bowmen : Soldier {
         strengths = new Dictionary<SoldierType, float>() {
             { SoldierType.CONSCRIPTS, 5f },
             { SoldierType.SWORDSMEN, 2f },
-            { SoldierType.SPEARMEN, 2f },
-            { SoldierType.GIANTS, 1.5f },
-            { SoldierType.DRAGONS, 1.3f }
+            { SoldierType.SPEARMEN, 2f }
         };
     }
 }
