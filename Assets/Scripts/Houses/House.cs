@@ -16,9 +16,16 @@ public class House {
             return GetHouse()._color;
         }
     }
+    [HideInInspector]
+    public BuildingType[] buildableBuildings {
+        get {
+            return GetHouse()._buildableBuildings;
+        }
+    }
 
     protected string _houseName;
     protected Color _color;
+    protected BuildingType[] _buildableBuildings;
 
     private House GetHouse() {
         switch (houseType) {

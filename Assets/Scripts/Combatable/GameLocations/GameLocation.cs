@@ -8,7 +8,8 @@ public class GameLocation : Combatable {
 
     public string locationName;
     public GameLocation[] reachableLocations;
-    public List<GameEffect> locationEffects;
+    public List<GameEffect> locationEffects = new List<GameEffect>();
+    public List<Building> buildings = new List<Building>();
 
     private bool wasOccupied = false;
 
@@ -16,7 +17,6 @@ public class GameLocation : Combatable {
     new protected void Start() {
         base.Start();
         locationName = name;
-        locationEffects = new List<GameEffect>();
 
         GetComponentInChildren<SpriteRenderer>().color = house.color;
 
@@ -72,6 +72,12 @@ public class GameLocation : Combatable {
             if (line.name.Contains(name)) {
                 Destroy(line);
             }
+        }
+    }
+
+    protected void GetEffectsFromBuildings() {
+        foreach (Building b in buildings) {
+            locationEffects.AddRange(b.gameEffects);
         }
     }
 }

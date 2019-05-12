@@ -13,7 +13,8 @@ public class Outpost : GameLocation {
     new void Start() {
         base.Start();
 
-        locationEffects.Add(GameEffect.LOCATION_DEFENDER_CASUALTIES_MODIFIER);
+        buildings.Add(new LocalAdministration());
+        GetEffectsFromBuildings();
 
         elapsedTime = 0f;
     }
