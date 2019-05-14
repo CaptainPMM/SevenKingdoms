@@ -8,6 +8,7 @@ public class InputController : MonoBehaviour {
     public GameObject player;
     public GameObject selectionMarker;
     public GameObject selectionUI;
+    public GameObject buildingsUI;
 
     public GameObject selectedLocation;
 
@@ -15,6 +16,7 @@ public class InputController : MonoBehaviour {
     void Start() {
         selectedLocation = null;
         selectionUI.GetComponent<SelectionUI>().Init(this);
+        buildingsUI.GetComponent<BuildingsUI>().Init(this);
     }
 
     // Update is called once per frame
@@ -76,6 +78,15 @@ public class InputController : MonoBehaviour {
                         break;
 
                 }
+            }
+        }
+
+        // TEST
+        // Open buildings UI on button click
+        if (Input.GetKeyDown(KeyCode.B)) {
+            if (selectedLocation != null) {
+                buildingsUI.SetActive(true);
+                selectionUI.SetActive(false);
             }
         }
     }
