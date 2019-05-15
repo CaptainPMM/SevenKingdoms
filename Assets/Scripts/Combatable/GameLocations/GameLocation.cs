@@ -8,6 +8,7 @@ public class GameLocation : Combatable {
 
     public string locationName;
     public GameLocation[] reachableLocations;
+    public List<BuildingType> buildableBuildings = new List<BuildingType>();
     public List<GameEffect> locationEffects = new List<GameEffect>();
     public List<Building> buildings = new List<Building>();
 
@@ -76,6 +77,7 @@ public class GameLocation : Combatable {
     }
 
     protected void GetEffectsFromBuildings() {
+        locationEffects.Clear();
         foreach (Building b in buildings) {
             locationEffects.AddRange(b.gameEffects);
         }

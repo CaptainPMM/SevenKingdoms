@@ -13,6 +13,11 @@ public class Outpost : GameLocation {
     new void Start() {
         base.Start();
 
+        buildableBuildings.AddRange(new BuildingType[] {
+            BuildingType.LOCAL_ADMINISTRATION,
+            BuildingType.WOODEN_WALL
+        });
+
         buildings.Add(new LocalAdministration());
         GetEffectsFromBuildings();
 

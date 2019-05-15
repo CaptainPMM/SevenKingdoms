@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class House {
@@ -17,7 +19,7 @@ public class House {
         }
     }
     [HideInInspector]
-    public BuildingType[] buildableBuildings {
+    public List<BuildingType> buildableBuildings {
         get {
             return GetHouse()._buildableBuildings;
         }
@@ -25,7 +27,7 @@ public class House {
 
     protected string _houseName;
     protected Color _color;
-    protected BuildingType[] _buildableBuildings;
+    protected List<BuildingType> _buildableBuildings;
 
     private House GetHouse() {
         switch (houseType) {

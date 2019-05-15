@@ -20,6 +20,13 @@ public class Building {
     }
 
     [HideInInspector]
+    public int neededGold {
+        get {
+            return CreateBuildingInstance(buildingType)._neededGold;
+        }
+    }
+
+    [HideInInspector]
     public GameEffect[] gameEffects {
         get {
             return CreateBuildingInstance(buildingType)._gameEffects;
@@ -28,6 +35,7 @@ public class Building {
 
     protected string _buildingName;
     protected string _description;
+    protected int _neededGold;
     protected GameEffect[] _gameEffects;
 
     private static Building CreateBuildingInstance(BuildingType buildingType) {
