@@ -82,4 +82,9 @@ public class GameLocation : Combatable {
             locationEffects.AddRange(b.gameEffects);
         }
     }
+
+    public void AddBuilding(Building b) {
+        buildings.Add(b);
+        GetEffectsFromBuildings();
+    }
 }

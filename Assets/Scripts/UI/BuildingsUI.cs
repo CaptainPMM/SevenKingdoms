@@ -111,7 +111,7 @@ public class BuildingsUI : MonoBehaviour {
         btn.GetComponentInChildren<TextMeshProUGUI>().text = "Build";
         btn.onClick.RemoveAllListeners();
         btn.onClick.AddListener(() => {
-            gl.buildings.Add(Building.CreateBuildingInstance(bt));
+            gl.AddBuilding(Building.CreateBuildingInstance(bt));
             SetButtonBuilt(btn);
         });
     }
