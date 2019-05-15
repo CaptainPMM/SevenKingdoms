@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1947533661408444330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73b6bd4bacf1a4d5eb0abce28bd03ef9, type: 3}
+  m_Script: {fileID: 11500000, guid: 145220a1580ab4a2e93274708cbea7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2775470688445109097
@@ -688,7 +688,7 @@ PrefabInstance:
     - target: {fileID: 7344775334113274581, guid: 6c5ff0fb1b65f485b99d163544680c37,
         type: 3}
       propertyPath: m_fontSize
-      value: 51.15
+      value: 36.05
       objectReference: {fileID: 0}
     - target: {fileID: 603828252335243289, guid: 6c5ff0fb1b65f485b99d163544680c37,
         type: 3}
@@ -709,6 +709,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412623604430504020, guid: 6c5ff0fb1b65f485b99d163544680c37,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 30.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695545925144105719, guid: 6c5ff0fb1b65f485b99d163544680c37,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 34.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c5ff0fb1b65f485b99d163544680c37, type: 3}
@@ -893,7 +903,7 @@ PrefabInstance:
     - target: {fileID: 7344775334113274581, guid: 6c5ff0fb1b65f485b99d163544680c37,
         type: 3}
       propertyPath: m_fontSize
-      value: 51.15
+      value: 36.05
       objectReference: {fileID: 0}
     - target: {fileID: 603828252335243289, guid: 6c5ff0fb1b65f485b99d163544680c37,
         type: 3}
@@ -914,6 +924,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412623604430504020, guid: 6c5ff0fb1b65f485b99d163544680c37,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 30.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695545925144105719, guid: 6c5ff0fb1b65f485b99d163544680c37,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 34.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c5ff0fb1b65f485b99d163544680c37, type: 3}
@@ -1098,7 +1118,7 @@ PrefabInstance:
     - target: {fileID: 7344775334113274581, guid: 6c5ff0fb1b65f485b99d163544680c37,
         type: 3}
       propertyPath: m_fontSize
-      value: 51.15
+      value: 36.05
       objectReference: {fileID: 0}
     - target: {fileID: 603828252335243289, guid: 6c5ff0fb1b65f485b99d163544680c37,
         type: 3}
@@ -1119,6 +1139,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412623604430504020, guid: 6c5ff0fb1b65f485b99d163544680c37,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 30.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695545925144105719, guid: 6c5ff0fb1b65f485b99d163544680c37,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 34.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c5ff0fb1b65f485b99d163544680c37, type: 3}
@@ -1303,7 +1333,7 @@ PrefabInstance:
     - target: {fileID: 7344775334113274581, guid: 6c5ff0fb1b65f485b99d163544680c37,
         type: 3}
       propertyPath: m_fontSize
-      value: 51.15
+      value: 36.05
       objectReference: {fileID: 0}
     - target: {fileID: 603828252335243289, guid: 6c5ff0fb1b65f485b99d163544680c37,
         type: 3}
@@ -1324,6 +1354,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412623604430504020, guid: 6c5ff0fb1b65f485b99d163544680c37,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 30.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695545925144105719, guid: 6c5ff0fb1b65f485b99d163544680c37,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 34.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c5ff0fb1b65f485b99d163544680c37, type: 3}
@@ -1508,7 +1548,7 @@ PrefabInstance:
     - target: {fileID: 7344775334113274581, guid: 6c5ff0fb1b65f485b99d163544680c37,
         type: 3}
       propertyPath: m_fontSize
-      value: 51.15
+      value: 36.05
       objectReference: {fileID: 0}
     - target: {fileID: 603828252335243289, guid: 6c5ff0fb1b65f485b99d163544680c37,
         type: 3}
@@ -1529,6 +1569,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412623604430504020, guid: 6c5ff0fb1b65f485b99d163544680c37,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 30.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695545925144105719, guid: 6c5ff0fb1b65f485b99d163544680c37,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 34.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c5ff0fb1b65f485b99d163544680c37, type: 3}
@@ -1713,7 +1763,7 @@ PrefabInstance:
     - target: {fileID: 7344775334113274581, guid: 6c5ff0fb1b65f485b99d163544680c37,
         type: 3}
       propertyPath: m_fontSize
-      value: 51.15
+      value: 36.05
       objectReference: {fileID: 0}
     - target: {fileID: 603828252335243289, guid: 6c5ff0fb1b65f485b99d163544680c37,
         type: 3}
@@ -1734,6 +1784,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412623604430504020, guid: 6c5ff0fb1b65f485b99d163544680c37,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 30.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695545925144105719, guid: 6c5ff0fb1b65f485b99d163544680c37,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 34.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c5ff0fb1b65f485b99d163544680c37, type: 3}
