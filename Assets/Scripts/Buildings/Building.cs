@@ -38,7 +38,7 @@ public class Building {
     protected int _neededGold;
     protected GameEffect[] _gameEffects;
 
-    private static Building CreateBuildingInstance(BuildingType buildingType) {
+    public static Building CreateBuildingInstance(BuildingType buildingType) {
         switch (buildingType) {
             case BuildingType.LOCAL_ADMINISTRATION:
                 return new LocalAdministration();
@@ -63,7 +63,7 @@ public class Building {
     }
 
     /**
-        Duplicate for CreateBuildingInstance, but the name is better for use in other classes
+        Duplicate for CreateBuildingInstance, but the name might be better for use in other classes in some cases
      */
     public static Building GetBuildingTypeInfos(BuildingType buildingType) {
         return CreateBuildingInstance(buildingType);

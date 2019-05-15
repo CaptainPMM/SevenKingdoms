@@ -74,7 +74,7 @@ public class BuildingsUI : MonoBehaviour {
                         SetButtonBuilt(btn);
                     } else {
                         // Building is not built
-                        SetButtonBuildable(btn);
+                        SetButtonBuildable(btn, currLocation, buildableBuildings[buildingsCounter]);
                     }
 
                     buildingTxtsCounter++;
@@ -105,9 +105,14 @@ public class BuildingsUI : MonoBehaviour {
         btn.GetComponentInChildren<TextMeshProUGUI>().text = "Built";
     }
 
-    private void SetButtonBuildable(Button btn) {
+    private void SetButtonBuildable(Button btn, GameLocation gl, BuildingType bt) {
         btn.interactable = true;
         btn.GetComponent<Image>().color = buttonColorWhenBuildable;
         btn.GetComponentInChildren<TextMeshProUGUI>().text = "Build";
+        btn.onClick.RemoveAllListeners();
+        btn.onClick.AddListener(() => {
+            gl.buildings.Add(Building.CreateBuildingInstance(bt));
+            SetButtonBuilt(btn);
+        });
     }
 }
