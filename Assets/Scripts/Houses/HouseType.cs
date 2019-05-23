@@ -1,6 +1,10 @@
 public enum HouseType {
     NEUTRAL,
     STARK,
-    LENNISTER,
-    TYRELL
+    TULLY,
+    ARRYN,
+    LANNISTER,
+    BARATHEON,
+    TYRELL,
+    MARTELL
 }

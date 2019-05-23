@@ -35,10 +35,19 @@ public class House {
                 return new Neutral();
             case HouseType.STARK:
                 return new Stark();
-            case HouseType.LENNISTER:
-                return new Lennister();
+            case HouseType.TULLY:
+                return new Tully();
+            case HouseType.ARRYN:
+                return new Arryn();
+            case HouseType.LANNISTER:
+                return new Lannister();
+            case HouseType.BARATHEON:
+                return new Baratheon();
             case HouseType.TYRELL:
                 return new Tyrell();
+            case HouseType.MARTELL:
+                return new Martell();
+
             default:
                 return new Neutral();
         }

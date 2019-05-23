@@ -3,7 +3,7 @@
 public class Stark : House {
     public Stark() {
         _houseName = "Stark";
-        _color = new Color32(230, 230, 240, 255);
+        _color = new Color32(232, 225, 197, 255);
         _buildableBuildings = new System.Collections.Generic.List<BuildingType> {
             BuildingType.LOCAL_ADMINISTRATION,
             BuildingType.MARKETPLACE,
