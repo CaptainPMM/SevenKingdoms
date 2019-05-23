@@ -50,7 +50,7 @@ public class FightingHouse : Combatable {
         if (location != null) {
             if (location.house.houseType == houseType) {
                 // This house is the defender of a game location -> effects?
-                _locationEffects = location.locationEffects.FindAll(ge => ge.type == GameEffectType.GAME_LOCATION);
+                _locationEffects = location.locationEffects.FindAll(ge => ge.type == GameEffectType.COMBAT_LOCATION_DEFENDER_BONUS);
             } else {
                 _locationEffects = null;
             }

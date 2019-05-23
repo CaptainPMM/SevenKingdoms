@@ -5,7 +5,7 @@ public class AdvancedWall : Building {
         _description = "Further increase to the defender bonus of the castle by building a stronger perimeter wall.";
         _neededGold = 10000;
         _gameEffects = new GameEffect[] {
-            GameEffect.LOCATION_DEFENDER_CASUALTIES_MODIFIER
+            GameEffect.LOCATION_DEFENDER_CASUALTIES_MODIFIER_HIGH
         };
     }
 }

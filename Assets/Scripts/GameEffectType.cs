@@ -1,3 +1,5 @@
 public enum GameEffectType {
-    GAME_LOCATION
+    COMBAT_LOCATION_DEFENDER_BONUS,
+    GOLD_INCOME,
+    MANPOWER_INCOME
 }

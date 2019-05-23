@@ -2,14 +2,64 @@ using UnityEngine;
 
 [System.Serializable]
 public class GameEffect {
-    // Available Effects
-    public static GameEffect LOCATION_DEFENDER_CASUALTIES_MODIFIER = new GameEffect
+    // ***************** //
+    // Available Effects //
+    // ***************** //
+
+    public static GameEffect LOCATION_DEFENDER_CASUALTIES_MODIFIER_LOW = new GameEffect
     (
-        "LOCATION_DEFENDER_CASUALTIES_MODIFIER",
-        GameEffectType.GAME_LOCATION,
-        0.66f
+        "LOCATION_DEFENDER_CASUALTIES_MODIFIER_LOW",
+        GameEffectType.COMBAT_LOCATION_DEFENDER_BONUS,
+        0.85f
     );
-    // --
+    public static GameEffect LOCATION_DEFENDER_CASUALTIES_MODIFIER_MED = new GameEffect
+    (
+        "LOCATION_DEFENDER_CASUALTIES_MODIFIER_MED",
+        GameEffectType.COMBAT_LOCATION_DEFENDER_BONUS,
+        0.75f
+    );
+    public static GameEffect LOCATION_DEFENDER_CASUALTIES_MODIFIER_HIGH = new GameEffect
+    (
+        "LOCATION_DEFENDER_CASUALTIES_MODIFIER_HIGH",
+        GameEffectType.COMBAT_LOCATION_DEFENDER_BONUS,
+        0.65f
+    );
+
+    public static GameEffect GOLD_INCOME_MODIFIER_LOW = new GameEffect
+    (
+        "GOLD_INCOME_MODIFIER_LOW",
+        GameEffectType.GOLD_INCOME,
+        1.1f
+    );
+    public static GameEffect GOLD_INCOME_MODIFIER_MED = new GameEffect
+    (
+        "GOLD_INCOME_MODIFIER_MED",
+        GameEffectType.GOLD_INCOME,
+        1.2f
+    );
+    public static GameEffect GOLD_INCOME_MODIFIER_HIGH = new GameEffect
+    (
+        "GOLD_INCOME_MODIFIER_HIGH",
+        GameEffectType.GOLD_INCOME,
+        1.3f
+    );
+
+    public static GameEffect MANPOWER_INCOME_MODIFIER_LOW = new GameEffect
+    (
+        "MANPOWER_INCOME_MODIFIER_LOW",
+        GameEffectType.MANPOWER_INCOME,
+        1.1f
+    );
+    public static GameEffect MANPOWER_INCOME_MODIFIER_HIGH = new GameEffect
+    (
+        "MANPOWER_INCOME_MODIFIER_HIGH",
+        GameEffectType.MANPOWER_INCOME,
+        1.2f
+    );
+
+    // *********************** //
+    // -- Available Effects -- //
+    // *********************** //
 
     public string name {
         get {
