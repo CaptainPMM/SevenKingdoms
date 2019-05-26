@@ -52,6 +52,14 @@ public class Building {
                 return new StoneWall();
             case BuildingType.ADVANCED_WALL:
                 return new AdvancedWall();
+            case BuildingType.WOOD_MILL:
+                return new WoodMill();
+            case BuildingType.BOW_MAKER:
+                return new BowMaker();
+            case BuildingType.BLACKSMITH:
+                return new Blacksmith();
+            case BuildingType.STABLES:
+                return new Stables();
 
             default:
                 throw new Exception("Invalid BuildingType <" + buildingType + ">: could not be found");

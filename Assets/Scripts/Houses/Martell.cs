@@ -10,7 +10,8 @@ public class Martell : House {
             BuildingType.OUTER_TOWN_RING,
             BuildingType.WOODEN_WALL,
             BuildingType.STONE_WALL,
-            BuildingType.ADVANCED_WALL
+            BuildingType.ADVANCED_WALL,
+            BuildingType.WOOD_MILL
         };
     }
 }

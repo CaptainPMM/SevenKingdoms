@@ -10,7 +10,11 @@ public class Lannister : House {
             BuildingType.OUTER_TOWN_RING,
             BuildingType.WOODEN_WALL,
             BuildingType.STONE_WALL,
-            BuildingType.ADVANCED_WALL
+            BuildingType.ADVANCED_WALL,
+            BuildingType.WOOD_MILL,
+            BuildingType.BOW_MAKER,
+            BuildingType.BLACKSMITH,
+            BuildingType.STABLES
         };
     }
 }
