@@ -6,12 +6,14 @@ using TMPro;
 
 public class BuildingsUI : MonoBehaviour {
     private InputController inputController;
+    private TextSizeUnifier textSizeUnifier;
     private List<GameObject> disabledGameObjects;
     private Color32 buttonColorWhenBuildable;
     private Color32 buttonColorWhenBuilt = Global.BUILD_UI_BUTTON_COLOR_WHEN_BUILDABLE;
 
     public void Init(InputController ic) {
         inputController = ic;
+        textSizeUnifier = GetComponent<TextSizeUnifier>();
         disabledGameObjects = new List<GameObject>();
         buttonColorWhenBuildable = GetComponentInChildren<Button>().GetComponent<Image>().color;
     }
@@ -85,6 +87,10 @@ public class BuildingsUI : MonoBehaviour {
                 buildingTxtsCounter = 0;
                 buildingsCounter++;
             }
+        }
+
+        if (textSizeUnifier != null) {
+            textSizeUnifier.UnifyTextSizes();
         }
     }
 

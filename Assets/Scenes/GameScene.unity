@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   house:
-    houseType: 2
+    houseType: 1
 --- !u!1001 &330180435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: house.houseType
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -796,7 +796,7 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: house.houseType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -1756,7 +1756,7 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: house.houseType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -1912,7 +1912,7 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: house.houseType
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -2058,7 +2058,7 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: house.houseType
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
