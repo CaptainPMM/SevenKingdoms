@@ -4,6 +4,7 @@ public class Lannister : House {
     public Lannister() {
         _houseName = "Lannister";
         _color = new Color32(155, 29, 30, 255);
+        _houseFlag = Resources.Load<Sprite>(HOUSE_FLAGS_PATH + _houseName);
         _buildableBuildings = new System.Collections.Generic.List<BuildingType> {
             BuildingType.LOCAL_ADMINISTRATION,
             BuildingType.MARKETPLACE,

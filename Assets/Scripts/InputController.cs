@@ -6,6 +6,7 @@ public class InputController : MonoBehaviour {
     public GameObject troopsPrefab;
 
     public GameObject player;
+    public GameObject tobBarUI;
     public GameObject selectionMarker;
     public GameObject selectionUI;
     public GameObject buildingsUI;
@@ -15,6 +16,7 @@ public class InputController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         selectedLocation = null;
+        tobBarUI.GetComponent<TopBarUI>().Init(this);
         selectionUI.GetComponent<SelectionUI>().Init(this);
         buildingsUI.GetComponent<BuildingsUI>().Init(this);
     }

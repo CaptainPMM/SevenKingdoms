@@ -4,6 +4,7 @@ public class Tully : House {
     public Tully() {
         _houseName = "Tully";
         _color = new Color32(53, 54, 100, 255);
+        _houseFlag = Resources.Load<Sprite>(HOUSE_FLAGS_PATH + _houseName);
         _buildableBuildings = new System.Collections.Generic.List<BuildingType> {
             BuildingType.LOCAL_ADMINISTRATION,
             BuildingType.MARKETPLACE,

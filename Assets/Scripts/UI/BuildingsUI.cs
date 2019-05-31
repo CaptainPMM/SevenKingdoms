@@ -6,6 +6,7 @@ using TMPro;
 
 public class BuildingsUI : MonoBehaviour {
     private InputController inputController;
+    private GamePlayer player;
     private TextSizeUnifier textSizeUnifier;
     private List<GameObject> disabledGameObjects;
     private Color32 buttonColorWhenBuildable;
@@ -13,6 +14,7 @@ public class BuildingsUI : MonoBehaviour {
 
     public void Init(InputController ic) {
         inputController = ic;
+        player = ic.player.GetComponent<GamePlayer>();
         textSizeUnifier = GetComponent<TextSizeUnifier>();
         disabledGameObjects = new List<GameObject>();
         buttonColorWhenBuildable = GetComponentInChildren<Button>().GetComponent<Image>().color;
@@ -64,7 +66,13 @@ public class BuildingsUI : MonoBehaviour {
                     buildingTxtsCounter++;
                     break;
                 case "Text Building Costs":
-                    txt.text = Building.GetBuildingTypeInfos(buildableBuildings[buildingsCounter]).neededGold.ToString() + " Gold";
+                    int neededGold = Building.GetBuildingTypeInfos(buildableBuildings[buildingsCounter]).neededGold;
+                    txt.text = neededGold.ToString() + " Gold";
+                    if (player.house.gold < neededGold && builtBuildings.Find(b => b.buildingType == buildableBuildings[buildingsCounter]) == null) {
+                        txt.color = new Color32(240, 20, 20, 255);
+                    } else {
+                        txt.color = Color.white;
+                    }
                     buildingTxtsCounter++;
                     break;
                 case "Text Build Btn":
@@ -77,6 +85,10 @@ public class BuildingsUI : MonoBehaviour {
                     } else {
                         // Building is not built
                         SetButtonBuildable(btn, currLocation, buildableBuildings[buildingsCounter]);
+
+                        if (player.house.gold < Building.GetBuildingTypeInfos(buildableBuildings[buildingsCounter]).neededGold) {
+                            btn.interactable = false;
+                        }
                     }
 
                     buildingTxtsCounter++;
@@ -117,8 +129,9 @@ public class BuildingsUI : MonoBehaviour {
         btn.GetComponentInChildren<TextMeshProUGUI>().text = "Build";
         btn.onClick.RemoveAllListeners();
         btn.onClick.AddListener(() => {
+            player.house.gold -= Building.GetBuildingTypeInfos(bt).neededGold;
             gl.AddBuilding(Building.CreateBuildingInstance(bt));
-            SetButtonBuilt(btn);
+            OnEnable();
         });
     }
 }

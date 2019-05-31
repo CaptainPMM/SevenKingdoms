@@ -13,6 +13,10 @@ public class GameLocation : Combatable {
     public List<Building> buildings = new List<Building>();
 
     private bool wasOccupied = false;
+    private float elapsedTime = 0f;
+
+    protected int BASE_GOLD_INCOME;
+    protected int BASE_MANPOWER_INCOME;
 
     // Start is called before the first frame update
     new protected void Start() {
@@ -57,9 +61,19 @@ public class GameLocation : Combatable {
     }
 
     protected void Update() {
-        if (wasOccupied) {
-            Start();
-            wasOccupied = false;
+        if (combat == null) {
+            if (wasOccupied) {
+                Start();
+                wasOccupied = false;
+            }
+
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime >= Global.GAME_LOCATION_RESOURCES_UPDATE_TIME) {
+                elapsedTime = 0f;
+                ResourcesIncomeForHouse();
+            }
+
+            UpdateGUI();
         }
     }
 
@@ -86,5 +100,27 @@ public class GameLocation : Combatable {
     public void AddBuilding(Building b) {
         buildings.Add(b);
         GetEffectsFromBuildings();
+    }
+
+    private void ResourcesIncomeForHouse() {
+        // Gold income
+        float goldIncomeEffectsModifier = 1f;
+        foreach (GameEffect ge in locationEffects) {
+            if (ge.type == GameEffectType.GOLD_INCOME) {
+                goldIncomeEffectsModifier *= ge.modifierValue;
+            }
+        }
+        int goldIncome = Mathf.CeilToInt((float)BASE_GOLD_INCOME * goldIncomeEffectsModifier);
+        house.gold += goldIncome;
+
+        // Manpower income
+        float manpowerIncomeEffectsModifier = 1f;
+        foreach (GameEffect ge in locationEffects) {
+            if (ge.type == GameEffectType.MANPOWER_INCOME) {
+                manpowerIncomeEffectsModifier *= ge.modifierValue;
+            }
+        }
+        int manpowerIncome = Mathf.CeilToInt((float)BASE_MANPOWER_INCOME * manpowerIncomeEffectsModifier);
+        house.manpower += manpowerIncome;
     }
 }

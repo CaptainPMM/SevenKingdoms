@@ -20,6 +20,10 @@ public class Global {
     public static Color32 BUILD_UI_BUTTON_COLOR_WHEN_BUILDABLE = new Color32(10, 230, 10, 255);
     // --
 
+    // Game Location
+    public static float GAME_LOCATION_RESOURCES_UPDATE_TIME = 5f; // in seconds
+    // --
+
     // Troops
     public static float TROOPS_BASE_MOVE_SPEED = 0.9f;
     public static float TROOPS_MOVE_SPEED_RAND_MIN = 0.7f; // Inclusive
