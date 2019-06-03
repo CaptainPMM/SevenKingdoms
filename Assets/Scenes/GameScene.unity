@@ -745,7 +745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   house:
-    houseType: 1
+    houseType: 5
 --- !u!1001 &330180435
 PrefabInstance:
   m_ObjectHideFlags: 0
