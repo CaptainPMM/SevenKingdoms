@@ -23,7 +23,7 @@ public class GameLocation : Combatable {
         base.Start();
         locationName = name;
 
-        GetComponentInChildren<SpriteRenderer>().color = house.color;
+        gameObject.transform.Find("Flag").GetComponent<SpriteRenderer>().color = house.color;
 
         // Create GUI lines to reachable locations
         foreach (GameLocation location in reachableLocations) {

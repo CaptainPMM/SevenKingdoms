@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7739073997198812506}
   - component: {fileID: 4270900110711336835}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Flag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,14 +239,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   house:
     houseType: 0
-  numSoldiers: 0
+  soldiers:
+    conscripts: []
+    spearmen: []
+    swordsmen: []
+    bowmen: []
+    cavKnights: []
   combat: {fileID: 0}
-  locationName: 
   connectionLinePrefab: {fileID: 5846494334937211385, guid: eb6b937a8d9544d29b6ef79549c51dab,
     type: 3}
+  locationName: 
   reachableLocations: []
+  buildableBuildings: 
   locationEffects: []
-  recruitmentSpeed: 1
+  buildings: []
 --- !u!1 &6990317176788797315
 GameObject:
   m_ObjectHideFlags: 0
