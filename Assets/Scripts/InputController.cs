@@ -34,7 +34,7 @@ public class InputController : MonoBehaviour {
                             selectedLocation = hit.collider.gameObject;
                             House selHouse = selectedLocation.GetComponent<GameLocation>().house;
                             if (selHouse.houseType == player.GetComponent<GamePlayer>().house.houseType) {
-                                selectionMarker.transform.position = selectedLocation.transform.position;
+                                selectionMarker.transform.position = selectedLocation.transform.Find("Flag").position;
                                 selectionMarker.GetComponentInChildren<SpriteRenderer>().color = selHouse.color;
                                 selectionMarker.SetActive(true);
                                 selectionUI.SetActive(true);
