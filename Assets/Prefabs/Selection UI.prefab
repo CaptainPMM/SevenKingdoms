@@ -192,7 +192,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 34.85
+  m_fontSize: 37.8
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -359,8 +359,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -424.35004}
-  m_SizeDelta: {x: 0, y: -848.7}
+  m_AnchoredPosition: {x: 0, y: -367.3}
+  m_SizeDelta: {x: 0, y: -734.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5292912518327374787
 CanvasRenderer:
@@ -410,6 +410,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Soldier Panel #2'
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7057896522271888814, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -516,15 +546,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8036476114972000516, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.4999084
-      objectReference: {fileID: 0}
     - target: {fileID: 2236652902859674177, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.13999939
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036476114972000516, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.4999084
       objectReference: {fileID: 0}
     - target: {fileID: 2311620576059990404, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -559,37 +589,7 @@ PrefabInstance:
     - target: {fileID: 635241908670456663, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_fontSize
-      value: 27.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 29.3
+      value: 20.1
       objectReference: {fileID: 0}
     - target: {fileID: 6619827116324416174, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -619,7 +619,7 @@ PrefabInstance:
     - target: {fileID: 6619827116324416174, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_fontSize
-      value: 19.5
+      value: 20.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 644c36e79091a49b9a1c9a40d3728d25, type: 3}
@@ -652,6 +652,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Soldier Panel #5'
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 21.1
       objectReference: {fileID: 0}
     - target: {fileID: 7057896522271888814, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -758,15 +788,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8036476114972000516, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.4999084
-      objectReference: {fileID: 0}
     - target: {fileID: 2236652902859674177, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.13999939
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036476114972000516, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.4999084
       objectReference: {fileID: 0}
     - target: {fileID: 2311620576059990404, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -801,37 +831,7 @@ PrefabInstance:
     - target: {fileID: 635241908670456663, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_fontSize
-      value: 28.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 29.45
+      value: 20.2
       objectReference: {fileID: 0}
     - target: {fileID: 6619827116324416174, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -861,7 +861,7 @@ PrefabInstance:
     - target: {fileID: 6619827116324416174, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_fontSize
-      value: 19.5
+      value: 20.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 644c36e79091a49b9a1c9a40d3728d25, type: 3}
@@ -894,6 +894,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Soldier Panel #3'
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 21.05
       objectReference: {fileID: 0}
     - target: {fileID: 7057896522271888814, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -1000,15 +1030,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8036476114972000516, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.4999084
-      objectReference: {fileID: 0}
     - target: {fileID: 2236652902859674177, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.13999939
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036476114972000516, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.4999084
       objectReference: {fileID: 0}
     - target: {fileID: 2311620576059990404, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -1043,37 +1073,7 @@ PrefabInstance:
     - target: {fileID: 635241908670456663, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_fontSize
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 29.35
+      value: 20.15
       objectReference: {fileID: 0}
     - target: {fileID: 6619827116324416174, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -1103,7 +1103,7 @@ PrefabInstance:
     - target: {fileID: 6619827116324416174, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_fontSize
-      value: 19.5
+      value: 20.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 644c36e79091a49b9a1c9a40d3728d25, type: 3}
@@ -1136,6 +1136,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Soldier Panel #4'
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 20.9
       objectReference: {fileID: 0}
     - target: {fileID: 7057896522271888814, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -1242,15 +1272,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8036476114972000516, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.4999084
-      objectReference: {fileID: 0}
     - target: {fileID: 2236652902859674177, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.13999939
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036476114972000516, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.4999084
       objectReference: {fileID: 0}
     - target: {fileID: 2311620576059990404, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -1285,37 +1315,7 @@ PrefabInstance:
     - target: {fileID: 635241908670456663, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_fontSize
-      value: 27.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 29.15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6619827116324416174, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -1345,7 +1345,7 @@ PrefabInstance:
     - target: {fileID: 6619827116324416174, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_fontSize
-      value: 19.5
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 644c36e79091a49b9a1c9a40d3728d25, type: 3}
@@ -1378,6 +1378,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Soldier Panel #1'
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 21.15
       objectReference: {fileID: 0}
     - target: {fileID: 7057896522271888814, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -1484,15 +1514,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8036476114972000516, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.4999084
-      objectReference: {fileID: 0}
     - target: {fileID: 2236652902859674177, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.13999939
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036476114972000516, guid: 644c36e79091a49b9a1c9a40d3728d25,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.4999084
       objectReference: {fileID: 0}
     - target: {fileID: 2311620576059990404, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -1527,37 +1557,7 @@ PrefabInstance:
     - target: {fileID: 635241908670456663, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_fontSize
-      value: 28.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120624899027034074, guid: 644c36e79091a49b9a1c9a40d3728d25,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 29.45
+      value: 20.2
       objectReference: {fileID: 0}
     - target: {fileID: 6619827116324416174, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
@@ -1587,7 +1587,7 @@ PrefabInstance:
     - target: {fileID: 6619827116324416174, guid: 644c36e79091a49b9a1c9a40d3728d25,
         type: 3}
       propertyPath: m_fontSize
-      value: 19.5
+      value: 20.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 644c36e79091a49b9a1c9a40d3728d25, type: 3}

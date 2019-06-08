@@ -10,7 +10,7 @@ public class BuildingsUI : MonoBehaviour {
     private TextSizeUnifier textSizeUnifier;
     private List<GameObject> disabledGameObjects;
     private Color32 buttonColorWhenBuildable;
-    private Color32 buttonColorWhenBuilt = Global.BUILD_UI_BUTTON_COLOR_WHEN_BUILDABLE;
+    private Color32 buttonColorWhenBuilt = Global.BUILD_UI_BUTTON_COLOR_WHEN_BUILT;
 
     public void Init(InputController ic) {
         inputController = ic;
