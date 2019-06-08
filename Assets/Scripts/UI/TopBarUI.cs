@@ -14,12 +14,11 @@ public class TopBarUI : MonoBehaviour {
         // Find UI elements
         texts = GetComponentsInChildren<TextMeshProUGUI>();
 
-        // Set player house flag and panel colors
+        // Set player house flag
         foreach (Image i in GetComponentsInChildren<Image>()) {
             if (i.gameObject.name == "House Flag") {
                 i.sprite = player.house.houseFlag;
-            } else if (i.gameObject.name.Contains("Panel")) {
-                i.color = player.house.color;
+                break;
             }
         }
 
