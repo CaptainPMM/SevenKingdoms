@@ -76,19 +76,11 @@ public class GameController : MonoBehaviour {
                             selectedLocation = null;
                             selectionMarker.SetActive(false);
                             selectionUI.SetActive(false);
+                            buildingsUI.SetActive(false);
                         }
                         break;
 
                 }
-            }
-        }
-
-        // TEST
-        // Open buildings UI on button click
-        if (Input.GetKeyDown(KeyCode.B)) {
-            if (selectedLocation != null) {
-                buildingsUI.SetActive(true);
-                selectionUI.SetActive(false);
             }
         }
     }
@@ -114,5 +106,10 @@ public class GameController : MonoBehaviour {
                 troops.toLocation = toLocation;
             }
         }
+    }
+
+    public void OpenBuildingsMenu() {
+        selectionUI.SetActive(false);
+        buildingsUI.SetActive(true);
     }
 }

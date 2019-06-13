@@ -29,31 +29,22 @@ public class SelectionUI : MonoBehaviour {
         displayedSoldiers = new Soldiers();
         displayedSoldiers.AddSoldiers(attachedGameLocation.soldiers);
 
-        TextMeshProUGUI[] txts = GetComponentsInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI[] txts = GetComponentsInChildren<TextMeshProUGUI>(); // Slider soldier amount labels
         int counter = 0; // To count soldier types
         foreach (TextMeshProUGUI txt in txts) {
-            switch (txt.gameObject.name) {
-                case "Text Soldier Name":
-                    txt.text = Soldiers.GetSoldierTypeStats((SoldierType)counter).soldierName;
-                    break;
-                case "Text Soldier Num":
-                    txt.text = displayedSoldiers.GetSoldierTypeNum((SoldierType)counter).ToString();
-                    break;
-                case "Text Sel Soldier Num":
-                    Slider s = txt.gameObject.transform.parent.gameObject.GetComponentInChildren<Slider>();
-                    s.maxValue = displayedSoldiers.GetSoldierTypeNum((SoldierType)counter);
-                    if (s.maxValue <= 0) {
-                        s.transform.Find("Fill Area").gameObject.SetActive(false);
-                    } else {
-                        s.transform.Find("Fill Area").gameObject.SetActive(true);
-                        s.value = s.maxValue;
-                    }
-                    counter++; // Increment per soldier type after all text fields are set
-                    break;
-                case "Text Location Name":
-                    txt.text = attachedGameLocation.locationName;
-                    break;
+            Slider s = txt.gameObject.transform.parent.gameObject.GetComponentInChildren<Slider>();
+            s.maxValue = displayedSoldiers.GetSoldierTypeNum((SoldierType)counter);
+            if (s.maxValue <= 0) {
+                s.transform.Find("Fill Area").gameObject.SetActive(false);
+            } else {
+                s.transform.Find("Fill Area").gameObject.SetActive(true);
+                s.value = s.maxValue;
             }
+            counter++; // Increment per soldier type after all text fields are set
         }
+    }
+
+    public void ClickedBuildBtn() {
+        gameController.OpenBuildingsMenu();
     }
 }
