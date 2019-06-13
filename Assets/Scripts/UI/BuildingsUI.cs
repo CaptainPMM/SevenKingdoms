@@ -21,6 +21,8 @@ public class BuildingsUI : MonoBehaviour {
     }
 
     void OnEnable() {
+        GetComponentInChildren<ScrollRect>().verticalNormalizedPosition = 1; // Goto top scroll position
+
         GameLocation currLocation = gameController.selectedLocation.GetComponent<GameLocation>();
         BuildingType[] buildingTypes = Building.CreateBuildingTypesArray();
         List<Building> builtBuildings = currLocation.buildings;
