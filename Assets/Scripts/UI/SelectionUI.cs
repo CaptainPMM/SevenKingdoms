@@ -25,6 +25,8 @@ public class SelectionUI : MonoBehaviour {
     }
 
     void OnEnable() {
+        DefaultState();
+
         attachedGameLocation = gameController.selectedLocation.GetComponent<GameLocation>();
         displayedSoldiers = new Soldiers();
         displayedSoldiers.AddSoldiers(attachedGameLocation.soldiers);
@@ -44,7 +46,50 @@ public class SelectionUI : MonoBehaviour {
         }
     }
 
-    public void ClickedBuildBtn() {
+    private void DefaultState() {
+        Button[] btns = GetComponentsInChildren<Button>();
+        foreach (Button btn in btns) {
+            if (btn.name == "Button Recruit") {
+                btn.GetComponent<Image>().sprite = Resources.Load<Sprite>("btn_recruit");
+                btn.onClick.RemoveAllListeners();
+                btn.onClick.AddListener(() => {
+                    RecruitState();
+                });
+            } else if (btn.name == "Button Build") {
+                btn.GetComponent<Image>().sprite = Resources.Load<Sprite>("btn_build");
+                btn.onClick.RemoveAllListeners();
+                btn.onClick.AddListener(() => {
+                    ClickedBuildBtn();
+                });
+            }
+        }
+    }
+
+    private void ClickedBuildBtn() {
         gameController.OpenBuildingsMenu();
+    }
+
+    private void RecruitState() {
+        Button[] btns = GetComponentsInChildren<Button>();
+        foreach (Button btn in btns) {
+            if (btn.name == "Button Recruit") {
+                btn.GetComponent<Image>().sprite = Resources.Load<Sprite>("btn_back");
+                btn.onClick.RemoveAllListeners();
+                btn.onClick.AddListener(() => {
+                    DefaultState();
+                });
+            } else if (btn.name == "Button Build") {
+                btn.GetComponent<Image>().sprite = Resources.Load<Sprite>("btn_recruit");
+                btn.onClick.RemoveAllListeners();
+                btn.onClick.AddListener(() => {
+                    ClickedFinalRecruitBtn();
+                });
+            }
+        }
+    }
+
+    private void ClickedFinalRecruitBtn() {
+        // Do recruitment logic...
+        DefaultState();
     }
 }
