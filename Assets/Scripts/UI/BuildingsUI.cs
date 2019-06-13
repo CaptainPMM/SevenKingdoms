@@ -5,23 +5,23 @@ using UnityEngine.UI;
 using TMPro;
 
 public class BuildingsUI : MonoBehaviour {
-    private InputController inputController;
+    private GameController gameController;
     private GamePlayer player;
     private TextSizeUnifier textSizeUnifier;
     private List<GameObject> disabledGameObjects;
     private Color32 buttonColorWhenBuildable;
     private Color32 buttonColorWhenBuilt = Global.BUILD_UI_BUTTON_COLOR_WHEN_BUILT;
 
-    public void Init(InputController ic) {
-        inputController = ic;
-        player = ic.player.GetComponent<GamePlayer>();
+    public void Init(GameController gc) {
+        gameController = gc;
+        player = gc.player.GetComponent<GamePlayer>();
         textSizeUnifier = GetComponent<TextSizeUnifier>();
         disabledGameObjects = new List<GameObject>();
         buttonColorWhenBuildable = GetComponentInChildren<Button>().GetComponent<Image>().color;
     }
 
     void OnEnable() {
-        GameLocation currLocation = inputController.selectedLocation.GetComponent<GameLocation>();
+        GameLocation currLocation = gameController.selectedLocation.GetComponent<GameLocation>();
         BuildingType[] buildingTypes = Building.CreateBuildingTypesArray();
         List<Building> builtBuildings = currLocation.buildings;
 

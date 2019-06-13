@@ -3,13 +3,13 @@ using UnityEngine.UI;
 using TMPro;
 
 public class SelectionUI : MonoBehaviour {
-    private InputController inputController;
+    private GameController gameController;
     private GameLocation attachedGameLocation;
     private Soldiers displayedSoldiers;
     private float elapsedTime;
 
-    public void Init(InputController ic) {
-        inputController = ic;
+    public void Init(GameController gc) {
+        gameController = gc;
         elapsedTime = 0f;
     }
 
@@ -25,7 +25,7 @@ public class SelectionUI : MonoBehaviour {
     }
 
     void OnEnable() {
-        attachedGameLocation = inputController.selectedLocation.GetComponent<GameLocation>();
+        attachedGameLocation = gameController.selectedLocation.GetComponent<GameLocation>();
         displayedSoldiers = new Soldiers();
         displayedSoldiers.AddSoldiers(attachedGameLocation.soldiers);
 

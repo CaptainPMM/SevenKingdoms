@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InputController : MonoBehaviour {
+public class GameController : MonoBehaviour {
     public GameObject troopsPrefab;
 
     public GameObject player;

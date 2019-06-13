@@ -3,13 +3,13 @@ using UnityEngine.UI;
 using TMPro;
 
 public class TopBarUI : MonoBehaviour {
-    private InputController inputController;
+    private GameController gameController;
     private GamePlayer player;
     private TextMeshProUGUI[] texts;
 
-    public void Init(InputController ic) {
-        inputController = ic;
-        player = inputController.player.GetComponent<GamePlayer>();
+    public void Init(GameController gc) {
+        gameController = gc;
+        player = gameController.player.GetComponent<GamePlayer>();
 
         // Find UI elements
         texts = GetComponentsInChildren<TextMeshProUGUI>();
