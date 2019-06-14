@@ -12,5 +12,6 @@ public class Bowmen : Soldier {
             { SoldierType.SWORDSMEN, 2f },
             { SoldierType.SPEARMEN, 2f }
         };
+        goldCosts = 8;
     }
 }

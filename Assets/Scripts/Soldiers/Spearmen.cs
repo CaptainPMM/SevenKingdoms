@@ -11,5 +11,6 @@ public class Spearmen : Soldier {
             { SoldierType.CONSCRIPTS, 2.5f },
             { SoldierType.CAV_KNIGHTS, 4f }
         };
+        goldCosts = 6;
     }
 }

@@ -8,5 +8,6 @@ public class Conscripts : Soldier {
         soldierName = "Conscripts";
         DP = 1;
         strengths = new Dictionary<SoldierType, float>();
+        goldCosts = 2;
     }
 }

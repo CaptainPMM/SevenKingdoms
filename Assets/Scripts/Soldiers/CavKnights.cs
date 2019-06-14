@@ -12,5 +12,6 @@ public class CavKnights : Soldier {
             { SoldierType.SWORDSMEN, 3f },
             { SoldierType.BOWMEN, 4f }
         };
+        goldCosts = 25;
     }
 }

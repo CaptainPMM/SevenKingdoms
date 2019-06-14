@@ -12,5 +12,6 @@ public class Swordsmen : Soldier {
             { SoldierType.SPEARMEN, 2f },
             { SoldierType.BOWMEN, 3f }
         };
+        goldCosts = 12;
     }
 }

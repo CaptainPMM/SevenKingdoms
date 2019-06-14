@@ -8,4 +8,5 @@ public class Soldier {
     [HideInInspector] public string soldierName;
     [HideInInspector] public int DP;
     [HideInInspector] public Dictionary<SoldierType, float> strengths;
+    [HideInInspector] public int goldCosts;
 }
