@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -10,11 +11,30 @@ public class SelectionUI : MonoBehaviour {
 
     private bool inRecruitState;
     private Recruitment recruitment;
+    private Dictionary<SoldierType, bool[]> allowedSoldierTypes;
+    private Dictionary<SoldierType, bool[]> allowedSoldierTypes_TEMPLATE;
 
     public void Init(GameController gc) {
         gameController = gc;
         elapsedTime = 0f;
         inRecruitState = false;
+
+        // Fill allowed soldier types dictionary with template (every bool value represents a building that is needed)
+        // If the last bool array item is true -> every requirement is met -> soldier type recruitable
+        // Set the template with all values = false as a reset object
+        allowedSoldierTypes_TEMPLATE = new Dictionary<SoldierType, bool[]>();
+        foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
+            int requiredBuildings = 0;
+            foreach (BuildingType bt in System.Enum.GetValues(typeof(BuildingType))) {
+                GameEffect[] effects = Building.GetBuildingTypeInfos(bt).gameEffects;
+                foreach (GameEffect e in effects) {
+                    if (e.type == GameEffectType.SOLDIER_TYPE_UNLOCK && e.modifierValue == (int)st) {
+                        requiredBuildings++;
+                    }
+                }
+            }
+            allowedSoldierTypes_TEMPLATE.Add(st, new bool[requiredBuildings]); // init value is false
+        }
     }
 
     void Update() {
@@ -34,7 +54,42 @@ public class SelectionUI : MonoBehaviour {
 
     void OnEnable() {
         attachedGameLocation = gameController.selectedLocation.GetComponent<GameLocation>();
+        ResetAllowedSoldiersDict();
+
+        // Determine available soldier types by buildings
+        attachedGameLocation.buildings.ForEach(building => {
+            foreach (GameEffect effect in building.gameEffects) {
+                if (effect.type == GameEffectType.SOLDIER_TYPE_UNLOCK) {
+                    allowedSoldierTypes[(SoldierType)effect.modifierValue] = SetNextBuildingRequirementTrue(allowedSoldierTypes[(SoldierType)effect.modifierValue]);
+                }
+            }
+        });
+
         DefaultState();
+    }
+
+    /**
+        Reset all values to false in the correct structure
+     */
+    private void ResetAllowedSoldiersDict() {
+        allowedSoldierTypes = new Dictionary<SoldierType, bool[]>();
+        foreach (KeyValuePair<SoldierType, bool[]> kv in allowedSoldierTypes_TEMPLATE) {
+            bool[] val = new bool[kv.Value.Length];
+            for (int i = 0; i < val.Length; i++) {
+                val[i] = kv.Value[i];
+            }
+            allowedSoldierTypes.Add(kv.Key, val);
+        }
+    }
+
+    private bool[] SetNextBuildingRequirementTrue(bool[] arr) {
+        for (int i = 0; i < arr.Length; i++) {
+            if (arr[i] == false) {
+                arr[i] = true;
+                break;
+            }
+        }
+        return arr;
     }
 
     private void DefaultState() {
@@ -115,23 +170,30 @@ public class SelectionUI : MonoBehaviour {
 
         int counter = 0; // To count soldier types
         foreach (Slider s in GetComponentsInChildren<Slider>()) {
+            // Check if the current soldier type is allowed, last array item has to be true
             SoldierType st = (SoldierType)counter;
+            if (allowedSoldierTypes[st][allowedSoldierTypes[st].Length - 1] == true) {
+                int currSoldierTypeNum = recruitment.GetRecruitSoldiers().GetSoldierTypeNum(st);
+                s.value = currSoldierTypeNum;
+                s.maxValue = currSoldierTypeNum + recruitment.GetMaxAvailableSoldierTypeNum(st);
 
-            int currSoldierTypeNum = recruitment.GetRecruitSoldiers().GetSoldierTypeNum(st);
-            s.value = currSoldierTypeNum;
-            s.maxValue = currSoldierTypeNum + recruitment.GetMaxAvailableSoldierTypeNum(st);
+                s.transform.parent.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = s.value + " / " + s.maxValue;
 
-            s.transform.parent.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = s.value + " / " + s.maxValue;
-
-            if (s.value <= 0 && s.maxValue <= 0) {
-                s.transform.Find("Fill Area").gameObject.SetActive(false);
+                if (s.value <= 0 && s.maxValue <= 0) {
+                    s.transform.Find("Fill Area").gameObject.SetActive(false);
+                } else {
+                    s.transform.Find("Fill Area").gameObject.SetActive(true);
+                    s.onValueChanged.RemoveAllListeners();
+                    s.onValueChanged.AddListener(val => {
+                        recruitment.SetRecruitSoldierTypeNum(st, (int)val);
+                        SetupRecruitSliders();
+                    });
+                }
             } else {
-                s.transform.Find("Fill Area").gameObject.SetActive(true);
-                s.onValueChanged.RemoveAllListeners();
-                s.onValueChanged.AddListener(val => {
-                    recruitment.SetRecruitSoldierTypeNum(st, (int)val);
-                    SetupRecruitSliders();
-                });
+                // Not allowed, not all building requirements are met
+                s.value = 0;
+                s.transform.Find("Fill Area").gameObject.SetActive(false);
+                s.transform.parent.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Buildings missing";
             }
             counter++; // Increment per soldier type after all text fields are set
         }

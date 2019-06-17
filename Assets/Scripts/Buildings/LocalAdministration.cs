@@ -4,6 +4,8 @@ public class LocalAdministration : Building {
         _buildingName = "Local Administration";
         _description = "Every town begins with a Local Administration. Enables recruitment of Conscripts and basic town effects.";
         _neededGold = 0;
-        _gameEffects = new GameEffect[] { };
+        _gameEffects = new GameEffect[] {
+            GameEffect.ST_UNLOCK_CONSCRIPTS
+        };
     }
 }

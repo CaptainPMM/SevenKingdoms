@@ -2,9 +2,12 @@ using UnityEngine;
 
 [System.Serializable]
 public class GameEffect {
+
     // ***************** //
     // Available Effects //
     // ***************** //
+
+    // ### COMBAT_LOCATION_DEFENDER_BONUS ###
 
     public static GameEffect LOCATION_DEFENDER_CASUALTIES_MODIFIER_LOW = new GameEffect
     (
@@ -25,6 +28,8 @@ public class GameEffect {
         0.65f
     );
 
+    // ### GOLD_INCOME ###
+
     public static GameEffect GOLD_INCOME_MODIFIER_LOW = new GameEffect
     (
         "GOLD_INCOME_MODIFIER_LOW",
@@ -44,6 +49,8 @@ public class GameEffect {
         1.3f
     );
 
+    // ### MANPOWER_INCOME ###
+
     public static GameEffect MANPOWER_INCOME_MODIFIER_LOW = new GameEffect
     (
         "MANPOWER_INCOME_MODIFIER_LOW",
@@ -55,6 +62,39 @@ public class GameEffect {
         "MANPOWER_INCOME_MODIFIER_HIGH",
         GameEffectType.MANPOWER_INCOME,
         1.2f
+    );
+
+    // ### SOLDIER_TYPE_UNLOCK ###
+
+    public static GameEffect ST_UNLOCK_CONSCRIPTS = new GameEffect
+    (
+        "ST_UNLOCK_CONSCRIPTS",
+        GameEffectType.SOLDIER_TYPE_UNLOCK,
+        0
+    );
+    public static GameEffect ST_UNLOCK_SPEARMEN = new GameEffect
+    (
+        "ST_UNLOCK_SPEARMEN",
+        GameEffectType.SOLDIER_TYPE_UNLOCK,
+        1
+    );
+    public static GameEffect ST_UNLOCK_SWORDSMEN = new GameEffect
+    (
+        "ST_UNLOCK_SWORDSMEN",
+        GameEffectType.SOLDIER_TYPE_UNLOCK,
+        2
+    );
+    public static GameEffect ST_UNLOCK_BOWMEN = new GameEffect
+    (
+        "ST_UNLOCK_BOWMEN",
+        GameEffectType.SOLDIER_TYPE_UNLOCK,
+        3
+    );
+    public static GameEffect ST_UNLOCK_MOUNTED_KNIGHTS = new GameEffect
+    (
+        "ST_UNLOCK_MOUNTED_KNIGHTS",
+        GameEffectType.SOLDIER_TYPE_UNLOCK,
+        4
     );
 
     // *********************** //

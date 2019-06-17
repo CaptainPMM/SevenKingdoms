@@ -4,6 +4,8 @@ public class Stables : Building {
         _buildingName = "Stables";
         _description = "Build a place for horses. Enables recruitment of Mounted Knights.";
         _neededGold = 1500;
-        _gameEffects = new GameEffect[] { };
+        _gameEffects = new GameEffect[] {
+            GameEffect.ST_UNLOCK_MOUNTED_KNIGHTS
+        };
     }
 }
