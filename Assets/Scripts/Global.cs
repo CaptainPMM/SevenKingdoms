@@ -13,7 +13,7 @@ public class Global {
     // --
 
     // Selection UI
-    public static float SEL_UI_UPDATE_TIME = 0.1f;
+    public static float SEL_UI_UPDATE_TIME = 0.3f;
     // --
 
     // Buildings UI

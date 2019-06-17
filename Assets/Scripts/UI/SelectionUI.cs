@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SelectionUI : MonoBehaviour {
     private GameController gameController;
@@ -22,40 +23,28 @@ public class SelectionUI : MonoBehaviour {
         if (elapsedTime >= Global.SEL_UI_UPDATE_TIME) {
             elapsedTime = 0f;
             if (inRecruitState) {
-                //SetupRecruitSliders(); TODO...
+                SetupRecruitSliders();
             } else {
                 if (displayedSoldiers.GetNumSoldiersInTotal() != attachedGameLocation.soldiers.GetNumSoldiersInTotal()) {
-                    BasicSetup();
+                    UpdateSoldierSelectionSliders();
                 }
             }
         }
     }
 
     void OnEnable() {
-        DefaultState();
         attachedGameLocation = gameController.selectedLocation.GetComponent<GameLocation>();
-        BasicSetup();
-    }
-
-    private void BasicSetup() {
-        displayedSoldiers = new Soldiers();
-        displayedSoldiers.AddSoldiers(attachedGameLocation.soldiers);
-
-        int counter = 0; // To count soldier types
-        foreach (Slider s in GetComponentsInChildren<Slider>()) {
-            s.maxValue = displayedSoldiers.GetSoldierTypeNum((SoldierType)counter);
-            if (s.maxValue <= 0) {
-                s.transform.Find("Fill Area").gameObject.SetActive(false);
-            } else {
-                s.transform.Find("Fill Area").gameObject.SetActive(true);
-                s.value = s.maxValue;
-            }
-            counter++; // Increment per soldier type after all text fields are set
-        }
+        DefaultState();
     }
 
     private void DefaultState() {
         inRecruitState = false;
+
+        foreach (Slider s in GetComponentsInChildren<Slider>()) {
+            s.onValueChanged.RemoveAllListeners();
+        }
+
+        UpdateSoldierSelectionSliders();
 
         Button[] btns = GetComponentsInChildren<Button>();
         foreach (Button btn in btns) {
@@ -73,9 +62,23 @@ public class SelectionUI : MonoBehaviour {
                 });
             }
         }
+    }
 
+    private void UpdateSoldierSelectionSliders() {
+        displayedSoldiers = new Soldiers();
+        displayedSoldiers.AddSoldiers(attachedGameLocation.soldiers);
+
+        int counter = 0; // To count soldier types
         foreach (Slider s in GetComponentsInChildren<Slider>()) {
-            s.onValueChanged.RemoveAllListeners();
+            s.maxValue = displayedSoldiers.GetSoldierTypeNum((SoldierType)counter);
+            s.transform.parent.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = s.value.ToString();
+            if (s.maxValue <= 0) {
+                s.transform.Find("Fill Area").gameObject.SetActive(false);
+            } else {
+                s.transform.Find("Fill Area").gameObject.SetActive(true);
+                s.value = s.maxValue;
+            }
+            counter++; // Increment per soldier type after all text fields are set
         }
     }
 
@@ -93,7 +96,6 @@ public class SelectionUI : MonoBehaviour {
                 btn.onClick.RemoveAllListeners();
                 btn.onClick.AddListener(() => {
                     DefaultState();
-                    BasicSetup();
                 });
             } else if (btn.name == "Button Build") {
                 btn.GetComponent<Image>().sprite = Resources.Load<Sprite>("btn_recruit");
@@ -105,9 +107,6 @@ public class SelectionUI : MonoBehaviour {
         }
 
         recruitment = new Recruitment(gameController.player.GetComponent<GamePlayer>());
-        foreach (Slider s in GetComponentsInChildren<Slider>()) {
-            s.value = 0;
-        }
         SetupRecruitSliders();
     }
 
@@ -117,13 +116,21 @@ public class SelectionUI : MonoBehaviour {
         int counter = 0; // To count soldier types
         foreach (Slider s in GetComponentsInChildren<Slider>()) {
             SoldierType st = (SoldierType)counter;
-            s.maxValue = recruitment.GetMaxAvailableSoldierTypeNum(st);
-            if (s.maxValue <= 0) {
+
+            int currSoldierTypeNum = recruitment.GetRecruitSoldiers().GetSoldierTypeNum(st);
+            s.value = currSoldierTypeNum;
+            s.maxValue = currSoldierTypeNum + recruitment.GetMaxAvailableSoldierTypeNum(st);
+
+            s.transform.parent.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = s.value + " / " + s.maxValue;
+
+            if (s.value <= 0 && s.maxValue <= 0) {
                 s.transform.Find("Fill Area").gameObject.SetActive(false);
             } else {
                 s.transform.Find("Fill Area").gameObject.SetActive(true);
+                s.onValueChanged.RemoveAllListeners();
                 s.onValueChanged.AddListener(val => {
                     recruitment.SetRecruitSoldierTypeNum(st, (int)val);
+                    SetupRecruitSliders();
                 });
             }
             counter++; // Increment per soldier type after all text fields are set
@@ -133,6 +140,5 @@ public class SelectionUI : MonoBehaviour {
     private void ClickedFinalRecruitBtn() {
         // Do recruitment logic...
         DefaultState();
-        BasicSetup();
     }
 }
