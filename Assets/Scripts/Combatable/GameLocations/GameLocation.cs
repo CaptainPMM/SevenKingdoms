@@ -81,6 +81,12 @@ public class GameLocation : Combatable {
         this.house = house;
         wasOccupied = true;
 
+        // Destroy a random building after occupation combat
+        if (buildings.Count > 0) {
+            buildings.RemoveAt(Random.Range(0, buildings.Count));
+            GetEffectsFromBuildings();
+        }
+
         // Remove all connection lines
         GameObject[] lines = GameObject.FindGameObjectsWithTag("location_conn_line");
         foreach (GameObject line in lines) {
@@ -103,24 +109,31 @@ public class GameLocation : Combatable {
     }
 
     private void ResourcesIncomeForHouse() {
-        // Gold income
-        float goldIncomeEffectsModifier = 1f;
-        foreach (GameEffect ge in locationEffects) {
-            if (ge.type == GameEffectType.GOLD_INCOME) {
-                goldIncomeEffectsModifier *= ge.modifierValue;
-            }
-        }
-        int goldIncome = Mathf.CeilToInt((float)BASE_GOLD_INCOME * goldIncomeEffectsModifier);
-        house.gold += goldIncome;
+        foreach (Building b in buildings) {
+            // Resource income only if Local Admin is built
+            if (b.buildingType == BuildingType.LOCAL_ADMINISTRATION) {
+                // Gold income
+                float goldIncomeEffectsModifier = 1f;
+                foreach (GameEffect ge in locationEffects) {
+                    if (ge.type == GameEffectType.GOLD_INCOME) {
+                        goldIncomeEffectsModifier *= ge.modifierValue;
+                    }
+                }
+                int goldIncome = Mathf.CeilToInt((float)BASE_GOLD_INCOME * goldIncomeEffectsModifier);
+                house.gold += goldIncome;
 
-        // Manpower income
-        float manpowerIncomeEffectsModifier = 1f;
-        foreach (GameEffect ge in locationEffects) {
-            if (ge.type == GameEffectType.MANPOWER_INCOME) {
-                manpowerIncomeEffectsModifier *= ge.modifierValue;
+                // Manpower income
+                float manpowerIncomeEffectsModifier = 1f;
+                foreach (GameEffect ge in locationEffects) {
+                    if (ge.type == GameEffectType.MANPOWER_INCOME) {
+                        manpowerIncomeEffectsModifier *= ge.modifierValue;
+                    }
+                }
+                int manpowerIncome = Mathf.CeilToInt((float)BASE_MANPOWER_INCOME * manpowerIncomeEffectsModifier);
+                house.manpower += manpowerIncome;
+
+                break;
             }
         }
-        int manpowerIncome = Mathf.CeilToInt((float)BASE_MANPOWER_INCOME * manpowerIncomeEffectsModifier);
-        house.manpower += manpowerIncome;
     }
 }
