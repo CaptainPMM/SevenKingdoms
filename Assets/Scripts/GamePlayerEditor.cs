@@ -71,5 +71,7 @@ public class GamePlayerEditor : Editor {
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
         EditorGUILayout.Space();
+
+        DrawDefaultInspector();
     }
 }
