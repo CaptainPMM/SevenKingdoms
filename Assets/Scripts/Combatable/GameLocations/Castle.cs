@@ -5,8 +5,8 @@ public class Castle : GameLocation {
     new void Start() {
         base.Start();
 
-        BASE_GOLD_INCOME = 15;
-        BASE_MANPOWER_INCOME = 10;
+        BASE_GOLD_INCOME = 22;
+        BASE_MANPOWER_INCOME = 3;
 
         buildableBuildings.AddRange(new BuildingType[] {
             BuildingType.LOCAL_ADMINISTRATION,

@@ -5,8 +5,8 @@ public class Outpost : GameLocation {
     new void Start() {
         base.Start();
 
-        BASE_GOLD_INCOME = 2;
-        BASE_MANPOWER_INCOME = 4;
+        BASE_GOLD_INCOME = 6;
+        BASE_MANPOWER_INCOME = 1;
 
         buildableBuildings.AddRange(new BuildingType[] {
             BuildingType.LOCAL_ADMINISTRATION,

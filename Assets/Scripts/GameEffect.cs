@@ -61,7 +61,7 @@ public class GameEffect {
     (
         "MANPOWER_INCOME_MODIFIER_HIGH",
         GameEffectType.MANPOWER_INCOME,
-        1.2f
+        1.5f
     );
 
     // ### SOLDIER_TYPE_UNLOCK ###

@@ -200,7 +200,12 @@ public class SelectionUI : MonoBehaviour {
     }
 
     private void ClickedFinalRecruitBtn() {
-        // Do recruitment logic...
+        GamePlayer player = gameController.player.GetComponent<GamePlayer>();
+        player.house.gold -= recruitment.GetGoldCosts();
+        player.house.manpower -= recruitment.GetMpCosts();
+
+        attachedGameLocation.soldiers.AddSoldiers(recruitment.GetRecruitSoldiers());
+
         DefaultState();
     }
 }
