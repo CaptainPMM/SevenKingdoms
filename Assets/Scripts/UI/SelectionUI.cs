@@ -10,7 +10,14 @@ public class SelectionUI : MonoBehaviour {
     private float elapsedTime;
 
     private bool inRecruitState;
+
+    private GameObject infoPanel;
+    private GameObject costsPanel;
+    private TextMeshProUGUI totalGoldCosts;
+    private TextMeshProUGUI totalMpCosts;
+
     private Recruitment recruitment;
+
     private Dictionary<SoldierType, bool[]> allowedSoldierTypes;
     private Dictionary<SoldierType, bool[]> allowedSoldierTypes_TEMPLATE;
 
@@ -18,6 +25,32 @@ public class SelectionUI : MonoBehaviour {
         gameController = gc;
         elapsedTime = 0f;
         inRecruitState = false;
+
+        // Set recruit info gold costs
+        int counter = 0; // Count soldier types
+        foreach (TextMeshProUGUI t in GetComponentsInChildren<TextMeshProUGUI>()) {
+            if (t.name.StartsWith("Text Gold Costs")) {
+                t.text = Soldiers.GetSoldierTypeStats((SoldierType)counter).goldCosts.ToString();
+                counter++;
+            } else if (t.name.StartsWith("Text Gold Sum Costs")) {
+                totalGoldCosts = t;
+            } else if (t.name.StartsWith("Text MP Sum Costs")) {
+                totalMpCosts = t;
+            }
+        }
+
+        // Disable recruit info panels
+        Image[] imgs = GetComponentsInChildren<Image>();
+        Image infoPanelImg = System.Array.Find(imgs, i => i.name == "Info Panel");
+        Image costsPanelImg = System.Array.Find(imgs, i => i.name == "Costs Panel");
+
+        if (infoPanelImg == null || costsPanelImg == null) {
+            Debug.LogError("Selection UI: could not find Info Panel<" + infoPanelImg + "> or Costs Panel<" + costsPanelImg + ">");
+        } else {
+            infoPanel = infoPanelImg.gameObject;
+            costsPanel = costsPanelImg.gameObject;
+            ToggleInfoPanels();
+        }
 
         // Fill allowed soldier types dictionary with template (every bool value represents a building that is needed)
         // If the last bool array item is true -> every requirement is met -> soldier type recruitable
@@ -94,6 +127,7 @@ public class SelectionUI : MonoBehaviour {
 
     private void DefaultState() {
         inRecruitState = false;
+        ToggleInfoPanels();
 
         foreach (Slider s in GetComponentsInChildren<Slider>()) {
             s.onValueChanged.RemoveAllListeners();
@@ -143,6 +177,9 @@ public class SelectionUI : MonoBehaviour {
 
     private void RecruitState() {
         inRecruitState = true;
+        ToggleInfoPanels();
+        totalGoldCosts.text = "0";
+        totalMpCosts.text = "0";
 
         Button[] btns = GetComponentsInChildren<Button>();
         foreach (Button btn in btns) {
@@ -167,6 +204,8 @@ public class SelectionUI : MonoBehaviour {
 
     private void SetupRecruitSliders() {
         recruitment.Update();
+        totalGoldCosts.text = recruitment.GetGoldCosts().ToString();
+        totalMpCosts.text = recruitment.GetMpCosts().ToString();
 
         int counter = 0; // To count soldier types
         foreach (Slider s in GetComponentsInChildren<Slider>()) {
@@ -207,5 +246,10 @@ public class SelectionUI : MonoBehaviour {
         attachedGameLocation.soldiers.AddSoldiers(recruitment.GetRecruitSoldiers());
 
         DefaultState();
+    }
+
+    private void ToggleInfoPanels() {
+        infoPanel.SetActive(inRecruitState);
+        costsPanel.SetActive(inRecruitState);
     }
 }
