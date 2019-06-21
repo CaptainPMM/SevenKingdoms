@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7885874997568417971}
   - component: {fileID: 1359074066503968909}
   - component: {fileID: 4789922205593190026}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: FH Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 4931569562644614252}
   - component: {fileID: 109052916963079229}
   - component: {fileID: 2222895970599256896}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text Num Soldiers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 8460118174772857084}
   - component: {fileID: 4042492104382925043}
   - component: {fileID: 1678595101295412516}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

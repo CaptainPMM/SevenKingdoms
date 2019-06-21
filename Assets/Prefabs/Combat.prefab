@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4524341159010839459}
   - component: {fileID: 7669660282780692831}
   - component: {fileID: 8471449961760944016}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Combat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,3 +94,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fightingHousePrefab: {fileID: 2876068145363598318, guid: af45a11957656401eb1a3cb8a1984d50,
     type: 3}
+  location: {fileID: 0}
+  fightingHouses: []
+  inProgress: 0

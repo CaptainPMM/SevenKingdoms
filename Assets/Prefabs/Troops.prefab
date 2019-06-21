@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 7090898032869347464}
   - component: {fileID: 6315215675019638366}
   - component: {fileID: 3516550144930064632}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text Num Soldiers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 8292441426841036630}
   - component: {fileID: 5256203380230821523}
   - component: {fileID: 7476859221398443296}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

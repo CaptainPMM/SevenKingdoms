@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 291149352}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1996,7 +1996,7 @@ GameObject:
   - component: {fileID: 1988261744}
   m_Layer: 0
   m_Name: Game Controller
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2030,7 +2030,7 @@ MonoBehaviour:
   troopsPrefab: {fileID: 6650009888376812105, guid: 48f52da0e3ddf4d088e7212505a14ac2,
     type: 3}
   player: {fileID: 291149350}
-  tobBarUI: {fileID: 2019665627}
+  topBarUI: {fileID: 2019665627}
   selectionMarker: {fileID: 108965755}
   selectionUI: {fileID: 1840205501}
   buildingsUI: {fileID: 2012325242}

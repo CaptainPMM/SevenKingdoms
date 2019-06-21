@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour {
     public GameObject troopsPrefab;
 
     public GameObject player;
-    public GameObject tobBarUI;
+    public GameObject topBarUI;
     public GameObject selectionMarker;
     public GameObject selectionUI;
     public GameObject buildingsUI;
@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         selectedLocation = null;
-        tobBarUI.GetComponent<TopBarUI>().Init(this);
+        topBarUI.GetComponent<TopBarUI>().Init(this);
         selectionUI.GetComponent<SelectionUI>().Init(this);
         buildingsUI.GetComponent<BuildingsUI>().Init(this);
     }
@@ -31,23 +31,21 @@ public class GameController : MonoBehaviour {
 
                     case "game_location":
                         if (selectedLocation == null) {
-                            selectedLocation = hit.collider.gameObject;
-                            House selHouse = selectedLocation.GetComponent<GameLocation>().house;
-                            if (selHouse.houseType == player.GetComponent<GamePlayer>().house.houseType) {
-                                selectionMarker.transform.position = selectedLocation.transform.Find("Flag").position;
-                                selectionMarker.GetComponentInChildren<SpriteRenderer>().color = selHouse.color;
-                                selectionMarker.SetActive(true);
-                                selectionUI.SetActive(true);
+                            GameObject targetLocation = hit.collider.gameObject;
+                            if (targetLocation.GetComponent<GameLocation>().house.houseType == player.GetComponent<GamePlayer>().house.houseType) {
+                                SelectLocation(targetLocation);
                             } else {
-                                selectedLocation = null;
+                                // Show info panel for enemies game location if outside FOW
+                                if (IsNeighbourOfAnyPlayerLocation(targetLocation)) {
+                                    print("Neighbour selected");
+                                    // TODO
+                                }
                             }
                         } else {
                             if (!hit.collider.gameObject.Equals(selectedLocation)) {
-                                foreach (GameLocation l in selectedLocation.GetComponent<GameLocation>().reachableLocations) {
-                                    if (l.gameObject == hit.collider.gameObject) {
-                                        MoveTroops(hit.collider.gameObject);
-                                        break;
-                                    }
+                                GameObject targetLocation = hit.collider.gameObject;
+                                if (IsSelLocationNeighbour(targetLocation)) {
+                                    MoveTroops(targetLocation);
                                 }
                             }
 
@@ -58,13 +56,11 @@ public class GameController : MonoBehaviour {
                         break;
                     case "fighting_house":
                         if (selectedLocation != null) {
-                            foreach (GameLocation l in selectedLocation.GetComponent<GameLocation>().reachableLocations) {
-                                GameObject destination = hit.collider.gameObject.GetComponent<FightingHouse>().combat.location.gameObject;
-                                if (l.gameObject == destination) {
-                                    MoveTroops(destination);
-                                    break;
-                                }
+                            GameObject targetLocation = hit.collider.gameObject.GetComponent<FightingHouse>().combat.location.gameObject;
+                            if (IsSelLocationNeighbour(targetLocation)) {
+                                MoveTroops(targetLocation);
                             }
+
                             selectedLocation = null;
                             selectionMarker.SetActive(false);
                             selectionUI.SetActive(false);
@@ -83,6 +79,32 @@ public class GameController : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private void SelectLocation(GameObject targetLocation) {
+        selectedLocation = targetLocation;
+        selectionMarker.transform.position = selectedLocation.transform.Find("Flag").position;
+        selectionMarker.GetComponentInChildren<SpriteRenderer>().color = selectedLocation.GetComponent<GameLocation>().house.color;
+        selectionMarker.SetActive(true);
+        selectionUI.SetActive(true);
+    }
+
+    private bool IsSelLocationNeighbour(GameObject targetLocation) {
+        foreach (GameLocation gl in selectedLocation.GetComponent<GameLocation>().reachableLocations) {
+            if (gl.gameObject == targetLocation.gameObject) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool IsNeighbourOfAnyPlayerLocation(GameObject targetLocation) {
+        foreach (GameLocation gl in targetLocation.GetComponent<GameLocation>().reachableLocations) {
+            if (gl.house.houseType == player.GetComponent<GamePlayer>().house.houseType) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void MoveTroops(GameObject toLocation) {

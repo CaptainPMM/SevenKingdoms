@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4611587873250870315}
   - component: {fileID: 1976250477789131084}
   - component: {fileID: 133319960555243136}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 1358742896833058246}
   - component: {fileID: 5312688652886402485}
   - component: {fileID: 6445426596562526143}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Casualties Popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 6577734571950586625}
   - component: {fileID: 4743709488990806238}
   - component: {fileID: 4418725302425350232}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
