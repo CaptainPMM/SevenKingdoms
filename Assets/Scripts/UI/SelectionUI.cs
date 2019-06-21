@@ -252,4 +252,23 @@ public class SelectionUI : MonoBehaviour {
         infoPanel.SetActive(inRecruitState);
         costsPanel.SetActive(inRecruitState);
     }
+
+    public void EnableOnlyInfoMode() {
+        ToggleInfoMode(true);
+    }
+
+    public void DisableOnlyInfoMode() {
+        ToggleInfoMode(false);
+    }
+
+    private void ToggleInfoMode(bool on) {
+        foreach (Button btn in GetComponentsInChildren<Button>(true)) {
+            if (btn.name != "Button Close") {
+                btn.gameObject.SetActive(!on);
+            }
+        }
+        foreach (Slider s in GetComponentsInChildren<Slider>(true)) {
+            s.gameObject.SetActive(!on);
+        }
+    }
 }

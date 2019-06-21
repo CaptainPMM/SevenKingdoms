@@ -19,10 +19,12 @@ public class GameController : MonoBehaviour {
         topBarUI.GetComponent<TopBarUI>().Init(this);
         selectionUI.GetComponent<SelectionUI>().Init(this);
         buildingsUI.GetComponent<BuildingsUI>().Init(this);
+        selectionMarker.GetComponentInChildren<SpriteRenderer>().color = player.GetComponent<GamePlayer>().house.color;
     }
 
     // Update is called once per frame
     void Update() {
+        // ### TAPPING -> selection ###
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -30,48 +32,31 @@ public class GameController : MonoBehaviour {
                 switch (hit.collider.tag) {
 
                     case "game_location":
-                        if (selectedLocation == null) {
-                            GameObject targetLocation = hit.collider.gameObject;
-                            if (targetLocation.GetComponent<GameLocation>().house.houseType == player.GetComponent<GamePlayer>().house.houseType) {
-                                SelectLocation(targetLocation);
-                            } else {
-                                // Show info panel for enemies game location if outside FOW
-                                if (IsNeighbourOfAnyPlayerLocation(targetLocation)) {
-                                    print("Neighbour selected");
-                                    // TODO
-                                }
-                            }
+                        DeselectLocation();
+                        GameObject targetLocation = hit.collider.gameObject;
+                        if (IsLocationOwnedByPlayer(targetLocation)) {
+                            // Target belongs to player house
+                            SelectLocation(targetLocation);
                         } else {
-                            if (!hit.collider.gameObject.Equals(selectedLocation)) {
-                                GameObject targetLocation = hit.collider.gameObject;
-                                if (IsSelLocationNeighbour(targetLocation)) {
-                                    MoveTroops(targetLocation);
-                                }
+                            // Show info panel for enemies game location if outside FOW
+                            if (IsNeighbourOfAnyPlayerLocation(targetLocation)) {
+                                SelectLocation(targetLocation);
+                                selectionUI.GetComponent<SelectionUI>().EnableOnlyInfoMode();
                             }
-
-                            selectedLocation = null;
-                            selectionMarker.SetActive(false);
-                            selectionUI.SetActive(false);
                         }
                         break;
-                    case "fighting_house":
-                        if (selectedLocation != null) {
-                            GameObject targetLocation = hit.collider.gameObject.GetComponent<FightingHouse>().combat.location.gameObject;
-                            if (IsSelLocationNeighbour(targetLocation)) {
-                                MoveTroops(targetLocation);
-                            }
 
-                            selectedLocation = null;
-                            selectionMarker.SetActive(false);
-                            selectionUI.SetActive(false);
-                        }
+                    case "fighting_house":
+                        // Only show info panel
+                        break;
+
+                    case "troops":
+                        // Same to fighting house
                         break;
 
                     default:
                         if (selectedLocation != null) {
-                            selectedLocation = null;
-                            selectionMarker.SetActive(false);
-                            selectionUI.SetActive(false);
+                            DeselectLocation();
                             buildingsUI.SetActive(false);
                         }
                         break;
@@ -81,14 +66,25 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    private bool IsLocationOwnedByPlayer(GameObject location) {
+        return location.GetComponent<GameLocation>().house.houseType == player.GetComponent<GamePlayer>().house.houseType;
+    }
+
     private void SelectLocation(GameObject targetLocation) {
         selectedLocation = targetLocation;
         selectionMarker.transform.position = selectedLocation.transform.Find("Flag").position;
-        selectionMarker.GetComponentInChildren<SpriteRenderer>().color = selectedLocation.GetComponent<GameLocation>().house.color;
         selectionMarker.SetActive(true);
         selectionUI.SetActive(true);
     }
 
+    private void DeselectLocation() {
+        selectedLocation = null;
+        selectionMarker.SetActive(false);
+        selectionUI.GetComponent<SelectionUI>().DisableOnlyInfoMode();
+        selectionUI.SetActive(false);
+    }
+
+    // Important for move troops
     private bool IsSelLocationNeighbour(GameObject targetLocation) {
         foreach (GameLocation gl in selectedLocation.GetComponent<GameLocation>().reachableLocations) {
             if (gl.gameObject == targetLocation.gameObject) {
