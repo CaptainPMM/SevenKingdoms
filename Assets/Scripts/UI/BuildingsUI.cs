@@ -12,28 +12,49 @@ public class BuildingsUI : MonoBehaviour {
     private Color32 buttonColorWhenBuildable;
     private Color32 buttonColorWhenBuilt = Global.BUILD_UI_BUTTON_COLOR_WHEN_BUILT;
 
+    private BuildingType[] buildingTypes;
+    private GameLocation currLocation;
+    private List<BuildingType> buildableBuildings;
+
+    private float elapsedTime;
+
     public void Init(GameController gc) {
         gameController = gc;
         player = gc.player.GetComponent<GamePlayer>();
         textSizeUnifier = GetComponent<TextSizeUnifier>();
         disabledGameObjects = new List<GameObject>();
         buttonColorWhenBuildable = GetComponentInChildren<Button>().GetComponent<Image>().color;
+        buildingTypes = Building.CreateBuildingTypesArray();
+        elapsedTime = 0f;
     }
 
     void OnEnable() {
         GetComponentInChildren<ScrollRect>().verticalNormalizedPosition = 1; // Goto top scroll position
 
-        GameLocation currLocation = gameController.selectedLocation.GetComponent<GameLocation>();
-        BuildingType[] buildingTypes = Building.CreateBuildingTypesArray();
-        List<Building> builtBuildings = currLocation.buildings;
+        currLocation = gameController.selectedLocation.GetComponent<GameLocation>();
 
         // Find all buildable buildings for the current location
-        List<BuildingType> buildableBuildings = new List<BuildingType>();
+        buildableBuildings = new List<BuildingType>();
         foreach (BuildingType bt in buildingTypes) {
             if (IsBuildingTypeAvailable(currLocation, bt)) {
                 buildableBuildings.Add(bt);
             }
         }
+
+        Setup();
+    }
+
+    void Update() {
+        elapsedTime += Time.deltaTime;
+
+        if (elapsedTime >= Global.BUILD_UI_REFRESH_TIME) {
+            elapsedTime = 0f;
+            Setup();
+        }
+    }
+
+    private void Setup() {
+        List<Building> builtBuildings = currLocation.buildings;
 
         // Re-enable previously disabled ui elements
         foreach (GameObject go in disabledGameObjects) {
@@ -133,7 +154,7 @@ public class BuildingsUI : MonoBehaviour {
         btn.onClick.AddListener(() => {
             player.house.gold -= Building.GetBuildingTypeInfos(bt).neededGold;
             gl.AddBuilding(Building.CreateBuildingInstance(bt));
-            OnEnable();
+            Setup();
         });
     }
 }

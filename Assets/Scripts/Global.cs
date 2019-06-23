@@ -18,6 +18,7 @@ public class Global {
 
     // Buildings UI
     public static Color32 BUILD_UI_BUTTON_COLOR_WHEN_BUILT = new Color32(70, 100, 140, 255);
+    public static float BUILD_UI_REFRESH_TIME = 2f;
     // --
 
     // Game Location
