@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
     public GameObject topBarUI;
     public GameObject selectionMarker;
     public GameObject moveMarker;
+    public GameObject moveTargetMarker;
     public GameObject selectionUI;
     public GameObject buildingsUI;
 
@@ -24,6 +25,7 @@ public class GameController : MonoBehaviour {
         buildingsUI.GetComponent<BuildingsUI>().Init(this);
         Color playerColor = player.GetComponent<GamePlayer>().house.color;
         selectionMarker.GetComponentInChildren<SpriteRenderer>().color = playerColor;
+        moveTargetMarker.GetComponentInChildren<SpriteRenderer>().color = playerColor;
 
         moveMarkerSpriteRenderer = moveMarker.GetComponentInChildren<SpriteRenderer>();
         playerColor.a = 210f / 255f;
@@ -84,35 +86,37 @@ public class GameController : MonoBehaviour {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
 
-                    // Bit shift the index of the background/Map layer (8) to get a bit mask
-                    int layerMask = 1 << 8;
-                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
-                        Vector3 dragPos = NormalizeVectorInto2D(hit.point);
-
-                        moveMarker.SetActive(true);
-
-                        // Set anchor to selected location
-                        Vector3 anchor = selectedLocation.transform.position;
-                        moveMarker.transform.position = anchor;
-
-                        // Set length with distance
-                        float distanceToDragPos = Vector3.Distance(anchor, dragPos);
-                        moveMarkerSpriteRenderer.size = new Vector2(distanceToDragPos * 10, moveMarkerSpriteRenderer.size.y); // * 10 because the parent Move Marker Game Object is scaled to 0.1
-
-                        // Do rotation with angle
-                        Vector3 vectorTouch = dragPos - anchor; // Vector from selected location to touch point
-                        Vector3 vectorRight = Vector3.right;
-                        float angle = Vector3.Angle(vectorTouch, vectorRight);
-
-                        // 180 or -180 degrees
-                        if ((anchor + vectorTouch).z < anchor.z) {
-                            angle = -angle;
+                    // Check for hit valid game objects // Find snapping point
+                    GameObject foundValidGameObject = null;
+                    if (Physics.Raycast(ray, out hit)) {
+                        GameObject targetLocation = hit.collider.gameObject;
+                        if (targetLocation.tag == "game_location") {
+                            if (IsSelLocationNeighbour(targetLocation)) {
+                                foundValidGameObject = targetLocation;
+                            }
+                        } else if (targetLocation.tag == "fighting_house") {
+                            if (IsSelLocationNeighbour(targetLocation.GetComponent<FightingHouse>().combat.location.gameObject)) {
+                                foundValidGameObject = targetLocation;
+                            }
                         }
-                        moveMarkerSpriteRenderer.transform.localEulerAngles = new Vector3(0f, 0f, angle);
                     }
 
-                    // Find snapping point
-                    // TODO...
+                    if (foundValidGameObject != null) {
+                        // Found snapping point, snap arrow to game location
+                        moveTargetMarker.transform.position = foundValidGameObject.transform.position;
+                        moveTargetMarker.SetActive(true);
+                        SetMoveMarker(foundValidGameObject.transform.position);
+                    } else {
+                        // Move arrow freely
+                        // Bit shift the index of the background/Map layer (8) to get a bit mask
+                        int layerMask = 1 << 8;
+                        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
+                            Vector3 dragPos = NormalizeVectorInto2D(hit.point);
+                            SetMoveMarker(dragPos);
+                        }
+
+                        moveTargetMarker.SetActive(false);
+                    }
                 }
 
                 // Dropping
@@ -133,6 +137,7 @@ public class GameController : MonoBehaviour {
                         }
                     }
                     moveMarker.SetActive(false);
+                    moveTargetMarker.SetActive(false);
                 }
             }
         }
@@ -179,6 +184,29 @@ public class GameController : MonoBehaviour {
     private Vector3 NormalizeVectorInto2D(Vector3 v) {
         v.y = 0f;
         return v;
+    }
+
+    private void SetMoveMarker(Vector3 targetPos) {
+        moveMarker.SetActive(true);
+
+        // Set anchor to selected location
+        Vector3 anchor = selectedLocation.transform.position;
+        moveMarker.transform.position = anchor;
+
+        // Set length with distance
+        float distanceToDragPos = Vector3.Distance(anchor, targetPos);
+        moveMarkerSpriteRenderer.size = new Vector2(distanceToDragPos * 10, moveMarkerSpriteRenderer.size.y); // * 10 because the parent Move Marker Game Object is scaled to 0.1
+
+        // Do rotation with angle
+        Vector3 vectorToTarget = targetPos - anchor; // Vector from selected location to touch point
+        Vector3 vectorRight = Vector3.right;
+        float angle = Vector3.Angle(vectorToTarget, vectorRight);
+
+        // 180 or -180 degrees
+        if ((anchor + vectorToTarget).z < anchor.z) {
+            angle = -angle;
+        }
+        moveMarkerSpriteRenderer.transform.localEulerAngles = new Vector3(0f, 0f, angle);
     }
 
     private void MoveTroops(GameObject toLocation) {
