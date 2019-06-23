@@ -8,10 +8,13 @@ public class GameController : MonoBehaviour {
     public GameObject player;
     public GameObject topBarUI;
     public GameObject selectionMarker;
+    public GameObject moveMarker;
     public GameObject selectionUI;
     public GameObject buildingsUI;
 
     public GameObject selectedLocation;
+
+    private SpriteRenderer moveMarkerSpriteRenderer;
 
     // Start is called before the first frame update
     void Start() {
@@ -19,7 +22,12 @@ public class GameController : MonoBehaviour {
         topBarUI.GetComponent<TopBarUI>().Init(this);
         selectionUI.GetComponent<SelectionUI>().Init(this);
         buildingsUI.GetComponent<BuildingsUI>().Init(this);
-        selectionMarker.GetComponentInChildren<SpriteRenderer>().color = player.GetComponent<GamePlayer>().house.color;
+        Color playerColor = player.GetComponent<GamePlayer>().house.color;
+        selectionMarker.GetComponentInChildren<SpriteRenderer>().color = playerColor;
+
+        moveMarkerSpriteRenderer = moveMarker.GetComponentInChildren<SpriteRenderer>();
+        playerColor.a = 210f / 255f;
+        moveMarkerSpriteRenderer.color = playerColor;
     }
 
     // Update is called once per frame
@@ -73,15 +81,42 @@ public class GameController : MonoBehaviour {
                 // Dragging
                 if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
                     // Update UI
-                    Vector3 dragPos = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
-                    Debug.DrawLine(selectedLocation.transform.position, dragPos, new Color(1, 0, 0, 1)); // TEST, arrow sprite needed...
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+
+                    // Bit shift the index of the background/Map layer (8) to get a bit mask
+                    int layerMask = 1 << 8;
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
+                        Vector3 dragPos = NormalizeVectorInto2D(hit.point);
+
+                        moveMarker.SetActive(true);
+
+                        // Set anchor to selected location
+                        Vector3 anchor = selectedLocation.transform.position;
+                        moveMarker.transform.position = anchor;
+
+                        // Set length with distance
+                        float distanceToDragPos = Vector3.Distance(anchor, dragPos);
+                        moveMarkerSpriteRenderer.size = new Vector2(distanceToDragPos * 10, moveMarkerSpriteRenderer.size.y); // * 10 because the parent Move Marker Game Object is scaled to 0.1
+
+                        // Do rotation with angle
+                        Vector3 vectorTouch = dragPos - anchor; // Vector from selected location to touch point
+                        Vector3 vectorRight = Vector3.right;
+                        float angle = Vector3.Angle(vectorTouch, vectorRight);
+
+                        // 180 or -180 degrees
+                        if ((anchor + vectorTouch).z < anchor.z) {
+                            angle = -angle;
+                        }
+                        moveMarkerSpriteRenderer.transform.localEulerAngles = new Vector3(0f, 0f, angle);
+                    }
 
                     // Find snapping point
                     // TODO...
                 }
 
                 // Dropping
-                if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject()) {
+                if (Input.GetMouseButtonUp(0)) {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit)) {
@@ -97,6 +132,7 @@ public class GameController : MonoBehaviour {
                             }
                         }
                     }
+                    moveMarker.SetActive(false);
                 }
             }
         }
@@ -116,6 +152,7 @@ public class GameController : MonoBehaviour {
     private void DeselectLocation() {
         selectedLocation = null;
         selectionMarker.SetActive(false);
+        moveMarker.SetActive(false);
         selectionUI.GetComponent<SelectionUI>().DisableOnlyInfoMode();
         selectionUI.SetActive(false);
     }
@@ -137,6 +174,11 @@ public class GameController : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    private Vector3 NormalizeVectorInto2D(Vector3 v) {
+        v.y = 0f;
+        return v;
     }
 
     private void MoveTroops(GameObject toLocation) {

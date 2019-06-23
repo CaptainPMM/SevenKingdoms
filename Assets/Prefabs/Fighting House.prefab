@@ -463,7 +463,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 99
+  m_SortingOrder: 88
   m_TargetDisplay: 0
 --- !u!114 &4042492104382925043
 MonoBehaviour:
