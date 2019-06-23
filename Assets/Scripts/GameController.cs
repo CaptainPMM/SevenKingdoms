@@ -108,7 +108,7 @@ public class GameController : MonoBehaviour {
 
                     if (foundValidGameObject != null) {
                         // Found snapping point, snap arrow to game location
-                        moveTargetMarker.transform.position = foundValidGameObject.transform.position;
+                        moveTargetMarker.transform.position = foundValidGameObject.transform.Find("Flag").position;
                         moveTargetMarker.SetActive(true);
                         SetMoveMarker(foundValidGameObject.transform.position);
                     } else {
