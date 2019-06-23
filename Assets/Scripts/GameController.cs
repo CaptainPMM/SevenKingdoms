@@ -3,6 +3,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
+    public static GameController activeGameController;
+
     public GameObject troopsPrefab;
 
     public GameObject player;
@@ -19,6 +21,7 @@ public class GameController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        activeGameController = this;
         selectedLocation = null;
         topBarUI.GetComponent<TopBarUI>().Init(this);
         selectionUI.GetComponent<SelectionUI>().Init(this);
@@ -58,11 +61,13 @@ public class GameController : MonoBehaviour {
                             break;
 
                         case "fighting_house":
-                            // Only show info panel
-                            break;
-
-                        case "troops":
-                            // Same to fighting house
+                            // Only show info panel if outside FOW
+                            DeselectLocation();
+                            GameObject targetFH = hit.collider.gameObject;
+                            if (IsNeighbourOfAnyPlayerLocation(targetFH.GetComponent<FightingHouse>().combat.location.gameObject)) {
+                                SelectLocation(targetFH);
+                                selectionUI.GetComponent<SelectionUI>().EnableOnlyInfoMode();
+                            }
                             break;
 
                         default:
@@ -78,7 +83,7 @@ public class GameController : MonoBehaviour {
         }
 
         // ### DRAG AND DROP -> moving of troops ###
-        if (selectedLocation != null) {
+        if (selectedLocation != null && selectedLocation.tag != "fighting_house") {
             if (IsLocationOwnedByPlayer(selectedLocation)) {
                 // Dragging
                 if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
@@ -235,5 +240,19 @@ public class GameController : MonoBehaviour {
     public void OpenBuildingsMenu() {
         selectionUI.SetActive(false);
         buildingsUI.SetActive(true);
+    }
+
+    /**
+        Call this in a destructor or similar in GameObjects, that can be selected
+     */
+    public static void DeselectLocationOnDisable(GameObject disabledGameObject) {
+        if (GameController.activeGameController.selectedLocation == disabledGameObject) {
+            GameController.activeGameController.DeselectLocation();
+        }
+    }
+
+    // Needed because a selected loaction on quit caused a little error (not too important, but bothering)
+    private void OnApplicationQuit() {
+        DeselectLocation();
     }
 }

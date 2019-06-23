@@ -28,4 +28,8 @@ public class Combatable : MonoBehaviour {
     public void UpdateGUI() {
         textNumSoldiers.text = numSoldiers.ToString();
     }
+
+    private void OnDisable() {
+        GameController.DeselectLocationOnDisable(gameObject);
+    }
 }

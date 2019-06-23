@@ -5,7 +5,7 @@ using TMPro;
 
 public class SelectionUI : MonoBehaviour {
     private GameController gameController;
-    private GameLocation attachedGameLocation;
+    private Combatable attachedGameLocation; // GameLocation or FightingHouse
     private Soldiers displayedSoldiers;
     private float elapsedTime;
 
@@ -86,17 +86,20 @@ public class SelectionUI : MonoBehaviour {
     }
 
     void OnEnable() {
-        attachedGameLocation = gameController.selectedLocation.GetComponent<GameLocation>();
-        ResetAllowedSoldiersDict();
+        attachedGameLocation = gameController.selectedLocation.GetComponent<Combatable>();
+        // Check if maybe not a game location is selected
+        if (gameController.selectedLocation.GetComponent<GameLocation>() != null) {
+            ResetAllowedSoldiersDict();
 
-        // Determine available soldier types by buildings
-        attachedGameLocation.buildings.ForEach(building => {
-            foreach (GameEffect effect in building.gameEffects) {
-                if (effect.type == GameEffectType.SOLDIER_TYPE_UNLOCK) {
-                    allowedSoldierTypes[(SoldierType)effect.modifierValue] = SetNextBuildingRequirementTrue(allowedSoldierTypes[(SoldierType)effect.modifierValue]);
+            // Determine available soldier types by buildings
+            ((GameLocation)attachedGameLocation).buildings.ForEach(building => {
+                foreach (GameEffect effect in building.gameEffects) {
+                    if (effect.type == GameEffectType.SOLDIER_TYPE_UNLOCK) {
+                        allowedSoldierTypes[(SoldierType)effect.modifierValue] = SetNextBuildingRequirementTrue(allowedSoldierTypes[(SoldierType)effect.modifierValue]);
+                    }
                 }
-            }
-        });
+            });
+        }
 
         DefaultState();
     }
@@ -158,7 +161,7 @@ public class SelectionUI : MonoBehaviour {
         displayedSoldiers.AddSoldiers(attachedGameLocation.soldiers);
 
         int counter = 0; // To count soldier types
-        foreach (Slider s in GetComponentsInChildren<Slider>()) {
+        foreach (Slider s in GetComponentsInChildren<Slider>(true)) {
             s.maxValue = displayedSoldiers.GetSoldierTypeNum((SoldierType)counter);
             s.transform.parent.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = s.value.ToString();
             if (s.maxValue <= 0) {
