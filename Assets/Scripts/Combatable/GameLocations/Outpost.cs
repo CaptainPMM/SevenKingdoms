@@ -5,6 +5,8 @@ public class Outpost : GameLocation {
     new void Start() {
         base.Start();
 
+        recruitmentSpeed = 4f; // in secs
+
         BASE_GOLD_INCOME = 6;
         BASE_MANPOWER_INCOME = 1;
 

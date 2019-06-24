@@ -13,7 +13,12 @@ public class GameLocation : Combatable {
     public List<Building> buildings = new List<Building>();
 
     private bool wasOccupied = false;
-    private float elapsedTime = 0f;
+    private float elapsedTimeResources = 0f;
+
+    private Soldiers soldiersInRecruitment;
+    protected float recruitmentSpeed;
+    private float recruitmentSpeedBuffs = 1f;
+    private float elapsedTimeRecruitment = 0f;
 
     protected int BASE_GOLD_INCOME;
     protected int BASE_MANPOWER_INCOME;
@@ -24,6 +29,8 @@ public class GameLocation : Combatable {
         locationName = name;
 
         gameObject.transform.Find("Flag").GetComponent<SpriteRenderer>().color = house.color;
+
+        soldiersInRecruitment = new Soldiers();
 
         // Create GUI lines to reachable locations
         foreach (GameLocation location in reachableLocations) {
@@ -67,10 +74,18 @@ public class GameLocation : Combatable {
                 wasOccupied = false;
             }
 
-            elapsedTime += Time.deltaTime;
-            if (elapsedTime >= Global.GAME_LOCATION_RESOURCES_UPDATE_TIME) {
-                elapsedTime = 0f;
+            elapsedTimeResources += Time.deltaTime;
+            if (elapsedTimeResources >= Global.GAME_LOCATION_RESOURCES_UPDATE_TIME) {
+                elapsedTimeResources = 0f;
                 ResourcesIncomeForHouse();
+            }
+
+            if (soldiersInRecruitment.GetNumSoldiersInTotal() > 0) {
+                elapsedTimeRecruitment += Time.deltaTime;
+                if (elapsedTimeRecruitment >= recruitmentSpeed * recruitmentSpeedBuffs) {
+                    elapsedTimeRecruitment = 0f;
+                    Recruit();
+                }
             }
 
             UpdateGUI();
@@ -100,6 +115,13 @@ public class GameLocation : Combatable {
         locationEffects.Clear();
         foreach (Building b in buildings) {
             locationEffects.AddRange(b.gameEffects);
+        }
+
+        recruitmentSpeedBuffs = 1f;
+        foreach (GameEffect ge in locationEffects) {
+            if (ge.type == GameEffectType.RECRUITMENT_SPEED) {
+                recruitmentSpeed *= ge.modifierValue;
+            }
         }
     }
 
@@ -135,5 +157,24 @@ public class GameLocation : Combatable {
                 break;
             }
         }
+    }
+
+    public void AddSoldiersToRecruitment(Soldiers s) {
+        soldiersInRecruitment.AddSoldiers(s);
+    }
+
+    private void Recruit() {
+        // Get soldier types in recruitment
+        List<SoldierType> soldierTypes = new List<SoldierType>();
+        foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
+            if (soldiersInRecruitment.GetSoldierTypeNum(st) > 0) soldierTypes.Add(st);
+        }
+
+        // Determine random recruitment of a soldier type in this iteration
+        int rand = Random.Range(0, soldierTypes.Count);
+
+        // Recruit the soldier type (one soldier), extract from recruitment list
+        soldiers.AddSoldierTypeNum(soldierTypes[rand], 1);
+        soldiersInRecruitment.SetSoldierTypeNum(soldierTypes[rand], soldiersInRecruitment.GetSoldierTypeNum(soldierTypes[rand]) - 1);
     }
 }

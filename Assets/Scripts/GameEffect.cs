@@ -97,6 +97,21 @@ public class GameEffect {
         4
     );
 
+    // ### RECRUITMENT_SPEED ###
+
+    public static GameEffect RECRUITMENT_SPEED_MODIFIER_LOW = new GameEffect
+    (
+        "RECRUITMENT_SPEED_MODIFIER_LOW",
+        GameEffectType.RECRUITMENT_SPEED,
+        0.8f
+    );
+    public static GameEffect RECRUITMENT_SPEED_MODIFIER_HIGH = new GameEffect
+    (
+        "RECRUITMENT_SPEED_MODIFIER_HIGH",
+        GameEffectType.RECRUITMENT_SPEED,
+        0.6f
+    );
+
     // *********************** //
     // -- Available Effects -- //
     // *********************** //

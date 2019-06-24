@@ -246,7 +246,7 @@ public class SelectionUI : MonoBehaviour {
         player.house.gold -= recruitment.GetGoldCosts();
         player.house.manpower -= recruitment.GetMpCosts();
 
-        attachedGameLocation.soldiers.AddSoldiers(recruitment.GetRecruitSoldiers());
+        ((GameLocation)attachedGameLocation).AddSoldiersToRecruitment(recruitment.GetRecruitSoldiers());
 
         DefaultState();
     }

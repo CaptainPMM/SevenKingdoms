@@ -5,6 +5,8 @@ public class Castle : GameLocation {
     new void Start() {
         base.Start();
 
+        recruitmentSpeed = 1f; // in secs
+
         BASE_GOLD_INCOME = 22;
         BASE_MANPOWER_INCOME = 3;
 
