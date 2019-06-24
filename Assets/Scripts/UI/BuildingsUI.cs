@@ -29,7 +29,8 @@ public class BuildingsUI : MonoBehaviour {
     }
 
     void OnEnable() {
-        GetComponentInChildren<ScrollRect>().verticalNormalizedPosition = 1; // Goto top scroll position
+        ScrollRect scroll = GetComponentInChildren<ScrollRect>();
+        scroll.verticalNormalizedPosition = 1; // Goto top scroll position
 
         currLocation = gameController.selectedLocation.GetComponent<GameLocation>();
 
@@ -39,6 +40,14 @@ public class BuildingsUI : MonoBehaviour {
             if (IsBuildingTypeAvailable(currLocation, bt)) {
                 buildableBuildings.Add(bt);
             }
+        }
+
+        // Determine if scrolling is needed
+        float totalHeightNeeded = buildableBuildings.Count * scroll.content.GetChild(0).GetComponent<RectTransform>().rect.height;
+        if (totalHeightNeeded <= GetComponentInChildren<Image>().GetComponent<RectTransform>().rect.height - 130f) { // Second is panel minus padding
+            scroll.enabled = false;
+        } else {
+            scroll.enabled = true;
         }
 
         Setup();
