@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 8653881972956946777}
   - component: {fileID: 8427057979528812461}
   - component: {fileID: 5032550095963934700}
-  - component: {fileID: 8303546125272034305}
   m_Layer: 5
   m_Name: Text MP Sum Costs
   m_TagString: Untagged
@@ -284,18 +283,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8303546125272034305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 334910740532621121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &435125927960457305
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,18 +592,7 @@ MonoBehaviour:
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1384936376307004298}
-        m_MethodName: ConvertNumberToText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1042880190065336466
@@ -706,18 +682,7 @@ MonoBehaviour:
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8327822298118175449}
-        m_MethodName: ConvertNumberToText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1130201185417182666
@@ -1036,7 +1001,6 @@ GameObject:
   - component: {fileID: 8540770657395497626}
   - component: {fileID: 2139093692979665877}
   - component: {fileID: 2224420013270746364}
-  - component: {fileID: 1384936376307004298}
   m_Layer: 5
   m_Name: Text Sel Soldier Num
   m_TagString: Untagged
@@ -1183,18 +1147,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1384936376307004298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463657897824503798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1636952782432986144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1158,6 @@ GameObject:
   - component: {fileID: 3062107004404134785}
   - component: {fileID: 8060515620376079871}
   - component: {fileID: 5760890684003748745}
-  - component: {fileID: 8327822298118175449}
   m_Layer: 5
   m_Name: Text Sel Soldier Num
   m_TagString: Untagged
@@ -1353,18 +1304,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8327822298118175449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636952782432986144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1805214813048306644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,7 +1389,6 @@ GameObject:
   - component: {fileID: 2860798417551629529}
   - component: {fileID: 3442691895643202140}
   - component: {fileID: 5597163002229759904}
-  - component: {fileID: 7580483123873691972}
   m_Layer: 5
   m_Name: 'Text Gold Costs #1'
   m_TagString: Untagged
@@ -1597,18 +1535,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7580483123873691972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885636730248758110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1945594355437649780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,7 +1740,6 @@ GameObject:
   - component: {fileID: 7847490547673686681}
   - component: {fileID: 1045900063154130384}
   - component: {fileID: 3850812304306482942}
-  - component: {fileID: 8553371410620599345}
   m_Layer: 5
   m_Name: Text Sel Soldier Num
   m_TagString: Untagged
@@ -1961,18 +1886,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8553371410620599345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2178341124440996659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2235042517025305961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,7 +1934,6 @@ GameObject:
   - component: {fileID: 8728808277625525542}
   - component: {fileID: 7417583606940375002}
   - component: {fileID: 6997044785742243017}
-  - component: {fileID: 4746674322718294787}
   m_Layer: 5
   m_Name: Text Sel Soldier Num
   m_TagString: Untagged
@@ -2168,18 +2080,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4746674322718294787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2327027623731973894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2417533614926677162
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,7 +2091,6 @@ GameObject:
   - component: {fileID: 7497011059538728275}
   - component: {fileID: 4557696258928821199}
   - component: {fileID: 3926449893971609457}
-  - component: {fileID: 2915651678635412795}
   m_Layer: 5
   m_Name: Text Header
   m_TagString: Untagged
@@ -2338,18 +2237,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2915651678635412795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2417533614926677162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2437993612590398236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,18 +2324,7 @@ MonoBehaviour:
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4746674322718294787}
-        m_MethodName: ConvertNumberToText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &2678181816621937310
@@ -2575,18 +2451,7 @@ MonoBehaviour:
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5331920533113421326}
-        m_MethodName: ConvertNumberToText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &3208559172901258002
@@ -3302,7 +3167,6 @@ GameObject:
   - component: {fileID: 8811753302604545625}
   - component: {fileID: 846984416784745161}
   - component: {fileID: 6581566126610921984}
-  - component: {fileID: 81049664633307549}
   m_Layer: 5
   m_Name: 'Text Gold Costs #4'
   m_TagString: Untagged
@@ -3449,18 +3313,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &81049664633307549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4822337458240151018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5002127169331628231
 GameObject:
   m_ObjectHideFlags: 0
@@ -3472,7 +3324,6 @@ GameObject:
   - component: {fileID: 1668459966957710416}
   - component: {fileID: 1769745978872288497}
   - component: {fileID: 8550940778157826620}
-  - component: {fileID: 6496302113039596467}
   m_Layer: 5
   m_Name: 'Text Gold Costs #5'
   m_TagString: Untagged
@@ -3619,18 +3470,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6496302113039596467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5002127169331628231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5098257858587227661
 GameObject:
   m_ObjectHideFlags: 0
@@ -3678,7 +3517,6 @@ GameObject:
   - component: {fileID: 6668460211944565026}
   - component: {fileID: 7996394501465926772}
   - component: {fileID: 3081590580004241165}
-  - component: {fileID: 1276178955587652465}
   m_Layer: 5
   m_Name: 'Text Gold Costs #3'
   m_TagString: Untagged
@@ -3825,18 +3663,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1276178955587652465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5228292679847357736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5737957922906615767
 GameObject:
   m_ObjectHideFlags: 0
@@ -3922,7 +3748,6 @@ GameObject:
   - component: {fileID: 5678836659511357379}
   - component: {fileID: 3753191920127838176}
   - component: {fileID: 3554308842532789521}
-  - component: {fileID: 684881159688880158}
   m_Layer: 5
   m_Name: 'Text Gold Costs #2'
   m_TagString: Untagged
@@ -4069,18 +3894,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &684881159688880158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893203379413734652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6221343271961978907
 GameObject:
   m_ObjectHideFlags: 0
@@ -4741,7 +4554,6 @@ GameObject:
   - component: {fileID: 2861830274975642107}
   - component: {fileID: 2303411121680057829}
   - component: {fileID: 1323402927499197994}
-  - component: {fileID: 5331920533113421326}
   m_Layer: 5
   m_Name: Text Sel Soldier Num
   m_TagString: Untagged
@@ -4888,18 +4700,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5331920533113421326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8229142118124269948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8263620546929799758
 GameObject:
   m_ObjectHideFlags: 0
@@ -4911,7 +4711,6 @@ GameObject:
   - component: {fileID: 3815384203172820466}
   - component: {fileID: 5716947576095619809}
   - component: {fileID: 4889121454001288355}
-  - component: {fileID: 8303611448657151146}
   m_Layer: 5
   m_Name: Text Gold Sum Costs
   m_TagString: Untagged
@@ -5058,18 +4857,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8303611448657151146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8263620546929799758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6da4d45b17374a798a3e02a6e361682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8667048814504469553
 GameObject:
   m_ObjectHideFlags: 0
@@ -5379,18 +5166,7 @@ MonoBehaviour:
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8553371410620599345}
-        m_MethodName: ConvertNumberToText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &9076843366526659009

@@ -10,6 +10,7 @@ public class SelectionUI : MonoBehaviour {
     private float elapsedTime;
 
     private bool inRecruitState;
+    private bool inOnlyInfoMode;
 
     private GameObject infoPanel;
     private GameObject costsPanel;
@@ -25,6 +26,7 @@ public class SelectionUI : MonoBehaviour {
         gameController = gc;
         elapsedTime = 0f;
         inRecruitState = false;
+        inOnlyInfoMode = false;
 
         // Set recruit info gold costs
         int counter = 0; // Count soldier types
@@ -132,11 +134,11 @@ public class SelectionUI : MonoBehaviour {
         inRecruitState = false;
         ToggleInfoPanels();
 
-        foreach (Slider s in GetComponentsInChildren<Slider>()) {
-            s.onValueChanged.RemoveAllListeners();
-        }
-
         UpdateSoldierSelectionSliders();
+
+        foreach (Slider s in GetComponentsInChildren<Slider>(true)) {
+            s.value = s.maxValue;
+        }
 
         Button[] btns = GetComponentsInChildren<Button>();
         foreach (Button btn in btns) {
@@ -163,12 +165,21 @@ public class SelectionUI : MonoBehaviour {
         int counter = 0; // To count soldier types
         foreach (Slider s in GetComponentsInChildren<Slider>(true)) {
             s.maxValue = displayedSoldiers.GetSoldierTypeNum((SoldierType)counter);
-            s.transform.parent.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = s.value.ToString();
+
+            if (inOnlyInfoMode) {
+                s.transform.parent.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = s.maxValue.ToString();
+            } else {
+                s.transform.parent.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = s.value + " / " + s.maxValue;
+            }
+
             if (s.maxValue <= 0) {
                 s.transform.Find("Fill Area").gameObject.SetActive(false);
             } else {
                 s.transform.Find("Fill Area").gameObject.SetActive(true);
-                s.value = s.maxValue;
+                s.onValueChanged.RemoveAllListeners();
+                s.onValueChanged.AddListener(val => {
+                    UpdateSoldierSelectionSliders();
+                });
             }
             counter++; // Increment per soldier type after all text fields are set
         }
@@ -265,6 +276,8 @@ public class SelectionUI : MonoBehaviour {
     }
 
     private void ToggleInfoMode(bool on) {
+        inOnlyInfoMode = on;
+
         foreach (Button btn in GetComponentsInChildren<Button>(true)) {
             if (btn.name != "Button Close") {
                 btn.gameObject.SetActive(!on);
@@ -272,6 +285,7 @@ public class SelectionUI : MonoBehaviour {
         }
         foreach (Slider s in GetComponentsInChildren<Slider>(true)) {
             s.gameObject.SetActive(!on);
+            s.transform.parent.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = s.maxValue.ToString();
         }
     }
 }
