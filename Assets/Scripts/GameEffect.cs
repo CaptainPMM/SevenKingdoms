@@ -103,7 +103,7 @@ public class GameEffect {
     (
         "RECRUITMENT_SPEED_MODIFIER_LOW",
         GameEffectType.RECRUITMENT_SPEED,
-        0.8f
+        0.7f
     );
     public static GameEffect RECRUITMENT_SPEED_MODIFIER_HIGH = new GameEffect
     (

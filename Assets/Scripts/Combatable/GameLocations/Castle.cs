@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class Castle : GameLocation {
+﻿public class Castle : GameLocation {
     // Start is called before the first frame update
     new void Start() {
         base.Start();
@@ -19,7 +17,8 @@ public class Castle : GameLocation {
             BuildingType.WOOD_MILL,
             BuildingType.BOW_MAKER,
             BuildingType.BLACKSMITH,
-            BuildingType.STABLES
+            BuildingType.STABLES,
+            BuildingType.DRILL_GROUND
         });
 
         buildings.Add(new LocalAdministration());

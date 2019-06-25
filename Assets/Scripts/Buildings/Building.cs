@@ -60,6 +60,10 @@ public class Building {
                 return new Blacksmith();
             case BuildingType.STABLES:
                 return new Stables();
+            case BuildingType.BARRACKS:
+                return new Barracks();
+            case BuildingType.DRILL_GROUND:
+                return new DrillGround();
 
             default:
                 throw new Exception("Invalid BuildingType <" + buildingType + ">: could not be found");

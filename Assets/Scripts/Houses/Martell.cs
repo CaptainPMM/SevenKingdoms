@@ -12,7 +12,8 @@ public class Martell : House {
             BuildingType.WOODEN_WALL,
             BuildingType.STONE_WALL,
             BuildingType.ADVANCED_WALL,
-            BuildingType.WOOD_MILL
+            BuildingType.WOOD_MILL,
+            BuildingType.DRILL_GROUND
         };
     }
 }

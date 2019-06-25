@@ -14,7 +14,9 @@ public class Tully : House {
             BuildingType.ADVANCED_WALL,
             BuildingType.WOOD_MILL,
             BuildingType.BOW_MAKER,
-            BuildingType.BLACKSMITH
+            BuildingType.BLACKSMITH,
+            BuildingType.BARRACKS,
+            BuildingType.DRILL_GROUND
         };
     }
 }

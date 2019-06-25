@@ -8,5 +8,7 @@ public enum BuildingType {
     WOOD_MILL, // requirement for spearmen and bowmen
     BOW_MAKER, // requirement for bowmen
     BLACKSMITH, // requirement for swordsmen and mounted knights
-    STABLES // requirement for mounted knights
+    STABLES, // requirement for mounted knights
+    BARRACKS, // low increase for recruitment speed // builable in outposts // not in castles -> drill ground
+    DRILL_GROUND // high increase for recruitment speed
 }

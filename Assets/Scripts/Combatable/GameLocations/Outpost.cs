@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class Outpost : GameLocation {
+﻿public class Outpost : GameLocation {
     // Start is called before the first frame update
     new void Start() {
         base.Start();
@@ -12,7 +10,8 @@ public class Outpost : GameLocation {
 
         buildableBuildings.AddRange(new BuildingType[] {
             BuildingType.LOCAL_ADMINISTRATION,
-            BuildingType.WOODEN_WALL
+            BuildingType.WOODEN_WALL,
+            BuildingType.BARRACKS
         });
 
         buildings.Add(new LocalAdministration());

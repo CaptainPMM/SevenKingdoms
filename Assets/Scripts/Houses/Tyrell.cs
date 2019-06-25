@@ -14,7 +14,9 @@ public class Tyrell : House {
             BuildingType.ADVANCED_WALL,
             BuildingType.WOOD_MILL,
             BuildingType.BLACKSMITH,
-            BuildingType.STABLES
+            BuildingType.STABLES,
+            BuildingType.BARRACKS,
+            BuildingType.DRILL_GROUND
         };
     }
 }

@@ -15,7 +15,8 @@ public class Lannister : House {
             BuildingType.WOOD_MILL,
             BuildingType.BOW_MAKER,
             BuildingType.BLACKSMITH,
-            BuildingType.STABLES
+            BuildingType.STABLES,
+            BuildingType.BARRACKS
         };
     }
 }

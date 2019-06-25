@@ -13,7 +13,9 @@ public class Stark : House {
             BuildingType.STONE_WALL,
             BuildingType.ADVANCED_WALL,
             BuildingType.BLACKSMITH,
-            BuildingType.STABLES
+            BuildingType.STABLES,
+            BuildingType.BARRACKS,
+            BuildingType.DRILL_GROUND
         };
     }
 }
