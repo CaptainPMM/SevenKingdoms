@@ -12,10 +12,11 @@ public class SelectionUI : MonoBehaviour {
     private bool inRecruitState;
     private bool inOnlyInfoMode;
 
-    private GameObject infoPanel;
-    private GameObject costsPanel;
+    public GameObject infoPanel;
+    public GameObject costsPanel;
     private TextMeshProUGUI totalGoldCosts;
     private TextMeshProUGUI totalMpCosts;
+    public GameObject recruitmentPanel;
 
     private Recruitment recruitment;
 
@@ -41,18 +42,7 @@ public class SelectionUI : MonoBehaviour {
             }
         }
 
-        // Disable recruit info panels
-        Image[] imgs = GetComponentsInChildren<Image>();
-        Image infoPanelImg = System.Array.Find(imgs, i => i.name == "Info Panel");
-        Image costsPanelImg = System.Array.Find(imgs, i => i.name == "Costs Panel");
-
-        if (infoPanelImg == null || costsPanelImg == null) {
-            Debug.LogError("Selection UI: could not find Info Panel<" + infoPanelImg + "> or Costs Panel<" + costsPanelImg + ">");
-        } else {
-            infoPanel = infoPanelImg.gameObject;
-            costsPanel = costsPanelImg.gameObject;
-            ToggleInfoPanels();
-        }
+        ToggleInfoPanels();
 
         // Fill allowed soldier types dictionary with template (every bool value represents a building that is needed)
         // If the last bool array item is true -> every requirement is met -> soldier type recruitable
@@ -79,6 +69,7 @@ public class SelectionUI : MonoBehaviour {
             elapsedTime = 0f;
             if (inRecruitState) {
                 SetupRecruitSliders();
+                if (recruitmentPanel.activeSelf) SetupInRecruitmentPanel();
             } else {
                 if (displayedSoldiers.GetNumSoldiersInTotal() != attachedGameLocation.soldiers.GetNumSoldiersInTotal()) {
                     UpdateSoldierSelectionSliders();
@@ -262,9 +253,26 @@ public class SelectionUI : MonoBehaviour {
         DefaultState();
     }
 
+    private void SetupInRecruitmentPanel() {
+        Soldiers soldiers = ((GameLocation)attachedGameLocation).GetSoldiersInRecruitment();
+        TextMeshProUGUI[] texts = recruitmentPanel.GetComponentsInChildren<TextMeshProUGUI>();
+        int counter = 0;
+        foreach (TextMeshProUGUI txt in texts) {
+            if (txt.name.StartsWith("Text Num")) {
+                txt.text = soldiers.GetSoldierTypeNum((SoldierType)counter++).ToString();
+            }
+        }
+    }
+
     private void ToggleInfoPanels() {
         infoPanel.SetActive(inRecruitState);
         costsPanel.SetActive(inRecruitState);
+
+        if (inRecruitState && ((GameLocation)attachedGameLocation).GetSoldiersInRecruitment().GetNumSoldiersInTotal() > 0) {
+            recruitmentPanel.SetActive(true);
+        } else {
+            recruitmentPanel.SetActive(false);
+        }
     }
 
     public void EnableOnlyInfoMode() {

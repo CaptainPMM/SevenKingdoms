@@ -163,6 +163,10 @@ public class GameLocation : Combatable {
         soldiersInRecruitment.AddSoldiers(s);
     }
 
+    public Soldiers GetSoldiersInRecruitment() {
+        return soldiersInRecruitment;
+    }
+
     private void Recruit() {
         // Get soldier types in recruitment
         List<SoldierType> soldierTypes = new List<SoldierType>();
