@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameLocation : Combatable {
@@ -26,7 +26,20 @@ public class GameLocation : Combatable {
     // Start is called before the first frame update
     new protected void Start() {
         base.Start();
-        locationName = name;
+        locationName = name.Substring(name.IndexOf(' ') + 1); // Filter the location type e.g Outpost Northern Reach -> Norther Reach
+        foreach (TextMeshProUGUI t in GetComponentsInChildren<TextMeshProUGUI>()) {
+            if (t.name == "Text Location Name") {
+                t.text = locationName;
+
+                Image panel = t.transform.parent.gameObject.GetComponent<Image>();
+                Color panelColor = panel.color;
+                panelColor.r = house.color.r;
+                panelColor.g = house.color.g;
+                panelColor.b = house.color.b;
+                panel.color = panelColor; // Also change panel color to house colors
+                break;
+            }
+        }
 
         gameObject.transform.Find("Flag").GetComponent<SpriteRenderer>().color = house.color;
 
