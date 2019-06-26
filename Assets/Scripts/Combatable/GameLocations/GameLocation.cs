@@ -20,13 +20,18 @@ public class GameLocation : Combatable {
     private float recruitmentSpeedBuffs = 1f;
     private float elapsedTimeRecruitment = 0f;
 
+    public GameObject recruitmentIndicatorGO;
+    public GameObject fortificationLevelGO;
+
     protected int BASE_GOLD_INCOME;
     protected int BASE_MANPOWER_INCOME;
 
     // Start is called before the first frame update
     new protected void Start() {
         base.Start();
-        locationName = name.Substring(name.IndexOf(' ') + 1); // Filter the location type e.g Outpost Northern Reach -> Norther Reach
+
+        // Setup UI panel
+        locationName = name.Substring(name.IndexOf(' ') + 1); // Filter the location type e.g Outpost Northern Reach -> Northern Reach
         foreach (TextMeshProUGUI t in GetComponentsInChildren<TextMeshProUGUI>()) {
             if (t.name == "Text Location Name") {
                 t.text = locationName;
@@ -40,6 +45,8 @@ public class GameLocation : Combatable {
                 break;
             }
         }
+        recruitmentIndicatorGO.GetComponent<Image>().enabled = false;
+        DetermineFortificationLevel();
 
         gameObject.transform.Find("Flag").GetComponent<SpriteRenderer>().color = house.color;
 
@@ -193,5 +200,23 @@ public class GameLocation : Combatable {
         // Recruit the soldier type (one soldier), extract from recruitment list
         soldiers.AddSoldierTypeNum(soldierTypes[rand], 1);
         soldiersInRecruitment.SetSoldierTypeNum(soldierTypes[rand], soldiersInRecruitment.GetSoldierTypeNum(soldierTypes[rand]) - 1);
+
+        if (soldiersInRecruitment.GetNumSoldiersInTotal() <= 0) recruitmentIndicatorGO.GetComponent<Image>().enabled = false;
+    }
+
+    public void DetermineFortificationLevel() {
+        int fortLvl = 0;
+        foreach (Building b in buildings) {
+            if (b.buildingType == BuildingType.WOODEN_WALL) fortLvl += 1;
+            if (b.buildingType == BuildingType.STONE_WALL) fortLvl += 2;
+            if (b.buildingType == BuildingType.ADVANCED_WALL) fortLvl += 3;
+        }
+
+        Sprite s = Resources.Load<Sprite>("FortificationLevels/" + fortLvl);
+        if (s != null) {
+            fortificationLevelGO.GetComponent<Image>().sprite = s;
+        } else {
+            throw new System.Exception("Invalid fortification level <" + fortLvl + ">: corresponding resource image could not be found");
+        }
     }
 }

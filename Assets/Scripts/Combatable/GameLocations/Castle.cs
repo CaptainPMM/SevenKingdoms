@@ -24,5 +24,7 @@
         buildings.Add(new LocalAdministration());
         buildings.Add(new StoneWall());
         GetEffectsFromBuildings();
+
+        DetermineFortificationLevel();
     }
 }

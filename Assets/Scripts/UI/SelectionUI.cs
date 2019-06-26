@@ -244,11 +244,14 @@ public class SelectionUI : MonoBehaviour {
     }
 
     private void ClickedFinalRecruitBtn() {
-        GamePlayer player = gameController.player.GetComponent<GamePlayer>();
-        player.house.gold -= recruitment.GetGoldCosts();
-        player.house.manpower -= recruitment.GetMpCosts();
+        if (recruitment.GetRecruitSoldiers().GetNumSoldiersInTotal() > 0) {
+            GamePlayer player = gameController.player.GetComponent<GamePlayer>();
+            player.house.gold -= recruitment.GetGoldCosts();
+            player.house.manpower -= recruitment.GetMpCosts();
 
-        ((GameLocation)attachedGameLocation).AddSoldiersToRecruitment(recruitment.GetRecruitSoldiers());
+            ((GameLocation)attachedGameLocation).AddSoldiersToRecruitment(recruitment.GetRecruitSoldiers());
+            ((GameLocation)attachedGameLocation).recruitmentIndicatorGO.GetComponent<Image>().enabled = true;
+        }
 
         DefaultState();
     }

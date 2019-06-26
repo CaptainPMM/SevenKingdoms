@@ -16,5 +16,7 @@
 
         buildings.Add(new LocalAdministration());
         GetEffectsFromBuildings();
+
+        DetermineFortificationLevel();
     }
 }
