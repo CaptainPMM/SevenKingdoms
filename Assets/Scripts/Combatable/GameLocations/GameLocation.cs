@@ -48,7 +48,9 @@ public class GameLocation : Combatable {
         recruitmentIndicatorGO.GetComponent<Image>().enabled = false;
         DetermineFortificationLevel();
 
-        gameObject.transform.Find("Flag").GetComponent<SpriteRenderer>().color = house.color;
+        Transform flag = gameObject.transform.Find("Flag");
+        flag.GetComponent<SpriteRenderer>().color = house.color;
+        flag.GetChild(0).Find("House Flag").GetComponent<SpriteRenderer>().sprite = house.houseFlag;
 
         soldiersInRecruitment = new Soldiers();
 
