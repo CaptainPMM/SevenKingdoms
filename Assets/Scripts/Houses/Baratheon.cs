@@ -3,7 +3,7 @@ using UnityEngine;
 public class Baratheon : House {
     public Baratheon() {
         _houseName = "Baratheon";
-        _color = new Color32(231, 202, 146, 255);
+        _color = new Color32(254, 207, 3, 255);
         _houseFlag = Resources.Load<Sprite>(HOUSE_FLAGS_PATH + _houseName);
         _buildableBuildings = new System.Collections.Generic.List<BuildingType> {
             BuildingType.LOCAL_ADMINISTRATION,

@@ -76,12 +76,12 @@ public class GameLocation : Combatable {
 
                 Gradient g = new Gradient();
                 GradientColorKey[] g_colors = {
-                    new GradientColorKey(house.color, 0.4f),
-                    new GradientColorKey(location.house.color, 0.6f)
+                    new GradientColorKey(house.color, 0.45f),
+                    new GradientColorKey(location.house.color, 0.55f)
                 };
                 GradientAlphaKey[] g_alphas = {
-                    new GradientAlphaKey(0.5f, 0.4f),
-                    new GradientAlphaKey(0.5f, 0.6f)
+                    new GradientAlphaKey(0.62f, 0.45f),
+                    new GradientAlphaKey(0.62f, 0.55f)
                 };
                 g.SetKeys(g_colors, g_alphas);
                 lr.colorGradient = g;
