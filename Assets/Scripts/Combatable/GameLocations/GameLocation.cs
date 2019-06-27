@@ -71,18 +71,28 @@ public class GameLocation : Combatable {
                 cl.name = "LocConnLine: " + name + "-" + location.name;
                 LineRenderer lr = cl.GetComponent<LineRenderer>();
 
-                lr.SetPosition(0, transform.position);
-                lr.SetPosition(1, location.transform.position);
+                lr.SetPosition(0, transform.position); // origin
+                lr.SetPosition(3, location.transform.position); // destination
+
+                // Add middle points to support a specific gradient
+                float opacity = 0.3f;
+                float gradientStart = 0.4f;
+                float gradientEnd = 0.6f;
+
+                Vector3 directionVector = location.transform.position - transform.position; // destination - origin
+                lr.SetPosition(1, transform.position + (directionVector * gradientStart)); // gradient start
+                lr.SetPosition(2, transform.position + (directionVector * gradientEnd)); // gradient end
 
                 Gradient g = new Gradient();
                 GradientColorKey[] g_colors = {
-                    new GradientColorKey(house.color, 0.45f),
-                    new GradientColorKey(location.house.color, 0.55f)
+                    new GradientColorKey(house.color, gradientStart),
+                    new GradientColorKey(location.house.color, gradientEnd)
                 };
                 GradientAlphaKey[] g_alphas = {
-                    new GradientAlphaKey(0.62f, 0.45f),
-                    new GradientAlphaKey(0.62f, 0.55f)
+                    new GradientAlphaKey(opacity, gradientStart),
+                    new GradientAlphaKey(opacity, gradientEnd)
                 };
+
                 g.SetKeys(g_colors, g_alphas);
                 lr.colorGradient = g;
             }

@@ -5,8 +5,6 @@ public class Neutral : House {
         _houseName = "Neutral";
         _color = new Color32(140, 140, 140, 255);
         _houseFlag = null;
-        _buildableBuildings = new System.Collections.Generic.List<BuildingType> {
-            BuildingType.LOCAL_ADMINISTRATION
-        };
+        _buildableBuildings = new System.Collections.Generic.List<BuildingType> { };
     }
 }
