@@ -35,7 +35,7 @@ public class Troops : Combatable {
                 Destroy(gameObject);
             } else {
                 // Location combat (Siege)
-                initCombat(other, destination);
+                InitCombat(other, destination);
             }
             return;
         }
@@ -43,7 +43,7 @@ public class Troops : Combatable {
         if (other.gameObject.tag == "troops") {
             // Hit other troops on the road
             if (other.GetComponent<Troops>().house.houseType != house.houseType) {
-                initCombat(other, null);
+                InitCombat(other, null);
             }
             return;
         }
@@ -54,7 +54,7 @@ public class Troops : Combatable {
         }
     }
 
-    void initCombat(Collider other, GameLocation location) {
+    private void InitCombat(Collider other, GameLocation location) {
         Combatable otherCombatable = other.GetComponent<Combatable>();
         if (otherCombatable.combat == null) {
             GameObject combatGO = Instantiate(combatPrefab);
@@ -79,7 +79,7 @@ public class Troops : Combatable {
         }
     }
 
-    void AddToCombat(Collider other) {
+    private void AddToCombat(Collider other) {
         FightingHouse fh = other.GetComponent<FightingHouse>();
         combat = fh.combat;
         combat.AddParticipant(this);
