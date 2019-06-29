@@ -75,7 +75,7 @@ public class GameLocation : Combatable {
                 lr.SetPosition(3, location.transform.position); // destination
 
                 // Add middle points to support a specific gradient
-                float opacity = 0.3f;
+                float opacity = 0.5f;
                 float gradientStart = 0.4f;
                 float gradientEnd = 0.6f;
 
@@ -125,6 +125,19 @@ public class GameLocation : Combatable {
     }
 
     public void OccupyBy(House house) {
+        // Let AIs know of the change
+        GamePlayer player = GameController.activeGameController.player.GetComponent<GamePlayer>();
+        // Remove location from old owner (only AI)
+        if (player.house.houseType != this.house.houseType) {
+            AIPlayer aiPlayer = GameController.activeGameController.aiPlayers.Find(aip => aip.house.houseType == this.house.houseType);
+            if (aiPlayer != null) aiPlayer.ownedLocations.Remove(this);
+        }
+        // Add location to new owner (only AI)
+        if (player.house.houseType != house.houseType) {
+            AIPlayer aiPlayer = GameController.activeGameController.aiPlayers.Find(aip => aip.house.houseType == house.houseType);
+            if (aiPlayer != null) aiPlayer.ownedLocations.Add(this);
+        }
+
         this.house = house;
         wasOccupied = true;
 

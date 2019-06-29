@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(GameLocation), true)]
+[CanEditMultipleObjects]
 public class GameLocationEditor : CombatableEditor {
     private int[] inputValues;
     private GUIStyle headerStyle;
@@ -30,7 +31,8 @@ public class GameLocationEditor : CombatableEditor {
 
         EditorGUILayout.Space();
 
-        if (GUILayout.Button("Add Soldiers")) {
+        // Multi-object editing supported for this
+        if (GUILayout.Button("Add Soldiers (multi)")) {
             EditorUtility.SetDirty(gl);
 
             Soldiers newSoldiers = new Soldiers();
@@ -39,7 +41,14 @@ public class GameLocationEditor : CombatableEditor {
                 newSoldiers.AddSoldierTypeNum(st, inputValues[i]);
                 i++;
             }
-            gl.soldiers.AddSoldiers(newSoldiers);
+
+            if (targets.Length > 1) {
+                foreach (GameLocation l in targets) {
+                    l.soldiers.AddSoldiers(newSoldiers);
+                }
+            } else {
+                gl.soldiers.AddSoldiers(newSoldiers);
+            }
         }
 
         if (GUILayout.Button("Reset Input")) {

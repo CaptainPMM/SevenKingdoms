@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -17,6 +18,10 @@ public class GameController : MonoBehaviour {
 
     public GameObject selectedLocation;
 
+    public List<AIPlayer> aiPlayers;
+    private float aiElapsedTime = 0f;
+    private int aiPlayerCounter = 0;
+
     private SpriteRenderer moveMarkerSpriteRenderer;
 
     // Start is called before the first frame update
@@ -33,6 +38,16 @@ public class GameController : MonoBehaviour {
         moveMarkerSpriteRenderer = moveMarker.GetComponentInChildren<SpriteRenderer>();
         playerColor.a = 210f / 255f;
         moveMarkerSpriteRenderer.color = playerColor;
+
+        // Init AIs
+        aiPlayers = new List<AIPlayer>();
+        GamePlayer p = player.GetComponent<GamePlayer>();
+        // For singelplayer there are 6 ai players (seven kingdoms - 1 human player)
+        // Iterate through all HouseTypes and skip the player house type and the Neutral HouseType (index 0)
+        for (int i = 1; i <= 7; i++) {
+            if (p.house.houseType == (HouseType)i) continue;
+            aiPlayers.Add(new AIPlayer((HouseType)i));
+        }
     }
 
     // Update is called once per frame
@@ -63,9 +78,25 @@ public class GameController : MonoBehaviour {
                         case "fighting_house":
                             // Only show info panel if outside FOW
                             DeselectLocation();
-                            GameObject targetFH = hit.collider.gameObject;
-                            if (IsNeighbourOfAnyPlayerLocation(targetFH.GetComponent<FightingHouse>().combat.location.gameObject)) {
-                                SelectLocation(targetFH);
+                            GameObject target = hit.collider.gameObject;
+                            bool valid = false;
+
+                            FightingHouse fh = target.GetComponent<FightingHouse>();
+                            if (fh.combat.location != null) {
+                                // Game location combat
+                                if (IsNeighbourOfAnyPlayerLocation(fh.combat.location.gameObject)) {
+                                    valid = true;
+                                }
+                            } else {
+                                // Combat on field
+                                Troops t = fh.firstParticipant as Troops;
+                                if (IsNeighbourOfAnyPlayerLocation(t.toLocation) || IsLocationOwnedByPlayer(t.toLocation)) {
+                                    valid = true;
+                                }
+                            }
+
+                            if (valid) {
+                                SelectLocation(target);
                                 selectionUI.GetComponent<SelectionUI>().EnableOnlyInfoMode();
                             }
                             break;
@@ -92,25 +123,23 @@ public class GameController : MonoBehaviour {
                     RaycastHit hit;
 
                     // Check for hit valid game objects // Find snapping point
-                    GameObject foundValidGameObject = null;
+                    bool foundValidGameObject = false;
                     if (Physics.Raycast(ray, out hit)) {
                         GameObject targetLocation = hit.collider.gameObject;
                         if (targetLocation.tag == "game_location") {
                             if (IsSelLocationNeighbour(targetLocation)) {
-                                foundValidGameObject = targetLocation;
+                                foundValidGameObject = true;
                             }
                         } else if (targetLocation.tag == "fighting_house") {
-                            if (IsSelLocationNeighbour(targetLocation.GetComponent<FightingHouse>().combat.location.gameObject)) {
-                                foundValidGameObject = targetLocation;
-                            }
+                            if (GetFightingHouseGameLocationIfValid(targetLocation) != null) foundValidGameObject = true;
                         }
                     }
 
-                    if (foundValidGameObject != null) {
-                        // Found snapping point, snap arrow to game location
-                        moveTargetMarker.transform.position = foundValidGameObject.transform.Find("Flag").position;
+                    if (foundValidGameObject) {
+                        // Found snapping point, snap arrow to collided game object
+                        moveTargetMarker.transform.position = hit.collider.transform.Find("Flag").position;
                         moveTargetMarker.SetActive(true);
-                        SetMoveMarker(foundValidGameObject.transform.position);
+                        SetMoveMarker(hit.collider.transform.position);
                     } else {
                         // Move arrow freely
                         // Bit shift the index of the background/Map layer (8) to get a bit mask
@@ -135,8 +164,8 @@ public class GameController : MonoBehaviour {
                                 MoveTroops(targetLocation);
                             }
                         } else if (targetLocation.tag == "fighting_house") {
-                            targetLocation = targetLocation.GetComponent<FightingHouse>().combat.location.gameObject;
-                            if (IsSelLocationNeighbour(targetLocation)) {
+                            targetLocation = GetFightingHouseGameLocationIfValid(targetLocation);
+                            if (targetLocation != null) {
                                 MoveTroops(targetLocation);
                             }
                         }
@@ -146,6 +175,9 @@ public class GameController : MonoBehaviour {
                 }
             }
         }
+
+        // AI handling
+        HandleAI();
     }
 
     private bool IsLocationOwnedByPlayer(GameObject location) {
@@ -184,6 +216,27 @@ public class GameController : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    /**
+        Returns null if the target is not in range.
+        Returns the game location game object if the fighting house combat is at a valid location or is on way to a valid location
+     */
+    private GameObject GetFightingHouseGameLocationIfValid(GameObject target) {
+        FightingHouse fh = target.GetComponent<FightingHouse>();
+        if (fh.combat.location != null) {
+            // Game location combat
+            if (IsSelLocationNeighbour(fh.combat.location.gameObject)) {
+                return fh.combat.location.gameObject;
+            }
+        } else {
+            // Combat on field
+            Troops t = fh.firstParticipant as Troops;
+            if (IsSelLocationNeighbour(t.toLocation)) {
+                return t.toLocation;
+            }
+        }
+        return null;
     }
 
     private Vector3 NormalizeVectorInto2D(Vector3 v) {
@@ -226,15 +279,21 @@ public class GameController : MonoBehaviour {
             }
 
             if (moveSoldiers.GetNumSoldiersInTotal() > 0) {
-                GameObject go = Instantiate(troopsPrefab, selectedLocation.transform.position, selectedLocation.transform.rotation);
-                go.name = "Troops " + selectedLocation.name + "-" + toLocation.name;
-                Troops troops = go.GetComponent<Troops>();
-                troops.house = gl.house;
-                troops.soldiers = moveSoldiers;
-                gl.UpdateGUI();
-                troops.toLocation = toLocation;
+                InitializeTroopsMovement(selectedLocation, toLocation, moveSoldiers);
             }
         }
+    }
+
+    public void InitializeTroopsMovement(GameObject fromLocation, GameObject toLocation, Soldiers soldiers) {
+        GameObject troopsGO = Instantiate(troopsPrefab, fromLocation.transform.position, fromLocation.transform.rotation);
+        troopsGO.name = "Troops " + fromLocation.name + "-" + toLocation.name;
+        Troops troops = troopsGO.GetComponent<Troops>();
+
+        GameLocation fromGameLocation = fromLocation.GetComponent<GameLocation>();
+        troops.house = fromGameLocation.house;
+        troops.soldiers = soldiers;
+        fromGameLocation.UpdateGUI();
+        troops.toLocation = toLocation;
     }
 
     public void OpenBuildingsMenu() {
@@ -254,5 +313,20 @@ public class GameController : MonoBehaviour {
     // Needed because a selected loaction on quit caused a little error (not too important, but bothering)
     private void OnApplicationQuit() {
         DeselectLocation();
+    }
+
+    private void HandleAI() {
+        aiElapsedTime += Time.deltaTime;
+        if (aiElapsedTime >= Global.GAME_CONTROLLER_AI_HANDLE_PAUSE) {
+            aiElapsedTime = 0f;
+
+            if (aiPlayers[aiPlayerCounter].ownedLocations.Count <= 0) {
+                aiPlayers.RemoveAt(aiPlayerCounter);
+            } else {
+                aiPlayers[aiPlayerCounter].Play();
+            }
+
+            aiPlayerCounter = (aiPlayerCounter + 1) % aiPlayers.Count;
+        }
     }
 }

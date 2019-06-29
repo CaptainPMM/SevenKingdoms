@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -7,6 +6,11 @@ public class House {
     private static Dictionary<HouseType, House> houseInstances;
 
     public HouseType houseType;
+
+    public House() { }
+    public House(HouseType ht) {
+        houseType = ht;
+    }
 
     [HideInInspector]
     public string houseName {

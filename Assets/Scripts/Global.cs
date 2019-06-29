@@ -12,6 +12,10 @@ public class Global {
     public static float CAMERA_BOUNDS_SCROLL_OUT = 16f;
     // --
 
+    // Game Controller
+    public static float GAME_CONTROLLER_AI_HANDLE_PAUSE = 0.5f;
+    // --
+
     // Selection UI
     public static float SEL_UI_UPDATE_TIME = 0.3f;
     // --
