@@ -33,21 +33,9 @@ public class GameLocationEditor : CombatableEditor {
 
         // Multi-object editing supported for this
         if (GUILayout.Button("Add Soldiers (multi)")) {
-            EditorUtility.SetDirty(gl);
-
-            Soldiers newSoldiers = new Soldiers();
-            int i = 0;
-            foreach (SoldierType st in soldierTypes) {
-                newSoldiers.AddSoldierTypeNum(st, inputValues[i]);
-                i++;
-            }
-
-            if (targets.Length > 1) {
-                foreach (GameLocation l in targets) {
-                    l.soldiers.AddSoldiers(newSoldiers);
-                }
-            } else {
-                gl.soldiers.AddSoldiers(newSoldiers);
+            foreach (GameLocation targetGL in targets) {
+                EditorUtility.SetDirty(targetGL);
+                targetGL.soldiers.AddSoldiers(CreateNewSoldiers());
             }
         }
 
@@ -67,5 +55,15 @@ public class GameLocationEditor : CombatableEditor {
         EditorGUILayout.Space();
 
         base.OnInspectorGUI();
+    }
+
+    private Soldiers CreateNewSoldiers() {
+        Soldiers newSoldiers = new Soldiers();
+        int i = 0;
+        foreach (SoldierType st in soldierTypes) {
+            newSoldiers.AddSoldierTypeNum(st, inputValues[i]);
+            i++;
+        }
+        return newSoldiers;
     }
 }

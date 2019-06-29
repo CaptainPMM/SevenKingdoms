@@ -99,20 +99,24 @@ public class Soldiers {
     }
 
     public int DealDamageToSoldierType(SoldierType soldierType, int amount) {
-        int casualties = 0;
-        foreach (Soldier soldier in FindSoldiersByType(soldierType).ToArray()) {
-            soldier.HP -= amount;
-            if (soldier.HP <= 0) {
-                // Soldier is dead
-                FindSoldiersByType(soldierType).Remove(soldier); // Remove soldier
-                amount = Math.Abs(soldier.HP); // Reduce damage amount
-                casualties++;
-            } else {
-                // Amount is 0 now -> done
-                return casualties;
+        if (amount > 0) {
+            int casualties = 0;
+            foreach (Soldier soldier in FindSoldiersByType(soldierType)) {
+                soldier.HP -= amount;
+                if (soldier.HP <= 0) {
+                    // Soldier is dead
+                    amount = Math.Abs(soldier.HP); // Reduce damage amount
+                    casualties++;
+                } else {
+                    // Amount is 0 now -> done
+                    break;
+                }
             }
+            FindSoldiersByType(soldierType).RemoveRange(0, casualties); // Remove soldiers
+            return casualties;
+        } else {
+            return 0;
         }
-        return casualties;
     }
 
     /**
