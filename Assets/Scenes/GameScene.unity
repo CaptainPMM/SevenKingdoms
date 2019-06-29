@@ -1232,7 +1232,7 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: reachableLocations.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -1264,6 +1264,11 @@ PrefabInstance:
       propertyPath: reachableLocations.Array.data[2]
       value: 
       objectReference: {fileID: 1454642639}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1322804364}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2096,7 +2101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   house:
-    houseType: 2
+    houseType: 1
 --- !u!1001 &330180435
 PrefabInstance:
   m_ObjectHideFlags: 0
