@@ -150,7 +150,9 @@ public class GameLocation : Combatable {
         // Remove all connection lines
         GameObject[] lines = GameObject.FindGameObjectsWithTag("location_conn_line");
         foreach (GameObject line in lines) {
-            if (line.name.Contains(name)) {
+            string[] locationNames = line.name.Substring("LocConnLine: ".Length).Split('-'); // "LocConnLine: Outpost XY-Castle AB"
+
+            if (this.name == locationNames[0] || this.name == locationNames[1]) {
                 Destroy(line);
             }
         }
