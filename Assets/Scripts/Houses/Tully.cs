@@ -3,7 +3,7 @@ using UnityEngine;
 public class Tully : House {
     public Tully() {
         _houseName = "Tully";
-        _color = new Color32(232, 94, 70, 255);
+        _color = new Color32(230, 55, 90, 255);
         _houseFlag = Resources.Load<Sprite>(HOUSE_FLAGS_PATH + _houseName);
         _buildableBuildings = new System.Collections.Generic.List<BuildingType> {
             BuildingType.LOCAL_ADMINISTRATION,

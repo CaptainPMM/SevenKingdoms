@@ -60,7 +60,7 @@ public class GameLocation : Combatable {
             bool lineExists = false;
             foreach (GameObject go in GameObject.FindGameObjectsWithTag("location_conn_line")) {
                 LineRenderer lr = go.GetComponent<LineRenderer>();
-                if (lr.GetPosition(0) == location.transform.position && lr.GetPosition(1) == transform.position) {
+                if (lr.GetPosition(0) == location.transform.position && lr.GetPosition(3) == transform.position) {
                     lineExists = true;
                     break;
                 }
@@ -75,7 +75,7 @@ public class GameLocation : Combatable {
                 lr.SetPosition(3, location.transform.position); // destination
 
                 // Add middle points to support a specific gradient
-                float opacity = 0.5f;
+                float opacity = 0.6f;
                 float gradientStart = 0.4f;
                 float gradientEnd = 0.6f;
 
