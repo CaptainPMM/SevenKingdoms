@@ -5,11 +5,11 @@ using UnityEngine;
 public class AIPlayer {
     public House house;
     public List<GameLocation> ownedLocations;
-    [SerializeField] private List<Troops> troops;
+
+    private Dictionary<SoldierType, int> soldierTypePredictedStrengths;
 
     public AIPlayer(HouseType houseType) {
         this.house = new House(houseType);
-        troops = new List<Troops>();
 
         // Find all owned locations
         ownedLocations = new List<GameLocation>();
@@ -20,6 +20,9 @@ public class AIPlayer {
                 ownedLocations.Add(gameLocation);
             }
         }
+
+        // Save soldier type stats for later
+        foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) soldierTypePredictedStrengths.Add(st, Soldiers.GetSoldierTypeStats(st).predictedStrength);
     }
 
     public void Play() {
@@ -73,15 +76,30 @@ public class AIPlayer {
     }
 
     /**
-        Returns a value below zero if g1 is more powerful; or above zero if g2 is more powerful.
+        Returns a value below zero if origin is more powerful; or above zero if target is more powerful.
         Returns 0 if both are equally powerful.
         The value increases with greater difference.
      */
-    private float CompareStrength(GameLocation g1, GameLocation g2) {
+    private float CompareStrength(GameLocation origin, GameLocation target) {
         float strengthRatio = 0f;
 
-        // Lets start with a simple comparison
-        strengthRatio = g2.numSoldiers - g1.numSoldiers;
+        float targetLocationEffectsMod = 1f;
+        foreach (GameEffect ge in target.locationEffects)
+            if (ge.type == GameEffectType.COMBAT_LOCATION_DEFENDER_BONUS)
+                targetLocationEffectsMod *= ge.modifierValue;
+        float targetStrengthBonus = 1f + (1f - targetLocationEffectsMod);
+
+        int originSoldiersPredictedStrength = 0;
+        int targetSoldiersPredictedStrength = 0;
+        foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
+            originSoldiersPredictedStrength += origin.soldiers.GetSoldierTypeNum(st) * soldierTypePredictedStrengths[st];
+            targetSoldiersPredictedStrength += target.soldiers.GetSoldierTypeNum(st) * soldierTypePredictedStrengths[st];
+        }
+
+        float originSoldiersMod = (float)originSoldiersPredictedStrength / (float)origin.numSoldiers;
+        float targetSoldiersMod = (float)targetSoldiersPredictedStrength / (float)target.numSoldiers;
+
+        strengthRatio = ((float)target.numSoldiers * targetStrengthBonus * targetSoldiersMod) - ((float)origin.numSoldiers * originSoldiersMod);
 
         return strengthRatio;
     }

@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class Conscripts : Soldier {
     public Conscripts() {
         HP = 1;
-        soldierName = "Conscripts";
         DP = 1;
+        predictedStrength = 1;
+        soldierName = "Conscripts";
         strengths = new Dictionary<SoldierType, float>();
         goldCosts = 2;
     }
