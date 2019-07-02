@@ -9,6 +9,7 @@ public class Combat : MonoBehaviour {
 
     [SerializeField] private List<FightingHouse> fightingHouses;
     [SerializeField] private bool inProgress;
+    private FightingHouse defeatedLocation = null;
 
     private float elapsedTime;
 
@@ -167,8 +168,7 @@ public class Combat : MonoBehaviour {
                     Destroy(fh.gameObject);
                 } else {
                     // Combat is over for game location
-                    fh.CombatIsOver();
-                    location.combat = this; // Re-set the combat of the location (CombatIsOver sets the combat to null)
+                    defeatedLocation = fh;
                 }
             }
         }
@@ -189,8 +189,8 @@ public class Combat : MonoBehaviour {
                 }
             }
 
-            if (location != null) {
-                location.combat = null; // Combat is now also over for the game location (even if it had no soldiers left before)
+            if (defeatedLocation != null) {
+                defeatedLocation.CombatIsOver();
             }
 
             return false;
