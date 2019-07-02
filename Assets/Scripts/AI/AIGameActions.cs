@@ -16,7 +16,15 @@ public static class AIGameActions {
         Move a number of soldiers to a new location
      */
     public static void MoveTroops(GameLocation fromGameLocation, GameLocation toGameLocation, Soldiers soldiers) {
-        Debug.LogWarning("public static void MoveTroops(GameLocation fromGameLocation, GameLocation toGameLocation, Soldiers soldiers) is not implemented");
+        if (soldiers.GetNumSoldiersInTotal() > 0) {
+            Soldiers soldiersToMove = new Soldiers();
+            foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
+                soldiersToMove.SetSoldierType(st, fromGameLocation.soldiers.ExtractSoldiers(st, soldiers.GetSoldierTypeNum(st)));
+            }
+
+            Troops t = GameController.activeGameController.InitializeTroopsMovement(fromGameLocation.gameObject, toGameLocation.gameObject, soldiersToMove);
+            AIPlayer.InformOfMovingTroops(t);
+        }
     }
 
     public static void Build(GameLocation gameLocation, BuildingType buildingType) {

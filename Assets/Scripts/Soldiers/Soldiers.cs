@@ -11,6 +11,13 @@ public class Soldiers {
     [SerializeField] private List<Soldier> bowmen = new List<Soldier>();
     [SerializeField] private List<Soldier> cavKnights = new List<Soldier>();
 
+    public Soldiers() { }
+    public Soldiers(Soldiers soldiersToCopy) {
+        foreach (SoldierType st in CreateSoldierTypesArray()) {
+            SetSoldierTypeNum(st, soldiersToCopy.GetSoldierTypeNum(st));
+        }
+    }
+
     private List<Soldier> FindSoldiersByType(SoldierType soldierType) {
         switch (soldierType) {
             case SoldierType.CONSCRIPTS:
