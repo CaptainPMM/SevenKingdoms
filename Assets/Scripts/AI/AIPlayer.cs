@@ -97,10 +97,7 @@ public class AIPlayer {
             targetSoldiersPredictedStrength += target.soldiers.GetSoldierTypeNum(st) * soldierTypePredictedStrengths[st];
         }
 
-        float originSoldiersMod = (float)originSoldiersPredictedStrength / (float)origin.numSoldiers;
-        float targetSoldiersMod = (float)targetSoldiersPredictedStrength / (float)target.numSoldiers;
-
-        strengthRatio = ((float)target.numSoldiers * targetStrengthBonus * targetSoldiersMod) - ((float)origin.numSoldiers * originSoldiersMod);
+        strengthRatio = ((float)targetSoldiersPredictedStrength * targetStrengthBonus) - (float)originSoldiersPredictedStrength;
 
         return strengthRatio;
     }
