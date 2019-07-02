@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using TMPro;
 
 public class Troops : Combatable {
     public GameObject combatPrefab;
@@ -83,5 +82,9 @@ public class Troops : Combatable {
         FightingHouse fh = other.GetComponent<FightingHouse>();
         combat = fh.combat;
         combat.AddParticipant(this);
+    }
+
+    private void OnDestroy() {
+        AIPlayer.RemoveMovingTroops(this);
     }
 }

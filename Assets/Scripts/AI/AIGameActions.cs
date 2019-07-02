@@ -6,8 +6,9 @@ public static class AIGameActions {
      */
     public static void MoveTroops(GameLocation fromGameLocation, GameLocation toGameLocation) {
         if (fromGameLocation.numSoldiers > 0) {
-            GameController.activeGameController.InitializeTroopsMovement(fromGameLocation.gameObject, toGameLocation.gameObject, fromGameLocation.soldiers);
+            Troops t = GameController.activeGameController.InitializeTroopsMovement(fromGameLocation.gameObject, toGameLocation.gameObject, fromGameLocation.soldiers);
             fromGameLocation.soldiers = new Soldiers();
+            AIPlayer.InformOfMovingTroops(t);
         }
     }
 

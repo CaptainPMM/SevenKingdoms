@@ -279,12 +279,13 @@ public class GameController : MonoBehaviour {
             }
 
             if (moveSoldiers.GetNumSoldiersInTotal() > 0) {
-                InitializeTroopsMovement(selectedLocation, toLocation, moveSoldiers);
+                Troops t = InitializeTroopsMovement(selectedLocation, toLocation, moveSoldiers);
+                AIPlayer.InformOfMovingTroops(t);
             }
         }
     }
 
-    public void InitializeTroopsMovement(GameObject fromLocation, GameObject toLocation, Soldiers soldiers) {
+    public Troops InitializeTroopsMovement(GameObject fromLocation, GameObject toLocation, Soldiers soldiers) {
         GameObject troopsGO = Instantiate(troopsPrefab, fromLocation.transform.position, fromLocation.transform.rotation);
         troopsGO.name = "Troops " + fromLocation.name + "-" + toLocation.name;
         Troops troops = troopsGO.GetComponent<Troops>();
@@ -294,6 +295,8 @@ public class GameController : MonoBehaviour {
         troops.soldiers = soldiers;
         fromGameLocation.UpdateGUI();
         troops.toLocation = toLocation;
+
+        return troops;
     }
 
     public void OpenBuildingsMenu() {
