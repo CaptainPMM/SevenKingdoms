@@ -22,6 +22,7 @@ public class AIPlayer {
         }
 
         // Save soldier type stats for later
+        soldierTypePredictedStrengths = new Dictionary<SoldierType, int>();
         foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) soldierTypePredictedStrengths.Add(st, Soldiers.GetSoldierTypeStats(st).predictedStrength);
     }
 
