@@ -88,7 +88,6 @@ public class Combat : MonoBehaviour {
 
             // Damage calculation
             // For each soldier type select a random target soldier type (random is influenced by soldier type number)
-            Debug.Log(attacker.houseType + " attacks " + defender.houseType + "...");
             foreach (SoldierType attackingST in Soldiers.CreateSoldierTypesArray()) {
                 // Only if the attacking house curr soldier type has soldiers
                 if (attacker.soldiers.GetSoldierTypeNum(attackingST) > 0) {
@@ -102,7 +101,6 @@ public class Combat : MonoBehaviour {
                         if (rand <= passedSoldiersCounter) {
                             // Random number has selected the current soldier type (defendingST)
                             targetSoldierType = defendingST;
-                            Debug.Log(attackingST + " -> " + defendingST);
                             break;
                         }
                     }
@@ -130,6 +128,7 @@ public class Combat : MonoBehaviour {
 
                     // Combine all damage factors
                     int damage = Mathf.RoundToInt(
+                                    1 +
                                     ((float)ATTACKING_SOLDIER_TYPE_NUM * Global.COMBAT_DAMAGE_NUM_SOLDIERS_DAMPER) *
                                     (float)ATTACKING_SOLDIER_TYPE_DP *
                                     ATTACKING_BONUS_AGAINST_DEFENING_SOLDIER_TYPE *
@@ -139,11 +138,6 @@ public class Combat : MonoBehaviour {
                                 );
 
                     defender.ApplyCasualties(targetSoldierType, damage);
-
-                    // DEBUG
-                    Debug.Log("ATK_NUM " + ATTACKING_SOLDIER_TYPE_NUM + " // ATK_DP " + ATTACKING_SOLDIER_TYPE_DP + " // ATK_BONUS " + ATTACKING_BONUS_AGAINST_DEFENING_SOLDIER_TYPE + " // DEF_BONUS " + DEFENDER_BONUS + " // RAND " + RANDOM);
-                    Debug.Log("=> Damage: " + damage);
-                    // --
                 }
             }
         }
