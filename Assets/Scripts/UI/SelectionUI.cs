@@ -55,6 +55,7 @@ public class SelectionUI : MonoBehaviour {
                 foreach (GameEffect e in effects) {
                     if (e.type == GameEffectType.SOLDIER_TYPE_UNLOCK && e.modifierValue == (int)st) {
                         requiredBuildings++;
+                        break;
                     }
                 }
             }
@@ -250,7 +251,6 @@ public class SelectionUI : MonoBehaviour {
             player.house.manpower -= recruitment.GetMpCosts();
 
             ((GameLocation)attachedGameLocation).AddSoldiersToRecruitment(recruitment.GetRecruitSoldiers());
-            ((GameLocation)attachedGameLocation).recruitmentIndicatorGO.GetComponent<Image>().enabled = true;
         }
 
         DefaultState();

@@ -9,6 +9,19 @@ public class AIPlayer {
     private Dictionary<SoldierType, int> soldierTypePredictedStrengths;
     private static List<Troops> troops = new List<Troops>();
 
+    private AIGoldPool goldPool; // only work with this gold in AI, normal house.gold doesnt work here!!
+
+    private Dictionary<SoldierType, int> requiredBuildingsForSoldierType;
+
+    // Soldier type priorities
+    private Dictionary<SoldierType, int> soldierTypePriorities = new Dictionary<SoldierType, int>() {
+        { SoldierType.CONSCRIPTS, 2 },
+        { SoldierType.SPEARMEN, 2 },
+        { SoldierType.SWORDSMEN, 3 },
+        { SoldierType.BOWMEN, 2 },
+        { SoldierType.CAV_KNIGHTS, 4 }
+    };
+
     public AIPlayer(HouseType houseType) {
         this.house = new House(houseType);
 
@@ -25,10 +38,29 @@ public class AIPlayer {
         // Save soldier type stats for later
         soldierTypePredictedStrengths = new Dictionary<SoldierType, int>();
         foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) soldierTypePredictedStrengths.Add(st, Soldiers.GetSoldierTypeStats(st).predictedStrength);
+
+        goldPool = new AIGoldPool();
+        DistributeGold();
+
+        requiredBuildingsForSoldierType = new Dictionary<SoldierType, int>();
+        foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
+            int requiredBuildings = 0;
+            foreach (BuildingType bt in System.Enum.GetValues(typeof(BuildingType))) {
+                GameEffect[] effects = Building.GetBuildingTypeInfos(bt).gameEffects;
+                foreach (GameEffect e in effects) {
+                    if (e.type == GameEffectType.SOLDIER_TYPE_UNLOCK && e.modifierValue == (int)st) {
+                        requiredBuildings++;
+                        break;
+                    }
+                }
+            }
+            requiredBuildingsForSoldierType.Add(st, requiredBuildings);
+        }
     }
 
     public void Play() {
         TroopsManagement();
+        ResourceManagement();
     }
 
     private void TroopsManagement() {
@@ -174,5 +206,148 @@ public class AIPlayer {
 
     public static void RemoveMovingTroops(Troops t) {
         troops.Remove(t);
+    }
+
+    private void ResourceManagement() {
+        // Update gold pool
+        DistributeGold();
+
+        ManageRecruitment();
+        ManageBuilding();
+    }
+
+    private void DistributeGold() {
+        int newGold = house.gold;
+
+        if (newGold > 0) {
+            int recruitmentGold = Mathf.RoundToInt((float)newGold * (2f / 3f));
+            goldPool.recruitmentGold += recruitmentGold;
+            int buildingGold = newGold - recruitmentGold;
+            goldPool.buildingGold += buildingGold;
+
+            house.gold = 0;
+        }
+    }
+
+    private void ManageRecruitment() {
+        if (house.manpower > 0 && goldPool.recruitmentGold >= 25) {
+            // Search location where nothing gets recruited // prefer castles
+            List<GameLocation> outposts = new List<GameLocation>();
+
+            int maxRecruitBuildings = 0;
+            GameLocation bestCastle = null;
+
+            foreach (GameLocation gl in ownedLocations) {
+                if (gl.GetSoldiersInRecruitment().GetNumSoldiersInTotal() > 0) continue; // is already recruiting -> skip
+
+                if (gl.GetType() == typeof(Outpost)) {
+                    outposts.Add(gl);
+                    continue;
+                }
+
+                // Is castle
+                int recruitBuildings = 0;
+                foreach (Building b in gl.buildings) {
+                    foreach (GameEffect ge in b.gameEffects) {
+                        if (ge.type == GameEffectType.SOLDIER_TYPE_UNLOCK) recruitBuildings++;
+                        if (ge.type == GameEffectType.RECRUITMENT_SPEED) recruitBuildings += 2;
+                    }
+                }
+                if (recruitBuildings > maxRecruitBuildings) {
+                    maxRecruitBuildings = recruitBuildings;
+                    bestCastle = gl;
+                }
+            }
+
+            if (bestCastle != null) {
+                // Recruit in castle
+                RecruitInLocation(bestCastle);
+            } else {
+                if (outposts.Count > 0) {
+                    // Recruit in best outpost
+                    List<GameLocation> goodOutposts = new List<GameLocation>();
+
+                    foreach (GameLocation o in outposts) {
+                        foreach (Building b in o.buildings) {
+                            foreach (GameEffect ge in b.gameEffects) {
+                                if (ge.type == GameEffectType.RECRUITMENT_SPEED) goodOutposts.Add(o);
+                            }
+                        }
+                    }
+
+                    if (goodOutposts.Count > 0) {
+                        RecruitInLocation(goodOutposts[Random.Range(0, goodOutposts.Count)]);
+                    } else {
+                        // Recruit in any outpost
+                        RecruitInLocation(outposts[Random.Range(0, outposts.Count)]);
+                    }
+                }
+                // Oh no, no suitable recruitment place found
+            }
+        }
+    }
+
+    private void RecruitInLocation(GameLocation gl) {
+        if (gl.GetType() == typeof(Outpost)) {
+            int maxAvailSoldiersByGold = Mathf.FloorToInt((float)goldPool.recruitmentGold / (float)Soldiers.GetSoldierTypeStats(SoldierType.CONSCRIPTS).goldCosts);
+            int maxAvailSoldiersByMP = house.manpower;
+            int numToRecruit = Mathf.Min(maxAvailSoldiersByGold, maxAvailSoldiersByMP);
+
+            if (numToRecruit > 0) {
+                goldPool.recruitmentGold -= numToRecruit * Soldiers.GetSoldierTypeStats(SoldierType.CONSCRIPTS).goldCosts;
+                house.manpower -= numToRecruit;
+                Soldiers soldiers = new Soldiers();
+                soldiers.SetSoldierTypeNum(SoldierType.CONSCRIPTS, numToRecruit);
+                AIGameActions.Recruit(gl, soldiers);
+            }
+        } else {
+            // Is castle
+            // Determine recruitable soldier types in gl
+            int[] buildingsPerSoldierType = new int[Soldiers.CreateSoldierTypesArray().Length]; // by soldier type enum index
+            foreach (Building b in gl.buildings) {
+                foreach (GameEffect ge in b.gameEffects) {
+                    if (ge.type == GameEffectType.SOLDIER_TYPE_UNLOCK) buildingsPerSoldierType[(int)ge.modifierValue]++;
+                }
+            }
+            List<SoldierType> recruitableSoldierTypes = new List<SoldierType>();
+            foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
+                if (buildingsPerSoldierType[(int)st] >= requiredBuildingsForSoldierType[st]) {
+                    // Soldier type is recruitable here
+                    recruitableSoldierTypes.Add(st);
+                }
+            }
+
+            int randMax = 0;
+            foreach (SoldierType st in recruitableSoldierTypes) {
+                randMax += soldierTypePriorities[st];
+            }
+
+            if (randMax > 0) {
+                int rand = Random.Range(0, randMax);
+
+                int counter = 0;
+                foreach (SoldierType st in recruitableSoldierTypes) {
+                    counter += soldierTypePriorities[st];
+
+                    if (counter > rand) {
+                        int maxAvailSoldiersByGold = Mathf.FloorToInt((float)goldPool.recruitmentGold / (float)Soldiers.GetSoldierTypeStats(st).goldCosts);
+                        int maxAvailSoldiersByMP = house.manpower;
+                        int numToRecruit = Mathf.Min(maxAvailSoldiersByGold, maxAvailSoldiersByMP);
+
+                        goldPool.recruitmentGold -= numToRecruit * Soldiers.GetSoldierTypeStats(st).goldCosts;
+                        house.manpower -= numToRecruit;
+                        Soldiers soldiers = new Soldiers();
+                        soldiers.SetSoldierTypeNum(st, numToRecruit);
+                        AIGameActions.Recruit(gl, soldiers);
+
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    private void ManageBuilding() {
+
     }
 }

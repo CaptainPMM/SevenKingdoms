@@ -208,6 +208,7 @@ public class GameLocation : Combatable {
 
     public void AddSoldiersToRecruitment(Soldiers s) {
         soldiersInRecruitment.AddSoldiers(s);
+        recruitmentIndicatorGO.GetComponent<Image>().enabled = true;
     }
 
     public Soldiers GetSoldiersInRecruitment() {

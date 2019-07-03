@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public static class AIGameActions {
     /**
         Move all soldiers to a new location
