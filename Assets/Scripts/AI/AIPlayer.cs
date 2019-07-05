@@ -122,7 +122,7 @@ public class AIPlayer {
                 // Probably attack one of the potential locations
                 List<GameLocation> reasonableAttackLocations = new List<GameLocation>();
                 foreach (GameLocation attackLocation in potentialAttackLocations) {
-                    float strengthRatio = CompareStrength(from.soldiers, attackLocation);
+                    float strengthRatio = CompareStrength(soldiers, attackLocation);
 
                     if (strengthRatio < 0) {
                         // Own location is stronger, add to reasonable attack locations
