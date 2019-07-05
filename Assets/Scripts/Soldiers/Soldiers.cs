@@ -107,12 +107,13 @@ public class Soldiers {
 
     public int DealDamageToSoldierType(SoldierType soldierType, int amount) {
         int casualties = 0;
-        foreach (Soldier soldier in FindSoldiersByType(soldierType).ToArray()) {
-            soldier.HP -= amount;
-            if (soldier.HP <= 0) {
+        List<Soldier> soldiers = FindSoldiersByType(soldierType);
+        for (int i = 0; i < soldiers.Count; i++) {
+            soldiers[i].HP -= amount;
+            if (soldiers[i].HP <= 0) {
                 // Soldier is dead
-                FindSoldiersByType(soldierType).Remove(soldier); // Remove soldier
-                amount = Math.Abs(soldier.HP); // Reduce damage amount
+                amount = Math.Abs(soldiers[i].HP); // Reduce damage amount
+                soldiers.RemoveAt(i); // Remove soldier
                 casualties++;
             } else {
                 // Amount is 0 now -> done
