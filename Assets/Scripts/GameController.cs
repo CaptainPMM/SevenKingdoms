@@ -319,17 +319,19 @@ public class GameController : MonoBehaviour {
     }
 
     private void HandleAI() {
-        aiElapsedTime += Time.deltaTime;
-        if (aiElapsedTime >= Global.GAME_CONTROLLER_AI_HANDLE_PAUSE) {
-            aiElapsedTime = 0f;
+        if (aiPlayers.Count > 0) {
+            aiElapsedTime += Time.deltaTime;
+            if (aiElapsedTime >= Global.GAME_CONTROLLER_AI_HANDLE_PAUSE) {
+                aiElapsedTime = 0f;
 
-            if (aiPlayers[aiPlayerCounter].ownedLocations.Count <= 0) {
-                aiPlayers.RemoveAt(aiPlayerCounter);
-            } else {
-                aiPlayers[aiPlayerCounter].Play();
+                if (aiPlayers[aiPlayerCounter].ownedLocations.Count <= 0) {
+                    aiPlayers.RemoveAt(aiPlayerCounter);
+                    if (aiPlayers.Count > 0) aiPlayerCounter = (aiPlayerCounter + 1) % aiPlayers.Count;
+                } else {
+                    aiPlayers[aiPlayerCounter].Play();
+                    aiPlayerCounter = (aiPlayerCounter + 1) % aiPlayers.Count;
+                }
             }
-
-            aiPlayerCounter = (aiPlayerCounter + 1) % aiPlayers.Count;
         }
     }
 }
