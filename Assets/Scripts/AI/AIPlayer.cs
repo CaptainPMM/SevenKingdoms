@@ -348,6 +348,55 @@ public class AIPlayer {
     }
 
     private void ManageBuilding() {
+        List<GameLocation> castles = new List<GameLocation>();
+        List<GameLocation> outposts = new List<GameLocation>();
 
+        foreach (GameLocation gl in ownedLocations) {
+            if (gl.GetType() == typeof(Castle)) {
+                castles.Add(gl);
+            } else {
+                outposts.Add(gl);
+            }
+        }
+
+        foreach (GameLocation gl in castles) {
+            // Search castles that dont have a local administration and immediately build one
+            if (!IsLocalAdministrationBuilt(gl)) {
+                if (goldPool.buildingGold >= Building.GetBuildingTypeInfos(BuildingType.LOCAL_ADMINISTRATION).neededGold) BuildInLocation(gl, BuildingType.LOCAL_ADMINISTRATION);
+                return;
+            }
+        }
+
+        foreach (GameLocation gl in outposts) {
+            // Search outposts in safe territory and build local admin if not built
+            if (!IsLocalAdministrationBuilt(gl)) {
+                bool isSafeOutpost = true;
+                foreach (GameLocation neighbour in gl.reachableLocations) {
+                    if (neighbour.house.houseType != house.houseType) {
+                        isSafeOutpost = false;
+                        break;
+                    }
+                }
+                if (isSafeOutpost) {
+                    if (goldPool.buildingGold >= Building.GetBuildingTypeInfos(BuildingType.LOCAL_ADMINISTRATION).neededGold) BuildInLocation(gl, BuildingType.LOCAL_ADMINISTRATION);
+                    return;
+                }
+            }
+        }
+    }
+
+    private bool IsLocalAdministrationBuilt(GameLocation gl) {
+        foreach (Building b in gl.buildings) {
+            if (b.buildingType == BuildingType.LOCAL_ADMINISTRATION) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void BuildInLocation(GameLocation gl, BuildingType bt) {
+        // Reduce gold and build
+        goldPool.buildingGold -= Building.GetBuildingTypeInfos(bt).neededGold;
+        AIGameActions.Build(gl, bt);
     }
 }
