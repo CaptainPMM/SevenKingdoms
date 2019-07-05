@@ -321,7 +321,7 @@ public class GameController : MonoBehaviour {
     private void HandleAI() {
         if (aiPlayers.Count > 0) {
             aiElapsedTime += Time.deltaTime;
-            if (aiElapsedTime >= Global.GAME_CONTROLLER_AI_HANDLE_PAUSE) {
+            if (aiElapsedTime >= Global.GAME_CONTROLLER_AI_HANDLE_CYCLE_TIME / (float)aiPlayers.Count) {
                 aiElapsedTime = 0f;
 
                 if (aiPlayers[aiPlayerCounter].ownedLocations.Count <= 0) {

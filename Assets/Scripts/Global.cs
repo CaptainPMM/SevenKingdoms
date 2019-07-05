@@ -13,7 +13,7 @@ public class Global {
     // --
 
     // Game Controller
-    public static float GAME_CONTROLLER_AI_HANDLE_PAUSE = 0.5f;
+    public static float GAME_CONTROLLER_AI_HANDLE_CYCLE_TIME = 3.0f; // every cycle all AIs have played
     // --
 
     // Selection UI
