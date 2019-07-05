@@ -93,10 +93,12 @@ public class FightingHouse : Combatable {
     }
 
     public void CombatIsOver() {
-        _firstParticipant.gameObject.SetActive(true);
-        _firstParticipant.soldiers = soldiers; // Not needed anymore, because soldiers is an object and already connected (leave it though)
-        _firstParticipant.combat = null;
-        _firstParticipant.UpdateGUI();
+        if (_firstParticipant != null) {
+            _firstParticipant.gameObject.SetActive(true);
+            _firstParticipant.soldiers = soldiers; // Not needed anymore, because soldiers is an object and already connected (leave it though)
+            _firstParticipant.combat = null;
+            _firstParticipant.UpdateGUI();
+        }
         Destroy(this.gameObject);
     }
 }
