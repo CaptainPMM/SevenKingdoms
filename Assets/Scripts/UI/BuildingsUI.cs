@@ -163,7 +163,6 @@ public class BuildingsUI : MonoBehaviour {
         btn.onClick.AddListener(() => {
             player.house.gold -= Building.GetBuildingTypeInfos(bt).neededGold;
             gl.AddBuilding(Building.CreateBuildingInstance(bt));
-            gl.DetermineFortificationLevel();
             Setup();
         });
     }

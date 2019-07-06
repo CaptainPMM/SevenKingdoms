@@ -3,7 +3,7 @@ public class StoneWall : Building {
         buildingType = BuildingType.STONE_WALL;
         _buildingName = "Stone Wall";
         _description = "Every castle already starts with a stone wall. Enables defender bonus.";
-        _neededGold = 1000;
+        _neededGold = 600;
         _gameEffects = new GameEffect[] {
             GameEffect.LOCATION_DEFENDER_CASUALTIES_MODIFIER_MED
         };

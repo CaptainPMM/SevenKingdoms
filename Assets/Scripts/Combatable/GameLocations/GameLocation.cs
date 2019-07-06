@@ -175,6 +175,7 @@ public class GameLocation : Combatable {
     public void AddBuilding(Building b) {
         buildings.Add(b);
         GetEffectsFromBuildings();
+        DetermineFortificationLevel();
     }
 
     private void ResourcesIncomeForHouse() {

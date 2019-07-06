@@ -22,6 +22,23 @@ public class AIPlayer {
         { SoldierType.CAV_KNIGHTS, 4 }
     };
 
+    // Building type priorities
+    private Dictionary<BuildingType, int> buildingTypePriorities = new Dictionary<BuildingType, int>() {
+        { BuildingType.LOCAL_ADMINISTRATION, 1 }, // only in outposts because in castles they get built with highest prio already
+        { BuildingType.MARKETPLACE, 5 },
+        { BuildingType.OUTER_TOWN_RING, 7 },
+        { BuildingType.WOODEN_WALL, 1 },
+        { BuildingType.STONE_WALL, 4 },
+        { BuildingType.ADVANCED_WALL, 12 },
+        { BuildingType.WOOD_MILL, 6 },
+        { BuildingType.BOW_MAKER, 4 },
+        { BuildingType.BLACKSMITH, 6 },
+        { BuildingType.STABLES, 4 },
+        { BuildingType.BARRACKS, 1 },
+        { BuildingType.DRILL_GROUND, 10 }
+    };
+    private int buildLocalAdminInSafeOutpostsCounter = 0;
+
     public AIPlayer(HouseType houseType) {
         this.house = new House(houseType);
 
@@ -220,7 +237,7 @@ public class AIPlayer {
         int newGold = house.gold;
 
         if (newGold > 0) {
-            int recruitmentGold = Mathf.RoundToInt((float)newGold * (2f / 3f));
+            int recruitmentGold = Mathf.RoundToInt((float)newGold * 0.5f);
             goldPool.recruitmentGold += recruitmentGold;
             int buildingGold = newGold - recruitmentGold;
             goldPool.buildingGold += buildingGold;
@@ -359,28 +376,63 @@ public class AIPlayer {
             }
         }
 
+        // Search castles that dont have a local administration and immediately build one
         foreach (GameLocation gl in castles) {
-            // Search castles that dont have a local administration and immediately build one
             if (!IsLocalAdministrationBuilt(gl)) {
                 if (goldPool.buildingGold >= Building.GetBuildingTypeInfos(BuildingType.LOCAL_ADMINISTRATION).neededGold) BuildInLocation(gl, BuildingType.LOCAL_ADMINISTRATION);
                 return;
             }
         }
 
-        foreach (GameLocation gl in outposts) {
-            // Search outposts in safe territory and build local admin if not built
-            if (!IsLocalAdministrationBuilt(gl)) {
-                bool isSafeOutpost = true;
-                foreach (GameLocation neighbour in gl.reachableLocations) {
-                    if (neighbour.house.houseType != house.houseType) {
-                        isSafeOutpost = false;
-                        break;
+        // Emergency build more gold buildings if manpower higher as gold (is bad balance)
+        if (house.manpower > goldPool.recruitmentGold && goldPool.buildingGold >= Building.GetBuildingTypeInfos(BuildingType.MARKETPLACE).neededGold) {
+            GameLocation buildLocation = SearchPlaceToBuild(BuildingType.MARKETPLACE, castles);
+            if (buildLocation != null) {
+                BuildInLocation(buildLocation, BuildingType.MARKETPLACE);
+                return;
+            }
+        }
+
+        // Search outposts in safe territory and build local admin if not built (only rarely)
+        if (buildLocalAdminInSafeOutpostsCounter++ >= 10) {
+            buildLocalAdminInSafeOutpostsCounter = 0;
+            foreach (GameLocation gl in outposts) {
+                if (!IsLocalAdministrationBuilt(gl)) {
+                    bool isSafeOutpost = true;
+                    foreach (GameLocation neighbour in gl.reachableLocations) {
+                        if (neighbour.house.houseType != house.houseType) {
+                            isSafeOutpost = false;
+                            break;
+                        }
+                    }
+                    if (isSafeOutpost) {
+                        if (goldPool.buildingGold >= Building.GetBuildingTypeInfos(BuildingType.LOCAL_ADMINISTRATION).neededGold) BuildInLocation(gl, BuildingType.LOCAL_ADMINISTRATION);
+                        return;
                     }
                 }
-                if (isSafeOutpost) {
-                    if (goldPool.buildingGold >= Building.GetBuildingTypeInfos(BuildingType.LOCAL_ADMINISTRATION).neededGold) BuildInLocation(gl, BuildingType.LOCAL_ADMINISTRATION);
-                    return;
+            }
+        }
+
+        // Pick a random building with priorities
+        int randMax = 0;
+        foreach (var kv in buildingTypePriorities) {
+            randMax += kv.Value;
+        }
+        int rand = Random.Range(0, randMax);
+
+        int counter = 0;
+        foreach (var kv in buildingTypePriorities) {
+            counter += kv.Value;
+
+            if (counter > rand) {
+                if (goldPool.buildingGold >= Building.GetBuildingTypeInfos(kv.Key).neededGold) {
+                    GameLocation buildLocation = SearchPlaceToBuild(kv.Key, ownedLocations);
+                    if (buildLocation != null) {
+                        BuildInLocation(buildLocation, kv.Key);
+                        return;
+                    }
                 }
+                break;
             }
         }
     }
@@ -398,5 +450,16 @@ public class AIPlayer {
         // Reduce gold and build
         goldPool.buildingGold -= Building.GetBuildingTypeInfos(bt).neededGold;
         AIGameActions.Build(gl, bt);
+
+        Debug.Log(bt + " in " + gl);
+    }
+
+    private GameLocation SearchPlaceToBuild(BuildingType bt, List<GameLocation> gls) {
+        if (house.buildableBuildings.Contains(bt)) {
+            foreach (GameLocation gl in gls) {
+                if (gl.buildableBuildings.Contains(bt) && gl.buildings.Find(b => b.buildingType == bt) == null) return gl;
+            }
+        }
+        return null;
     }
 }
