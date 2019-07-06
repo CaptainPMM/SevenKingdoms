@@ -238,11 +238,11 @@ public class AIPlayer {
             int newGold = house.gold;
 
             // Gold pool exchange if needed
-            float recruitBuildGoldRatio = (goldPool.recruitmentGold + 1) / (goldPool.buildingGold + 1); // +1 to prevent 0 values
-            if (recruitBuildGoldRatio > 1.5f) {
+            float recruitBuildGoldRatio = (float)(goldPool.recruitmentGold + 1) / (float)(goldPool.buildingGold + 1); // +1 to prevent 0 values
+            if (recruitBuildGoldRatio > 0.75f) {
                 // Only add gold to build pool
                 goldPool.buildingGold += newGold;
-            } else if (recruitBuildGoldRatio < 0.35f) {
+            } else if (recruitBuildGoldRatio < 0.2f) {
                 // Only add gold to recruit pool
                 goldPool.recruitmentGold += newGold;
             } else {
