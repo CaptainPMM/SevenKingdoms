@@ -234,13 +234,24 @@ public class AIPlayer {
     }
 
     private void DistributeGold() {
-        int newGold = house.gold;
+        if (house.gold > 0) {
+            int newGold = house.gold;
 
-        if (newGold > 0) {
-            int recruitmentGold = Mathf.RoundToInt((float)newGold * 0.5f);
-            goldPool.recruitmentGold += recruitmentGold;
-            int buildingGold = newGold - recruitmentGold;
-            goldPool.buildingGold += buildingGold;
+            // Gold pool exchange if needed
+            float recruitBuildGoldRatio = (goldPool.recruitmentGold + 1) / (goldPool.buildingGold + 1); // +1 to prevent 0 values
+            if (recruitBuildGoldRatio > 1.5f) {
+                // Only add gold to build pool
+                goldPool.buildingGold += newGold;
+            } else if (recruitBuildGoldRatio < 0.35f) {
+                // Only add gold to recruit pool
+                goldPool.recruitmentGold += newGold;
+            } else {
+                // Normal gold distribution (shared)
+                int recruitmentGold = Mathf.RoundToInt((float)newGold * 0.5f);
+                goldPool.recruitmentGold += recruitmentGold;
+                int buildingGold = newGold - recruitmentGold;
+                goldPool.buildingGold += buildingGold;
+            }
 
             house.gold = 0;
         }
@@ -450,8 +461,6 @@ public class AIPlayer {
         // Reduce gold and build
         goldPool.buildingGold -= Building.GetBuildingTypeInfos(bt).neededGold;
         AIGameActions.Build(gl, bt);
-
-        Debug.Log(bt + " in " + gl);
     }
 
     private GameLocation SearchPlaceToBuild(BuildingType bt, List<GameLocation> gls) {
