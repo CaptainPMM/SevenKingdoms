@@ -1,3 +1,5 @@
 public enum AIPersonaType {
-    BALANCED
+    BALANCED,
+    AGGRESSIVE,
+    DEFENSIVE
 }

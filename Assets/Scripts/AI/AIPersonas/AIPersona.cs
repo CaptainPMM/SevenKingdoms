@@ -126,6 +126,10 @@ public class AIPersona {
         switch (personaType) {
             case AIPersonaType.BALANCED:
                 return new AIPersonaBalanced();
+            case AIPersonaType.AGGRESSIVE:
+                return new AIPersonaAggressive();
+            case AIPersonaType.DEFENSIVE:
+                return new AIPersonaDefensive();
 
             default:
                 throw new System.Exception("Invalid PersonaType <" + personaType + ">: could not be found");
