@@ -16,6 +16,10 @@ public class Combatable : MonoBehaviour {
     private TextMeshProUGUI textNumSoldiers;
 
     protected void Start() {
+        Transform flag = gameObject.transform.Find("Flag");
+        flag.GetComponent<SpriteRenderer>().color = house.color;
+        flag.GetChild(0).Find("House Flag").GetComponent<SpriteRenderer>().sprite = house.houseFlag;
+
         foreach (TextMeshProUGUI txt in GetComponentsInChildren<TextMeshProUGUI>()) {
             if (txt.name == "Text Num Soldiers") {
                 textNumSoldiers = txt;

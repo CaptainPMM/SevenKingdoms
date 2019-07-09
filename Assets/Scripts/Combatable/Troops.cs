@@ -10,7 +10,6 @@ public class Troops : Combatable {
     // Start is called before the first frame update
     new void Start() {
         base.Start();
-        GetComponentInChildren<SpriteRenderer>().color = house.color;
 
         float numSoldiersModifier = Mathf.Clamp(Global.TROOPS_MOVE_SPEED_NUMSOLDIERS_MOD_NEUTRAL_SIZE / (float)numSoldiers,
             Global.TROOPS_MOVE_SPEED_NUMSOLDIERS_MOD_MIN,
