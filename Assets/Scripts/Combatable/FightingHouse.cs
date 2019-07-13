@@ -70,7 +70,8 @@ public class FightingHouse : Combatable {
             GameObject go = Instantiate(casualtiesPopupPrefab);
             go.name = "CasualtiesPopup: " + casualties;
             Vector3 pos = transform.position;
-            pos.z += 0.7f;
+            pos.z += 1.16f; // hard coded :/
+            pos.x += 0.04f; // hard coded :/
             go.transform.position = pos;
             go.GetComponentInChildren<TextMeshProUGUI>().text = Mathf.Min(oldNumSoldiers, casualties).ToString();
 
