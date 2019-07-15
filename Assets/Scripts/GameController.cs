@@ -159,7 +159,7 @@ public class GameController : MonoBehaviour {
                 }
 
                 // Dropping
-                if (Input.GetMouseButtonUp(0)) {
+                if (dragging && Input.GetMouseButtonUp(0)) {
                     dragging = false;
 
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
