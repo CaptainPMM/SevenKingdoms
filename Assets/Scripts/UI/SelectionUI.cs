@@ -128,9 +128,7 @@ public class SelectionUI : MonoBehaviour {
 
         UpdateSoldierSelectionSliders();
 
-        foreach (Slider s in GetComponentsInChildren<Slider>(true)) {
-            s.value = s.maxValue;
-        }
+        SetSoldierSlidersToMax();
 
         Button[] btns = GetComponentsInChildren<Button>();
         foreach (Button btn in btns) {
@@ -297,6 +295,12 @@ public class SelectionUI : MonoBehaviour {
         foreach (Slider s in GetComponentsInChildren<Slider>(true)) {
             s.gameObject.SetActive(!on);
             s.transform.parent.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = s.maxValue.ToString();
+        }
+    }
+
+    public void SetSoldierSlidersToMax() {
+        foreach (Slider s in GetComponentsInChildren<Slider>(true)) {
+            s.value = s.maxValue;
         }
     }
 }

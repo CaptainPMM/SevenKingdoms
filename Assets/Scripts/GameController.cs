@@ -288,6 +288,7 @@ public class GameController : MonoBehaviour {
             if (moveSoldiers.GetNumSoldiersInTotal() > 0) {
                 Troops t = InitializeTroopsMovement(selectedLocation, toLocation, moveSoldiers);
                 AIPlayer.InformOfMovingTroops(t);
+                selectionUI.GetComponent<SelectionUI>().SetSoldierSlidersToMax();
             }
         }
     }
