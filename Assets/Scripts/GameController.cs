@@ -198,7 +198,7 @@ public class GameController : MonoBehaviour {
         selectionUI.SetActive(true);
     }
 
-    private void DeselectLocation() {
+    public void DeselectLocation() {
         selectedLocation = null;
         selectionMarker.SetActive(false);
         moveMarker.SetActive(false);
