@@ -196,7 +196,7 @@ public class SelectionUI : MonoBehaviour {
                     DefaultState();
                 });
             } else if (btn.name == "Button Build") {
-                btn.GetComponent<Image>().sprite = Resources.Load<Sprite>("btn_recruit");
+                btn.GetComponent<Image>().sprite = Resources.Load<Sprite>("btn_ok");
                 btn.onClick.RemoveAllListeners();
                 btn.onClick.AddListener(() => {
                     ClickedFinalRecruitBtn();
