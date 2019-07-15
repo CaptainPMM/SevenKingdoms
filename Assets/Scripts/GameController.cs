@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour {
     public GameObject selectionUI;
     public GameObject buildingsUI;
 
+    private bool dragging = false;
+
     public GameObject selectedLocation;
 
     public List<AIPlayer> aiPlayers;
@@ -116,8 +118,11 @@ public class GameController : MonoBehaviour {
         // ### DRAG AND DROP -> moving of troops ###
         if (selectedLocation != null && selectedLocation.tag != "fighting_house") {
             if (IsLocationOwnedByPlayer(selectedLocation)) {
+                // Start dragging
+                if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) dragging = true;
+
                 // Dragging
-                if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
+                if (dragging) {
                     // Update UI
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
@@ -155,6 +160,8 @@ public class GameController : MonoBehaviour {
 
                 // Dropping
                 if (Input.GetMouseButtonUp(0)) {
+                    dragging = false;
+
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit)) {
