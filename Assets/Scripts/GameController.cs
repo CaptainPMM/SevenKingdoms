@@ -26,9 +26,12 @@ public class GameController : MonoBehaviour {
 
     private SpriteRenderer moveMarkerSpriteRenderer;
 
+    private void Awake() {
+        activeGameController = this;
+    }
+
     // Start is called before the first frame update
     void Start() {
-        activeGameController = this;
         selectedLocation = null;
         topBarUI.GetComponent<TopBarUI>().Init(this);
         selectionUI.GetComponent<SelectionUI>().Init(this);

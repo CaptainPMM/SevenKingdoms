@@ -20,6 +20,10 @@ public class GameLocation : Combatable {
     private float recruitmentSpeedBuffs = 1f;
     private float elapsedTimeRecruitment = 0f;
 
+    private float elapsedTimeGUI = 0f;
+    private static GamePlayer player = null;
+    private Button btnFastBuildLocalAdmin;
+
     public GameObject recruitmentIndicatorGO;
     public GameObject fortificationLevelGO;
 
@@ -29,6 +33,12 @@ public class GameLocation : Combatable {
     // Start is called before the first frame update
     new protected void Start() {
         base.Start();
+
+        if (player == null) player = GameController.activeGameController.player.GetComponent<GamePlayer>();
+        foreach (Button b in GetComponentsInChildren<Button>()) {
+            if (b.name == "Button Build Local Admin") btnFastBuildLocalAdmin = b;
+        }
+        btnFastBuildLocalAdmin.gameObject.SetActive(false);
 
         // Setup UI panel
         locationName = name.Substring(name.IndexOf(' ') + 1); // Filter the location type e.g Outpost Northern Reach -> Northern Reach
@@ -116,7 +126,21 @@ public class GameLocation : Combatable {
                 }
             }
 
-            UpdateGUI();
+            elapsedTimeGUI += Time.deltaTime;
+            if (elapsedTimeGUI >= Global.GAME_LOCATION_GUI_UPDATE_TIME) {
+                UpdateGUI();
+                if (house.houseType == player.house.houseType) {
+                    if (house.gold >= Building.GetBuildingTypeInfos(BuildingType.LOCAL_ADMINISTRATION).neededGold) {
+                        if (!btnFastBuildLocalAdmin.gameObject.activeSelf) {
+                            if (!IsLocalAdminBuilt()) {
+                                btnFastBuildLocalAdmin.gameObject.SetActive(true);
+                            }
+                        }
+                    } else {
+                        if (btnFastBuildLocalAdmin.gameObject.activeSelf) btnFastBuildLocalAdmin.gameObject.SetActive(false);
+                    }
+                }
+            }
         }
     }
 
@@ -243,5 +267,15 @@ public class GameLocation : Combatable {
         } else {
             throw new System.Exception("Invalid fortification level <" + fortLvl + ">: corresponding resource image could not be found");
         }
+    }
+
+    private bool IsLocalAdminBuilt() {
+        return buildings.Find(b => b.buildingType == BuildingType.LOCAL_ADMINISTRATION) == null ? false : true;
+    }
+
+    public void FastBuildLocalAdmin() {
+        house.gold -= Building.GetBuildingTypeInfos(BuildingType.LOCAL_ADMINISTRATION).neededGold;
+        AddBuilding(Building.CreateBuildingInstance(BuildingType.LOCAL_ADMINISTRATION));
+        btnFastBuildLocalAdmin.gameObject.SetActive(false);
     }
 }
