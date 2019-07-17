@@ -198,6 +198,7 @@ public class GameController : MonoBehaviour {
         selectedLocation = targetLocation;
         selectionMarker.transform.position = selectedLocation.transform.Find("Flag").position;
         selectionMarker.SetActive(true);
+        buildingsUI.SetActive(false);
         selectionUI.SetActive(true);
     }
 
