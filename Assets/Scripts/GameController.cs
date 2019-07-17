@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameController : MonoBehaviour {
     public static GameController activeGameController;
@@ -24,7 +25,10 @@ public class GameController : MonoBehaviour {
     private float aiElapsedTime = 0f;
     private int aiPlayerCounter = 0;
 
+    private Slider[] selectionSliders;
     private SpriteRenderer moveMarkerSpriteRenderer;
+    private TextMeshProUGUI moveMarkerText;
+    private int moveSoldiersNum;
 
     private void Awake() {
         activeGameController = this;
@@ -35,6 +39,7 @@ public class GameController : MonoBehaviour {
         selectedLocation = null;
         topBarUI.GetComponent<TopBarUI>().Init(this);
         selectionUI.GetComponent<SelectionUI>().Init(this);
+        selectionSliders = selectionUI.GetComponentsInChildren<Slider>();
         buildingsUI.GetComponent<BuildingsUI>().Init(this);
         Color playerColor = player.GetComponent<GamePlayer>().house.color;
         selectionMarker.GetComponentInChildren<SpriteRenderer>().color = playerColor;
@@ -43,6 +48,7 @@ public class GameController : MonoBehaviour {
         moveMarkerSpriteRenderer = moveMarker.GetComponentInChildren<SpriteRenderer>();
         playerColor.a = 210f / 255f;
         moveMarkerSpriteRenderer.color = playerColor;
+        moveMarkerText = moveMarker.GetComponentInChildren<TextMeshProUGUI>();
 
         // Init AIs
         aiPlayers = new List<AIPlayer>();
@@ -122,7 +128,15 @@ public class GameController : MonoBehaviour {
         if (selectedLocation != null && selectedLocation.tag != "fighting_house") {
             if (IsLocationOwnedByPlayer(selectedLocation)) {
                 // Start dragging
-                if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) dragging = true;
+                if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
+                    dragging = true;
+
+                    moveSoldiersNum = 0;
+                    foreach (Slider s in selectionSliders) {
+                        moveSoldiersNum += (int)s.value;
+                    }
+                    moveMarkerText.text = moveSoldiersNum.ToString();
+                }
 
                 // Dragging
                 if (dragging) {
@@ -148,6 +162,7 @@ public class GameController : MonoBehaviour {
                         moveTargetMarker.transform.position = hit.collider.transform.Find("Flag").position;
                         moveTargetMarker.SetActive(true);
                         SetMoveMarker(hit.collider.transform.position);
+                        SetMoveMarkerTextPos(hit.collider.transform.position);
                     } else {
                         // Move arrow freely
                         // Bit shift the index of the background/Map layer (8) to get a bit mask
@@ -155,6 +170,7 @@ public class GameController : MonoBehaviour {
                         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
                             Vector3 dragPos = NormalizeVectorInto2D(hit.point);
                             SetMoveMarker(dragPos);
+                            SetMoveMarkerTextPos(dragPos);
                         }
 
                         moveTargetMarker.SetActive(false);
@@ -278,13 +294,19 @@ public class GameController : MonoBehaviour {
         moveMarkerSpriteRenderer.transform.localEulerAngles = new Vector3(0f, 0f, angle);
     }
 
+    private void SetMoveMarkerTextPos(Vector3 targetPos) {
+        // Set num soldiers text position to half distance of marker
+        Vector3 pos = ((targetPos - selectedLocation.transform.position) * 0.5f) + selectedLocation.transform.position;
+        moveMarkerText.transform.position = pos;
+    }
+
     private void MoveTroops(GameObject toLocation) {
         GameLocation gl = selectedLocation.GetComponent<GameLocation>();
         if (gl.numSoldiers > 0) {
             Soldiers moveSoldiers = new Soldiers();
             System.Array soldierTypes = Soldiers.CreateSoldierTypesArray();
             int counter = 0;
-            foreach (Slider s in selectionUI.GetComponentsInChildren<Slider>()) {
+            foreach (Slider s in selectionSliders) {
                 moveSoldiers.SetSoldierType((SoldierType)counter, gl.soldiers.ExtractSoldiers((SoldierType)counter, (int)s.value));
                 counter++;
             }
