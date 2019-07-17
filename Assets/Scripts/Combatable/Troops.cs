@@ -11,10 +11,7 @@ public class Troops : Combatable {
     new void Start() {
         base.Start();
 
-        float numSoldiersModifier = Mathf.Clamp(Global.TROOPS_MOVE_SPEED_NUMSOLDIERS_MOD_NEUTRAL_SIZE / (float)numSoldiers,
-            Global.TROOPS_MOVE_SPEED_NUMSOLDIERS_MOD_MIN,
-            Global.TROOPS_MOVE_SPEED_NUMSOLDIERS_MOD_MAX);
-        moveSpeed = Global.TROOPS_BASE_MOVE_SPEED * Random.Range(Global.TROOPS_MOVE_SPEED_RAND_MIN, Global.TROOPS_MOVE_SPEED_RAND_MAX) * numSoldiersModifier;
+        moveSpeed = Global.TROOPS_BASE_MOVE_SPEED * Random.Range(Global.TROOPS_MOVE_SPEED_RAND_MIN, Global.TROOPS_MOVE_SPEED_RAND_MAX);
     }
 
     // Update is called once per frame

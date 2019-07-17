@@ -30,12 +30,9 @@ public class Global {
     // --
 
     // Troops
-    public static float TROOPS_BASE_MOVE_SPEED = 0.9f;
-    public static float TROOPS_MOVE_SPEED_RAND_MIN = 0.7f; // Inclusive
-    public static float TROOPS_MOVE_SPEED_RAND_MAX = 1.3f; // Exclusive
-    public static float TROOPS_MOVE_SPEED_NUMSOLDIERS_MOD_MIN = 0.5f; // Half the normal speed -> slower big armies
-    public static float TROOPS_MOVE_SPEED_NUMSOLDIERS_MOD_MAX = 2f; // Double the normal speed -> faster small amries
-    public static float TROOPS_MOVE_SPEED_NUMSOLDIERS_MOD_NEUTRAL_SIZE = 20f; // Num soldiers where modifier is 1 -> no effect
+    public static float TROOPS_BASE_MOVE_SPEED = 0.2f;
+    public static float TROOPS_MOVE_SPEED_RAND_MIN = 0.9f; // Inclusive
+    public static float TROOPS_MOVE_SPEED_RAND_MAX = 1.1f; // Inclusive
     // --
 
     // Combat
