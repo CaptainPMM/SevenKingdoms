@@ -154,13 +154,15 @@ public class Combat : MonoBehaviour {
      */
     bool DetermineCombatStatus() {
         // Check for fighting houses with no more soldiers and remove them
-        foreach (FightingHouse fh in fightingHouses.ToArray()) {
+        List<FightingHouse> removeFightingHouses = new List<FightingHouse>();
+        for (int i = 0; i < fightingHouses.Count; i++) {
+            FightingHouse fh = fightingHouses[i];
             if (fh.numSoldiers <= 0) {
-                fightingHouses.Remove(fh);
+                removeFightingHouses.Add(fh);
 
                 if (fh.location == null) {
                     // Only remove troops, no game locations
-                    Destroy(fh.firstParticipant.gameObject);
+                    if (fh.firstParticipant != null) Destroy(fh.firstParticipant.gameObject);
                     Destroy(fh.gameObject);
                 } else {
                     // Combat is over for game location
@@ -168,6 +170,10 @@ public class Combat : MonoBehaviour {
                 }
             }
         }
+        foreach (FightingHouse fh in removeFightingHouses) {
+            fightingHouses.Remove(fh);
+        }
+
 
         // Check if only 1 or less fighting houses have soldiers left
         if (fightingHouses.Count <= 1) {
