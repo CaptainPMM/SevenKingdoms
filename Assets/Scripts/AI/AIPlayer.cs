@@ -9,6 +9,7 @@ public class AIPlayer {
 
     private Dictionary<SoldierType, int> soldierTypePredictedStrengths;
     private static List<Troops> troops = new List<Troops>();
+    private List<TroopsOrder> troopsOrders = new List<TroopsOrder>();
 
     private AIGoldPool goldPool; // only work with this gold in AI, normal house.gold doesnt work here!!
 
@@ -58,6 +59,8 @@ public class AIPlayer {
     }
 
     private void TroopsManagement() {
+        TroopsOrder.RemoveOldOrders(ref troopsOrders);
+
         foreach (GameLocation ownGameLocation in ownedLocations) {
             if (ownGameLocation.numSoldiers > 0) {
                 // Determine garrison soldier amount
@@ -145,7 +148,23 @@ public class AIPlayer {
                     }
                 } else {
                     // Move troops around
-                    AIGameActions.MoveTroops(from, from.reachableLocations[Random.Range(0, from.reachableLocations.Length)], soldiers);
+                    List<GameLocation> goodDestinations = new List<GameLocation>();
+                    foreach (GameLocation destination in from.reachableLocations) {
+                        bool good = true;
+                        foreach (TroopsOrder order in troopsOrders) {
+                            if (order.from == destination && order.to == from) { good = false; break; }
+                        }
+                        if (good) goodDestinations.Add(destination);
+                    }
+
+                    GameLocation finalDestination;
+                    if (goodDestinations.Count > 0) {
+                        finalDestination = goodDestinations[Random.Range(0, goodDestinations.Count)];
+                    } else {
+                        finalDestination = from.reachableLocations[Random.Range(0, from.reachableLocations.Length)];
+                    }
+                    AIGameActions.MoveTroops(from, finalDestination, soldiers);
+                    troopsOrders.Add(new TroopsOrder(from, finalDestination));
                 }
             }
         }
@@ -484,5 +503,37 @@ public class AIPlayer {
             }
         }
         return null;
+    }
+
+    private class TroopsOrder {
+        public GameLocation from {
+            get {
+                return _from;
+            }
+        }
+        public GameLocation to {
+            get {
+                return _to;
+            }
+        }
+
+        private GameLocation _from;
+        private GameLocation _to;
+        private float lifetime;
+
+        public TroopsOrder(GameLocation from, GameLocation to) {
+            _from = from;
+            _to = to;
+            lifetime = ((to.transform.position - from.transform.position).magnitude / Global.TROOPS_BASE_MOVE_SPEED) + Global.GAME_CONTROLLER_AI_HANDLE_CYCLE_TIME;
+        }
+
+        public static void RemoveOldOrders(ref List<TroopsOrder> troopsOrders) {
+            List<TroopsOrder> ordersToDelete = new List<TroopsOrder>();
+            foreach (TroopsOrder to in troopsOrders) {
+                to.lifetime -= Global.GAME_CONTROLLER_AI_HANDLE_CYCLE_TIME;
+                if (to.lifetime <= 0) ordersToDelete.Add(to);
+            }
+            foreach (TroopsOrder to in ordersToDelete) troopsOrders.Remove(to);
+        }
     }
 }
