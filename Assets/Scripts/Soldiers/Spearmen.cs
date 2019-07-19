@@ -1,16 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
 public class Spearmen : Soldier {
     public Spearmen() {
-        HP = 1;
+        HP = 2;
         DP = 2;
-        predictedStrength = 2;
+        predictedStrength = 4;
         soldierName = "Spearmen";
         strengths = new Dictionary<SoldierType, float>() {
-            { SoldierType.CONSCRIPTS, 2.5f },
-            { SoldierType.CAV_KNIGHTS, 4f }
+            { SoldierType.CAV_KNIGHTS, 2f }
         };
         goldCosts = 6;
     }

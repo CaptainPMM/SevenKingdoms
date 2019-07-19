@@ -36,11 +36,10 @@ public class Global {
     // --
 
     // Combat
-    public static float COMBAT_SPEED = 1f;
-    public static float COMBAT_DAMAGE_NUM_SOLDIERS_DAMPER = 0.5f;
-    public static float COMBAT_DAMAGE_DAMPER = 0.1f;
-    public static float COMBAT_DAMAGE_RAND_MIN = 0.8f; // Inclusive
-    public static float COMBAT_DAMAGE_RAND_MAX = 1.2f; // Exclusive
+    public static float COMBAT_SPEED = 1.5f;
+    public static float COMBAT_DAMAGE_RAND_MIN = 0.6f; // Inclusive
+    public static float COMBAT_DAMAGE_RAND_MAX = 1.4f; // Inclusive
+    public static float COMBAT_DAMAGE_DAMPER = 0.2f;
     // --
 
     public static void LimitCameraToBoundaries(Component camera) {

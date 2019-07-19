@@ -129,12 +129,14 @@ public class Combat : MonoBehaviour {
                     // Combine all damage factors
                     int damage = Mathf.RoundToInt(
                                     1 +
-                                    ((float)ATTACKING_SOLDIER_TYPE_NUM * Global.COMBAT_DAMAGE_NUM_SOLDIERS_DAMPER) *
-                                    (float)ATTACKING_SOLDIER_TYPE_DP *
-                                    ATTACKING_BONUS_AGAINST_DEFENING_SOLDIER_TYPE *
-                                    DEFENDER_BONUS *
-                                    Global.COMBAT_DAMAGE_DAMPER *
-                                    RANDOM
+                                    (
+                                        (float)ATTACKING_SOLDIER_TYPE_NUM *
+                                        (float)ATTACKING_SOLDIER_TYPE_DP *
+                                        ATTACKING_BONUS_AGAINST_DEFENING_SOLDIER_TYPE *
+                                        DEFENDER_BONUS *
+                                        Global.COMBAT_DAMAGE_DAMPER *
+                                        RANDOM
+                                    )
                                 );
 
                     defender.ApplyCasualties(targetSoldierType, damage);

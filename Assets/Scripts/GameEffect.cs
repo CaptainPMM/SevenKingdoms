@@ -13,19 +13,19 @@ public class GameEffect {
     (
         "LOCATION_DEFENDER_CASUALTIES_MODIFIER_LOW",
         GameEffectType.COMBAT_LOCATION_DEFENDER_BONUS,
-        0.85f
+        0.5f
     );
     public static GameEffect LOCATION_DEFENDER_CASUALTIES_MODIFIER_MED = new GameEffect
     (
         "LOCATION_DEFENDER_CASUALTIES_MODIFIER_MED",
         GameEffectType.COMBAT_LOCATION_DEFENDER_BONUS,
-        0.75f
+        0.3f
     );
     public static GameEffect LOCATION_DEFENDER_CASUALTIES_MODIFIER_HIGH = new GameEffect
     (
         "LOCATION_DEFENDER_CASUALTIES_MODIFIER_HIGH",
         GameEffectType.COMBAT_LOCATION_DEFENDER_BONUS,
-        0.65f
+        0.2f
     );
 
     // ### GOLD_INCOME ###
