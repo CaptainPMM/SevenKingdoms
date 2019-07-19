@@ -88,14 +88,19 @@ public class AIPlayer {
     private void DoTroopsMovement(GameLocation from, Soldiers soldiers, bool dontFlee) {
         // If enemy troops are attacking this location, stay and defend or flee
         Soldiers enemySoldiersAttacking = new Soldiers();
+        Soldiers allyIncomingSoldiers = new Soldiers();
         foreach (Troops t in troops) {
-            if (t.house.houseType != house.houseType && t.toLocation == from.gameObject) {
-                enemySoldiersAttacking.AddSoldiers(t.soldiers);
+            if (t.toLocation == from.gameObject) {
+                if (t.house.houseType != house.houseType) {
+                    enemySoldiersAttacking.AddSoldiers(t.soldiers);
+                } else {
+                    allyIncomingSoldiers.AddSoldiers(t.soldiers);
+                }
             }
         }
 
         if (enemySoldiersAttacking.GetNumSoldiersInTotal() > 0) {
-            if (!dontFlee && CompareStrength(enemySoldiersAttacking, from) < persona.FleeingPoint) {
+            if (!dontFlee && CompareStrength(enemySoldiersAttacking, from, allyIncomingSoldiers) < persona.FleeingPoint) {
                 // Flee to friendly neighbour location (if possible a castle)
                 GameLocation target = FindPreferredFriendlyLocation(from.reachableLocations);
                 if (target != null) AIGameActions.MoveTroops(from, target);
@@ -169,6 +174,38 @@ public class AIPlayer {
         foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
             attackerSoldiersPredictedStrength += attacker.GetSoldierTypeNum(st) * soldierTypePredictedStrengths[st];
             defenderSoldiersPredictedStrength += defender.soldiers.GetSoldierTypeNum(st) * soldierTypePredictedStrengths[st];
+        }
+
+        strengthRatio = ((float)defenderSoldiersPredictedStrength * defenderStrengthBonus) - (float)attackerSoldiersPredictedStrength;
+
+        return strengthRatio;
+    }
+
+    /**
+        Returns a value below zero if attacker is more powerful; or above zero if defender is more powerful.
+        Returns 0 if both are equally powerful.
+        The value increases with greater difference.
+        !! The defender combatable can have defender bonus modifiers like walls !!
+        OVERLOAD: Allows ally supporting soldiers for the defender (that are on the way)
+     */
+    private float CompareStrength(Soldiers attacker, Combatable defender, Soldiers defenderSupport) {
+        float strengthRatio = 0f;
+
+        float defenderStrengthBonus = 1f;
+        if (defender.GetType().IsSubclassOf(typeof(GameLocation))) {
+            float defenderLocationEffectsMod = 1f;
+            foreach (GameEffect ge in ((GameLocation)defender).locationEffects)
+                if (ge.type == GameEffectType.COMBAT_LOCATION_DEFENDER_BONUS)
+                    defenderLocationEffectsMod *= ge.modifierValue;
+            defenderStrengthBonus = 1f + (1f - defenderLocationEffectsMod);
+        }
+
+        int attackerSoldiersPredictedStrength = 0;
+        int defenderSoldiersPredictedStrength = 0;
+        foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
+            attackerSoldiersPredictedStrength += attacker.GetSoldierTypeNum(st) * soldierTypePredictedStrengths[st];
+            defenderSoldiersPredictedStrength += defender.soldiers.GetSoldierTypeNum(st) * soldierTypePredictedStrengths[st];
+            defenderSoldiersPredictedStrength += defenderSupport.GetSoldierTypeNum(st) * soldierTypePredictedStrengths[st];
         }
 
         strengthRatio = ((float)defenderSoldiersPredictedStrength * defenderStrengthBonus) - (float)attackerSoldiersPredictedStrength;
