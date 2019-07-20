@@ -3,7 +3,7 @@ using UnityEngine.Audio;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
-    public AudioMixerGroup mixer;
+    public AudioMixer mixer;
 
     // The different arrays should represent the different 2D sound folders (sound categories in /Assets/Resources/Sounds/2D/<folders>)
     public Sound[] uiSounds;
@@ -41,7 +41,7 @@ public class SoundManager : MonoBehaviour {
             s.source = gameObject.AddComponent<AudioSource>();
 
             s.source.clip = s.clip;
-            s.source.outputAudioMixerGroup = mixer;
+            s.source.outputAudioMixerGroup = s.mixerGroup;
             s.source.loop = s.loop;
             s.source.volume = s.volume;
         }

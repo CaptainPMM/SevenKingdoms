@@ -78,7 +78,7 @@ public class SoundManagerEditor : Editor {
         Debug.Log(">> Adding <" + newClips.Count + "> new files to existing array...");
         List<Sound> newSoundsList = new List<Sound>();
         newSoundsList.AddRange(existingSounds); // Add old sounds
-        foreach (AudioClip c in newClips) newSoundsList.Add(new Sound(c.name, c, false, 0.5f)); // Add new sounds
+        foreach (AudioClip c in newClips) newSoundsList.Add(new Sound(c.name, c, null, false, 0.5f)); // Add new sounds
         existingSounds = newSoundsList.ToArray();
     }
 }
