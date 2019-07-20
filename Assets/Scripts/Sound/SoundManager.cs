@@ -42,39 +42,29 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
-    /* CURRENTLY DISABLED / NOT NEEDED
+    /* CURRENTLY DISABLED / NOT NEEDED / MAYBE FOR MUSIC
     private void Start() {
         
     }*/
 
     public void Play(SoundType st, string name) {
-        Sound foundSound = null;
-
-        switch (st) {
-            case SoundType.UI:
-                foundSound = System.Array.Find(uiSounds, s => s.name == name);
-                break;
-            case SoundType.MUSIC:
-                foundSound = System.Array.Find(musicSounds, s => s.name == name);
-                break;
-            case SoundType.EFFECT:
-                foundSound = System.Array.Find(effectSounds, s => s.name == name);
-                break;
-
-            default:
-                Debug.LogWarning("Invalid SoundType <" + st + ">: could not be found");
-                break;
-        }
-
-        if (foundSound == null) {
-            Debug.LogWarning("Invalid sound name <" + name + "> for sound type <" + st + ">: could not be found");
-        } else {
-            // Success
+        Sound foundSound = FindSound(st, name);
+        if (foundSound != null) {
             foundSound.source.Play();
         }
     }
 
     public void Play(SoundType st, string name, float delayInSec) {
+        Sound foundSound = FindSound(st, name);
+        if (foundSound != null) {
+            foundSound.source.PlayDelayed(delayInSec);
+        }
+    }
+
+    /**
+        Returns the found sound or null if not existing
+     */
+    private Sound FindSound(SoundType st, string name) {
         Sound foundSound = null;
 
         switch (st) {
@@ -93,11 +83,7 @@ public class SoundManager : MonoBehaviour {
                 break;
         }
 
-        if (foundSound == null) {
-            Debug.LogWarning("Invalid sound name <" + name + "> for sound type <" + st + ">: could not be found");
-        } else {
-            // Success
-            foundSound.source.PlayDelayed(delayInSec);
-        }
+        if (foundSound == null) Debug.LogWarning("Invalid sound name <" + name + "> for sound type <" + st + ">: could not be found");
+        return foundSound;
     }
 }

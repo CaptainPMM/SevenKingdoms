@@ -143,46 +143,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1454642639}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1170024112}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.house
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 48521047}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 1322804364}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -238,6 +198,46 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1454642639}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1170024112}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.house
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 48521047}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1322804364}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -464,36 +464,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 20257789}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 944390042}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.house
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -548,6 +518,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 20257789}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 944390042}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.house
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -781,41 +781,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1678470280}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1371495196}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 1548207227}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 252708842}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -871,6 +836,41 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1678470280}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1371495196}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 1548207227}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 252708842}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1517,46 +1517,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1163869698}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1371495196}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.house
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 1454642639}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 1322804364}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1612,6 +1572,46 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1163869698}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1371495196}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.house
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 1454642639}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1322804364}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1844,31 +1844,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1381189436}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 404505210}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1923,6 +1898,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1381189436}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 404505210}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -2286,41 +2286,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1076624959}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 2035791543}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 730975275}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 2068912080}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2376,6 +2341,41 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1076624959}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 2035791543}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 730975275}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 2068912080}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -2608,26 +2608,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1550242767}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.house
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2682,6 +2662,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1550242767}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.house
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -2864,46 +2864,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1678470280}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1550242767}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.house
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 1076624959}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 189935785}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2959,6 +2919,46 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1678470280}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1550242767}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.house
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 1076624959}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 189935785}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -3164,6 +3164,61 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -12.400002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: reachableLocations.Array.size
@@ -3222,61 +3277,6 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: __editor_preset_soldiers.conscripts.Array.data[0].DP
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -12.400002
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
@@ -4002,41 +4002,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1055434185}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1099540678}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 2035791543}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 266044152}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4092,6 +4057,41 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1055434185}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1099540678}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 2035791543}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 266044152}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -5152,46 +5152,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 88
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1099540678}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 333708507}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 266044152}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 189935785}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[4]
-      value: 
-      objectReference: {fileID: 2068912080}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5247,6 +5207,46 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1099540678}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 333708507}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 266044152}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 189935785}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[4]
+      value: 
+      objectReference: {fileID: 2068912080}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -5428,31 +5428,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 730975275}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1076624959}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5507,6 +5482,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 730975275}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1076624959}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -5870,6 +5870,61 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -15.430002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: reachableLocations.Array.size
@@ -5928,61 +5983,6 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: __editor_preset_soldiers.conscripts.Array.data[0].DP
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.38
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -15.430002
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 29
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
@@ -6813,36 +6813,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 20257789}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1454642639}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.house
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6897,6 +6867,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 20257789}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1454642639}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.house
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -7130,6 +7130,61 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -11.080001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: reachableLocations.Array.size
@@ -7188,61 +7243,6 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: __editor_preset_soldiers.conscripts.Array.data[0].DP
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.47
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -11.080001
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 26
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
@@ -7477,46 +7477,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1371495196}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1109566885}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.house
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 190196768}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 20257789}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7572,6 +7532,46 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1371495196}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1109566885}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.house
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 190196768}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 20257789}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -8110,51 +8110,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1678470280}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 404505210}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.house
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 1548207227}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 1322804364}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[4]
-      value: 
-      objectReference: {fileID: 190196768}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8210,6 +8165,51 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1678470280}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 404505210}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.house
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 1548207227}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1322804364}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[4]
+      value: 
+      objectReference: {fileID: 190196768}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -8391,36 +8391,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 252708842}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1055434185}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 1548207227}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8476,6 +8446,36 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 252708842}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1055434185}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 1548207227}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -8838,6 +8838,61 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.920001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: reachableLocations.Array.size
@@ -8896,61 +8951,6 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: __editor_preset_soldiers.conscripts.Array.data[0].DP
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -9.920001
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
@@ -9122,46 +9122,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1163869698}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 190196768}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.house
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 20257789}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 1170024112}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9217,6 +9177,46 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1163869698}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 190196768}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.house
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 20257789}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1170024112}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -9755,6 +9755,61 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.710001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: reachableLocations.Array.size
@@ -9813,61 +9868,6 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: __editor_preset_soldiers.conscripts.Array.data[0].DP
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -9.710001
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 27
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
@@ -10269,10 +10269,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
         type: 3}
+      propertyPath: effectSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+        type: 3}
       propertyPath: mixer
       value: 
       objectReference: {fileID: 24300002, guid: badd9c97e419440b4a248f685bd496ac,
         type: 2}
+    - target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+        type: 3}
+      propertyPath: effectSounds.Array.data[0].name
+      value: test_bell
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+        type: 3}
+      propertyPath: effectSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: dabf5ebbf87954aee81fd685bded46c2, type: 3}
+    - target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+        type: 3}
+      propertyPath: effectSounds.Array.data[0].volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7982b387fa1de4a2ba2023edb57e313a, type: 3}
 --- !u!4 &1913075774 stripped
@@ -11643,31 +11663,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 33
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 266044152}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 730975275}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11723,6 +11718,31 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 266044152}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 730975275}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -11910,36 +11930,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: house.houseType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: numSoldiers
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1153148869}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 266044152}
-    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 1076624959}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11995,6 +11985,36 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: house.houseType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: numSoldiers
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1153148869}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 266044152}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 1076624959}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
