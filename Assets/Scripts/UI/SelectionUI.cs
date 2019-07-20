@@ -227,6 +227,7 @@ public class SelectionUI : MonoBehaviour {
                 if (s.value <= 0 && s.maxValue <= 0) {
                     s.transform.Find("Fill Area").gameObject.SetActive(false);
                     s.transform.Find("Handle").gameObject.SetActive(false);
+                    s.onValueChanged.RemoveAllListeners();
                 } else {
                     s.transform.Find("Fill Area").gameObject.SetActive(true);
                     s.transform.Find("Handle").gameObject.SetActive(true);
@@ -241,6 +242,7 @@ public class SelectionUI : MonoBehaviour {
                 s.value = 0;
                 s.transform.Find("Fill Area").gameObject.SetActive(false);
                 s.transform.Find("Handle").gameObject.SetActive(false);
+                s.onValueChanged.RemoveAllListeners();
                 s.transform.parent.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Buildings missing";
             }
             counter++; // Increment per soldier type after all text fields are set
