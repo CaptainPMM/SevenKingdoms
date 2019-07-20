@@ -1,4 +1,5 @@
-﻿using UnityEngine.Audio;
+﻿using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
@@ -16,6 +17,9 @@ public class SoundManager : MonoBehaviour {
 
     public static SoundManager activeSoundManager;
 
+    [SerializeField]
+    private List<Sound> loopingSounds;
+
     private void Awake() {
         if (activeSoundManager == null) activeSoundManager = this;
         else {
@@ -24,6 +28,7 @@ public class SoundManager : MonoBehaviour {
         }
 
         DontDestroyOnLoad(gameObject);
+        loopingSounds = new List<Sound>();
 
         // Create audio sources for all registered sounds
         InitSounds(uiSounds);
@@ -51,6 +56,7 @@ public class SoundManager : MonoBehaviour {
         Sound foundSound = FindSound(st, name);
         if (foundSound != null) {
             foundSound.source.Play();
+            if (foundSound.loop && loopingSounds.Find(s => s.name == name) == null) loopingSounds.Add(foundSound);
         }
     }
 
@@ -58,7 +64,36 @@ public class SoundManager : MonoBehaviour {
         Sound foundSound = FindSound(st, name);
         if (foundSound != null) {
             foundSound.source.PlayDelayed(delayInSec);
+            if (foundSound.loop && loopingSounds.Find(s => s.name == name) == null) loopingSounds.Add(foundSound);
         }
+    }
+
+    public bool IsCurrentlyLooping(SoundType st, string name) {
+        Sound foundSound = FindSound(st, name);
+        if (foundSound != null) {
+            if (loopingSounds.Find(s => s.name == name) != null) return true;
+        }
+        return false;
+    }
+
+    public bool IsCurrentlyLooping(Sound sound) {
+        if (sound != null) {
+            if (loopingSounds.Find(s => s.name == sound.name) != null) return true;
+        }
+        return false;
+    }
+
+    /** 
+        Returns false on error and true on success
+     */
+    public bool StopLoopingSound(SoundType st, string name) {
+        Sound foundSound = FindSound(st, name);
+        if (foundSound != null && IsCurrentlyLooping(foundSound)) {
+            foundSound.source.Stop();
+            loopingSounds.Remove(foundSound);
+            return true;
+        }
+        return false;
     }
 
     /**

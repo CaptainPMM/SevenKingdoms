@@ -10293,6 +10293,11 @@ PrefabInstance:
       propertyPath: effectSounds.Array.data[0].volume
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+        type: 3}
+      propertyPath: effectSounds.Array.data[0].loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7982b387fa1de4a2ba2023edb57e313a, type: 3}
 --- !u!4 &1913075774 stripped
