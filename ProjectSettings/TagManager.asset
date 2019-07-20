@@ -9,6 +9,7 @@ TagManager:
   - troops
   - fighting_house
   - location_conn_line
+  - sound_manager
   layers:
   - Default
   - TransparentFX
