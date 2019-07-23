@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40cc9c9857a640678e9978f4d3d79b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 0}
+  mixer: {fileID: 24100000, guid: badd9c97e419440b4a248f685bd496ac, type: 2}
   uiSounds: []
   musicSounds: []
   effectSounds: []
+  loopingSounds: []
