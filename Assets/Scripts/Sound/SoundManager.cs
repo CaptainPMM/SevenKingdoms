@@ -52,7 +52,8 @@ public class SoundManager : MonoBehaviour {
         
     }*/
 
-    public void Play(SoundType st, string name) {
+    public static void Play(SoundType st, string name) { activeSoundManager.PlaySound(st, name); }
+    private void PlaySound(SoundType st, string name) {
         Sound foundSound = FindSound(st, name);
         if (foundSound != null) {
             foundSound.source.Play();
@@ -60,7 +61,8 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
-    public void Play(SoundType st, string name, float delayInSec) {
+    public static void Play(SoundType st, string name, float delayInSec) { activeSoundManager.PlaySound(st, name, delayInSec); }
+    private void PlaySound(SoundType st, string name, float delayInSec) {
         Sound foundSound = FindSound(st, name);
         if (foundSound != null) {
             foundSound.source.PlayDelayed(delayInSec);
@@ -68,7 +70,8 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
-    public bool IsCurrentlyLooping(SoundType st, string name) {
+    public static bool IsCurrentlyLooping(SoundType st, string name) { return activeSoundManager.SoundIsCurrentlyLooping(st, name); }
+    private bool SoundIsCurrentlyLooping(SoundType st, string name) {
         Sound foundSound = FindSound(st, name);
         if (foundSound != null) {
             if (loopingSounds.Find(s => s.name == name) != null) return true;
@@ -76,7 +79,8 @@ public class SoundManager : MonoBehaviour {
         return false;
     }
 
-    public bool IsCurrentlyLooping(Sound sound) {
+    public static bool IsCurrentlyLooping(Sound sound) { return activeSoundManager.SoundIsCurrentlyLooping(sound); }
+    private bool SoundIsCurrentlyLooping(Sound sound) {
         if (sound != null) {
             if (loopingSounds.Find(s => s.name == sound.name) != null) return true;
         }
@@ -86,14 +90,71 @@ public class SoundManager : MonoBehaviour {
     /** 
         Returns false on error and true on success
      */
-    public bool StopLoopingSound(SoundType st, string name) {
+    public static bool StopLoop(SoundType st, string name) { return activeSoundManager.StopLoopingSound(st, name); }
+    private bool StopLoopingSound(SoundType st, string name) {
         Sound foundSound = FindSound(st, name);
-        if (foundSound != null && IsCurrentlyLooping(foundSound)) {
+        if (foundSound != null && SoundIsCurrentlyLooping(foundSound)) {
             foundSound.source.Stop();
             loopingSounds.Remove(foundSound);
             return true;
         }
         return false;
+    }
+
+    /**
+        Used to directly play sounds from the button on click handlers in the inspector.
+        Provide following parameters in the parameters string (seperated by comma (no spaces)):
+            1st-> operation: "play"/"playdelay"/stop"
+            2nd-> soundType: <name of the sound type (UI, MUSIC, etc.)>
+            3rd-> soundName: <name of the sound>
+           [4th-> playDelay: <delay as float> (!only needed if operation = "playdelay"!)]
+     */
+    public void InspectorPlay(string parameters) {
+        string[] p = parameters.Split(',');
+        if (p.Length < 3) {
+            Debug.LogWarning("SoundManager.InspectorPlay parameters missing");
+            return;
+        }
+
+        string operation = p[0];
+        string soundTypeString = p[1];
+        SoundType soundType = SoundType.UI; // Default
+        string soundName = p[2];
+
+        bool foundSoundType = false;
+        foreach (SoundType st in System.Enum.GetValues(typeof(SoundType))) {
+            if (st.ToString() == soundTypeString) {
+                soundType = st;
+                foundSoundType = true;
+                break;
+            }
+        }
+        if (!foundSoundType) {
+            Debug.LogWarning("SoundManager.InspectorPlay could not evaluate parameter[1] (soundType) <" + p[1] + ">");
+            return;
+        }
+
+        switch (operation) {
+            case "play":
+                Play(soundType, soundName);
+                return;
+            case "playdelay":
+                if (p.Length < 4) {
+                    Debug.LogWarning("SoundManager.InspectorPlay parameter[3] (delay) missing");
+                    return;
+                }
+                Play(soundType, soundName, float.Parse(p[3]));
+                return;
+            case "stop":
+                if (!StopLoop(soundType, soundName)) {
+                    Debug.LogWarning("SoundManager.InspectorPlay an error occured while stopping a loop with name <" + soundName + ">");
+                }
+                return;
+
+            default:
+                Debug.LogWarning("SoundManager.InspectorPlay could not evaluate parameter[0] (operation) <" + p[0] + ">");
+                return;
+        }
     }
 
     /**
