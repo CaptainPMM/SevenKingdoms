@@ -78,21 +78,21 @@ MonoBehaviour:
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.35
+    volume: 0.2
     source: {fileID: 0}
   - name: recruit
     clip: {fileID: 8300000, guid: dc40100fdb7a74b53ac4c72815b948fa, type: 3}
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.18
+    volume: 0.2
     source: {fileID: 0}
   - name: recruit_cancel
     clip: {fileID: 8300000, guid: d8d5824f411b5402abc1c0bf5826bc27, type: 3}
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.18
+    volume: 0.2
     source: {fileID: 0}
   - name: slider_click
     clip: {fileID: 8300000, guid: 97066d4e68ca84c35b930a2fb0f48e63, type: 3}
