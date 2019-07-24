@@ -256,6 +256,8 @@ public class SelectionUI : MonoBehaviour {
             player.house.manpower -= recruitment.GetMpCosts();
 
             ((GameLocation)attachedGameLocation).AddSoldiersToRecruitment(recruitment.GetRecruitSoldiers());
+
+            SoundManager.Play(SoundManager.SoundType.UI, "recruit_cancel");
         }
 
         DefaultState();

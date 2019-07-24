@@ -6,12 +6,21 @@ public class Troops : Combatable {
     public GameObject toLocation;
 
     [SerializeField] private float moveSpeed;
+    private static AudioClip marchSoundWithHorses = null;
 
     // Start is called before the first frame update
     new void Start() {
         base.Start();
 
         moveSpeed = Global.TROOPS_BASE_MOVE_SPEED * Random.Range(Global.TROOPS_MOVE_SPEED_RAND_MIN, Global.TROOPS_MOVE_SPEED_RAND_MAX);
+
+        if (marchSoundWithHorses == null) {
+            marchSoundWithHorses = Resources.Load<AudioClip>("Sounds/3D/Effects/marching_lvl2");
+            if (marchSoundWithHorses == null) Debug.LogWarning("Could not find marching sound lvl 2 sound file");
+        }
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (soldiers.GetSoldierTypeNum(SoldierType.CAV_KNIGHTS) > 0) audioSource.clip = marchSoundWithHorses;
+        audioSource.Play();
     }
 
     // Update is called once per frame

@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour {
 
     private bool dragging = false;
 
+    public int locationsHeldByPlayer = 0;
+
     public GameObject selectedLocation;
 
     public List<AIPlayer> aiPlayers;
@@ -63,6 +65,8 @@ public class GameController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        print(locationsHeldByPlayer);
+
         // ### CLICKING -> selection ###
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) { // also check if the mouse was clicked over an UI element
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -216,6 +220,7 @@ public class GameController : MonoBehaviour {
         selectionMarker.SetActive(true);
         buildingsUI.SetActive(false);
         selectionUI.SetActive(true);
+        SoundManager.Play(SoundManager.SoundType.UI, "slider_click");
     }
 
     public void DeselectLocation() {

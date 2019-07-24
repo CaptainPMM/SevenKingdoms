@@ -314,12 +314,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1843972996}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 80
+  m_Value: 8
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+          type: 3}
+        m_MethodName: InspectorPlay
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: play,UI,slider_click
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &134729201
@@ -405,12 +417,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 353770159}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 80
+  m_Value: 8
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+          type: 3}
+        m_MethodName: InspectorPlay
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: play,UI,slider_click
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &147871323
@@ -1179,12 +1203,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1448974669}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 80
+  m_Value: 8
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+          type: 3}
+        m_MethodName: InspectorPlay
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: play,UI,slider_click
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &405235728
@@ -1531,7 +1567,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 80
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0df8a6e2a582c433bbe3821200d88c9d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 9835c2dda074343de99e59cbc192634f, type: 2}
@@ -1600,7 +1636,7 @@ MonoBehaviour:
   m_margin: {x: 10, y: 5, z: 10, w: 5}
   m_textInfo:
     textComponent: {fileID: 516960204}
-    characterCount: 2
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -1688,7 +1724,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 80
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0df8a6e2a582c433bbe3821200d88c9d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 9835c2dda074343de99e59cbc192634f, type: 2}
@@ -1757,7 +1793,7 @@ MonoBehaviour:
   m_margin: {x: 10, y: 5, z: 10, w: 5}
   m_textInfo:
     textComponent: {fileID: 590540636}
-    characterCount: 2
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -2150,7 +2186,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 80
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0df8a6e2a582c433bbe3821200d88c9d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 9835c2dda074343de99e59cbc192634f, type: 2}
@@ -2219,7 +2255,7 @@ MonoBehaviour:
   m_margin: {x: 10, y: 5, z: 10, w: 5}
   m_textInfo:
     textComponent: {fileID: 705329565}
-    characterCount: 2
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -2572,6 +2608,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: MenuScene
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+          type: 3}
+        m_MethodName: InspectorPlay
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: play,UI,button1
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3057,7 +3105,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 80
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0df8a6e2a582c433bbe3821200d88c9d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 9835c2dda074343de99e59cbc192634f, type: 2}
@@ -3126,7 +3174,7 @@ MonoBehaviour:
   m_margin: {x: 10, y: 5, z: 10, w: 5}
   m_textInfo:
     textComponent: {fileID: 911687809}
-    characterCount: 2
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -3446,12 +3494,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1953236473}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 80
+  m_Value: 8
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+          type: 3}
+        m_MethodName: InspectorPlay
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: play,UI,slider_click
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1175797728
@@ -3537,12 +3597,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 345243176}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 80
+  m_Value: 8
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+          type: 3}
+        m_MethodName: InspectorPlay
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: play,UI,slider_click
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1198334573
@@ -4085,12 +4157,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 486834411}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 80
+  m_Value: 8
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+          type: 3}
+        m_MethodName: InspectorPlay
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: play,UI,slider_click
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1253238682
@@ -4913,7 +4997,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 80
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0df8a6e2a582c433bbe3821200d88c9d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 9835c2dda074343de99e59cbc192634f, type: 2}
@@ -4982,7 +5066,7 @@ MonoBehaviour:
   m_margin: {x: 10, y: 5, z: 10, w: 5}
   m_textInfo:
     textComponent: {fileID: 1523559145}
-    characterCount: 2
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -5206,12 +5290,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1428138494}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 80
+  m_Value: 8
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+          type: 3}
+        m_MethodName: InspectorPlay
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: play,UI,slider_click
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1699112718
@@ -5465,7 +5561,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 80
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0df8a6e2a582c433bbe3821200d88c9d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 9835c2dda074343de99e59cbc192634f, type: 2}
@@ -5534,7 +5630,7 @@ MonoBehaviour:
   m_margin: {x: 10, y: 5, z: 10, w: 5}
   m_textInfo:
     textComponent: {fileID: 1729550777}
-    characterCount: 2
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -6369,7 +6465,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 80
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0df8a6e2a582c433bbe3821200d88c9d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 9835c2dda074343de99e59cbc192634f, type: 2}
@@ -6438,7 +6534,7 @@ MonoBehaviour:
   m_margin: {x: 10, y: 5, z: 10, w: 5}
   m_textInfo:
     textComponent: {fileID: 2056752635}
-    characterCount: 2
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -6587,7 +6683,30 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2133585984}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1253238683}
+        m_MethodName: LoadSceneByName
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MenuScene
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6486223955159752007, guid: 7982b387fa1de4a2ba2023edb57e313a,
+          type: 3}
+        m_MethodName: InspectorPlay
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: play,UI,button1
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2133585984

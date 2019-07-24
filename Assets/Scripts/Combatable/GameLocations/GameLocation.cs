@@ -38,6 +38,7 @@ public class GameLocation : Combatable {
         foreach (Button b in GetComponentsInChildren<Button>()) {
             if (b.name == "Button Build Local Admin") btnFastBuildLocalAdmin = b;
         }
+        if (player.house.houseType == this.house.houseType) GameController.activeGameController.locationsHeldByPlayer++;
         btnFastBuildLocalAdmin.gameObject.SetActive(false);
 
         // Setup UI panel
@@ -145,12 +146,13 @@ public class GameLocation : Combatable {
     }
 
     public void OccupyBy(House house) {
-        // Let AIs know of the change
-        GamePlayer player = GameController.activeGameController.player.GetComponent<GamePlayer>();
-        // Remove location from old owner (only AI)
+        // Let AIs and game controller know of the change
+        // Remove location from old owner
         if (player.house.houseType != this.house.houseType) {
             AIPlayer aiPlayer = GameController.activeGameController.aiPlayers.Find(aip => aip.house.houseType == this.house.houseType);
             if (aiPlayer != null) aiPlayer.ownedLocations.Remove(this);
+        } else {
+            GameController.activeGameController.locationsHeldByPlayer--;
         }
         // Add location to new owner (only AI)
         if (player.house.houseType != house.houseType) {

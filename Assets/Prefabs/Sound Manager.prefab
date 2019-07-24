@@ -44,7 +44,126 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: badd9c97e419440b4a248f685bd496ac, type: 2}
-  uiSounds: []
-  musicSounds: []
+  uiSounds:
+  - name: build
+    clip: {fileID: 8300000, guid: a413177fa610745be90a66f27a877337, type: 3}
+    mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 0
+    volume: 0.5
+    source: {fileID: 0}
+  - name: button1
+    clip: {fileID: 8300000, guid: efb45a26daae4445eb150c95486a4e3f, type: 3}
+    mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 0
+    volume: 0.5
+    source: {fileID: 0}
+  - name: button2
+    clip: {fileID: 8300000, guid: ed1cadeb17e2f44cdb1c2263f631a7dd, type: 3}
+    mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 0
+    volume: 0.4
+    source: {fileID: 0}
+  - name: button_big
+    clip: {fileID: 8300000, guid: 5126d118cdd5e43b4b66d2c76e038409, type: 3}
+    mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 0
+    volume: 0.5
+    source: {fileID: 0}
+  - name: button_select
+    clip: {fileID: 8300000, guid: 9ab0216f622454f079fa6ec9c2b4619a, type: 3}
+    mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 0
+    volume: 0.35
+    source: {fileID: 0}
+  - name: recruit
+    clip: {fileID: 8300000, guid: dc40100fdb7a74b53ac4c72815b948fa, type: 3}
+    mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 0
+    volume: 0.5
+    source: {fileID: 0}
+  - name: recruit_cancel
+    clip: {fileID: 8300000, guid: d8d5824f411b5402abc1c0bf5826bc27, type: 3}
+    mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 0
+    volume: 0.5
+    source: {fileID: 0}
+  - name: slider_click
+    clip: {fileID: 8300000, guid: 97066d4e68ca84c35b930a2fb0f48e63, type: 3}
+    mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 0
+    volume: 0.1
+    source: {fileID: 0}
+  - name: slider_click_short
+    clip: {fileID: 8300000, guid: 7e65d11dc664f4c07a3409d9807a4501, type: 3}
+    mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 0
+    volume: 0.1
+    source: {fileID: 0}
+  musicSounds:
+  - name: ost_lvl1_loop
+    clip: {fileID: 8300000, guid: e3a1817540f0849e692c1070f1824d47, type: 3}
+    mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 1
+    volume: 0.5
+    source: {fileID: 0}
+  - name: ost_lvl3_loop
+    clip: {fileID: 8300000, guid: ba7bb13d8690f462c93dfa12841f6f78, type: 3}
+    mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 1
+    volume: 0.5
+    source: {fileID: 0}
+  - name: ost_lvl4_loop
+    clip: {fileID: 8300000, guid: 9124a2ac66fe44e6588372a699130b3f, type: 3}
+    mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 1
+    volume: 0.5
+    source: {fileID: 0}
+  - name: ost_lvl4_loop_alt
+    clip: {fileID: 8300000, guid: dc0622170e370435b99d0a3ed5155730, type: 3}
+    mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 1
+    volume: 0.5
+    source: {fileID: 0}
+  - name: ost_lvl2_loop
+    clip: {fileID: 8300000, guid: 51f85d1fecce5407fbaea6db91fdd1a2, type: 3}
+    mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 1
+    volume: 0.5
+    source: {fileID: 0}
+  - name: ost_lvl2_transition
+    clip: {fileID: 8300000, guid: e3cd7cb9485ff42b299062d29005d87a, type: 3}
+    mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 0
+    volume: 0.5
+    source: {fileID: 0}
+  - name: ost_lvl3_transition
+    clip: {fileID: 8300000, guid: b46c0066f58c642a295d4895b59a888d, type: 3}
+    mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 0
+    volume: 0.5
+    source: {fileID: 0}
+  - name: ost_lvl4_transition
+    clip: {fileID: 8300000, guid: 4d6c4e5e351844e8ca16909830d550f9, type: 3}
+    mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
+    loop: 0
+    volume: 0.5
+    source: {fileID: 0}
   effectSounds: []
   loopingSounds: []
