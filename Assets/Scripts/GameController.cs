@@ -191,13 +191,11 @@ public class GameController : MonoBehaviour {
                         if (targetLocation.tag == "game_location") {
                             if (IsSelLocationNeighbour(targetLocation)) {
                                 MoveTroops(targetLocation);
-                                SoundManager.Play(SoundManager.SoundType.UI, "slider_click_short");
                             }
                         } else if (targetLocation.tag == "fighting_house") {
                             targetLocation = GetFightingHouseGameLocationIfValid(targetLocation);
                             if (targetLocation != null) {
                                 MoveTroops(targetLocation);
-                                SoundManager.Play(SoundManager.SoundType.UI, "slider_click_short");
                             }
                         }
                     }
@@ -320,6 +318,7 @@ public class GameController : MonoBehaviour {
             if (moveSoldiers.GetNumSoldiersInTotal() > 0) {
                 Troops t = InitializeTroopsMovement(selectedLocation, toLocation, moveSoldiers);
                 AIPlayer.InformOfMovingTroops(t);
+                SoundManager.Play(SoundManager.SoundType.UI, "slider_click_short");
             }
 
             selectionUI.GetComponent<SelectionUI>().SetSoldierSlidersToMax();

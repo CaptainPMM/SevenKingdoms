@@ -13,7 +13,6 @@ public class SoundState {
      */
     public SoundState(Sound sound, float transitionNextVal, SoundState nextSoundState, float transitionBackVal, SoundState backSoundState) {
         this.sound = sound;
-        sound.source.loop = false; // Disable loops for SoundState management
 
         this.transitionNextVal = transitionNextVal;
         this.nextSoundState = nextSoundState;
@@ -29,7 +28,6 @@ public class SoundState {
      */
     public SoundState(Sound sound, float transitionNextVal, float transitionBackVal, SoundState backSoundState) {
         this.sound = sound;
-        sound.source.loop = false; // Disable loops for SoundState management
 
         this.transitionNextVal = transitionNextVal;
         // this.nextSoundState = nextSoundState; later...
@@ -63,24 +61,24 @@ public class SoundState {
     }
 
     public SoundState NextState() {
-        sound.source.Stop();
-        sound.source.loop = sound.loop;
+        Stop();
         nextSoundState.Play();
         return nextSoundState;
     }
 
     public SoundState BackState() {
-        sound.source.Stop();
-        sound.source.loop = sound.loop;
+        Stop();
         backSoundState.Play();
         return backSoundState;
     }
 
     public void Play() {
+        sound.source.loop = false; // Disable loops for SoundState management
         sound.source.Play();
     }
 
     public void Stop() {
         sound.source.Stop();
+        sound.source.loop = sound.loop;
     }
 }
