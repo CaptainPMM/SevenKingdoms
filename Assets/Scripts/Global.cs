@@ -2,6 +2,11 @@
 
 public class Global {
     // Camera
+    public static float CAMERA_DEFAULT_SPEED = 10f;
+    public static float CAMERA_DEFAULT_ZOOM_SPEED = 50f;
+    public static float CAMERA_SPEED = 10f;
+    public static float CAMERA_ZOOM_SPEED = 50f;
+
     public static float CAMERA_BOUNDS_X_RIGHT = 12f;
     public static float CAMERA_BOUNDS_X_LEFT = -10f;
 
@@ -40,6 +45,10 @@ public class Global {
     public static float COMBAT_DAMAGE_RAND_MIN = 0.6f; // Inclusive
     public static float COMBAT_DAMAGE_RAND_MAX = 1.4f; // Inclusive
     public static float COMBAT_DAMAGE_DAMPER = 0.2f;
+    // --
+
+    // Paths
+    public static string PATH_SETTINGS = Application.dataPath + "/settings.txt";
     // --
 
     public static void LimitCameraToBoundaries(Component camera) {

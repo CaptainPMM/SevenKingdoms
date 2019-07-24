@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 
 public class CameraControllerPC : MonoBehaviour {
-    public float cameraSpeed = 10f;
-    public float scrollingSpeed = 50f;
+    public float cameraSpeed;
+    public float scrollingSpeed;
     public float scrollHeightModifier = 0.1f;
+
+    private void Awake() {
+        cameraSpeed = Global.CAMERA_SPEED;
+        scrollingSpeed = Global.CAMERA_ZOOM_SPEED;
+    }
 
     // Update is called once per frame
     void Update() {

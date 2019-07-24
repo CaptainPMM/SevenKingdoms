@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine;
+using System.IO;
 
 public class SoundManager : MonoBehaviour {
     public AudioMixer mixer;
@@ -16,6 +17,12 @@ public class SoundManager : MonoBehaviour {
     }
 
     public static SoundManager activeSoundManager;
+
+    public float defaultMasterVol;
+    public float defaultUIVol;
+    public float defaultMusicVol;
+    public float defaultEffectsVol;
+    public float defaultAmbientVol;
 
     [SerializeField]
     private List<Sound> loopingSounds;
@@ -73,6 +80,68 @@ public class SoundManager : MonoBehaviour {
         // Init first sound state
         currSoundState = st1;
         currSoundState.Play();
+
+        // Load default mixer vol values
+        mixer.GetFloat("MasterVol", out defaultMasterVol);
+        mixer.GetFloat("UIVol", out defaultUIVol);
+        mixer.GetFloat("MusicVol", out defaultMusicVol);
+        mixer.GetFloat("EffectsVol", out defaultEffectsVol);
+        mixer.GetFloat("AmbientVol", out defaultAmbientVol);
+
+        // Load settings file (also settings not concerning sound -> but sound manager is always present)
+        if (File.Exists(Global.PATH_SETTINGS)) {
+            foreach (string line in File.ReadLines(Global.PATH_SETTINGS)) {
+                string key = line.Split(':')[0];
+                int val = int.Parse(line.Split(':')[1]);
+                switch (key) {
+                    case "MASTER_VOL":
+                        if (val <= 0) {
+                            mixer.SetFloat("MasterVol", -80);
+                        } else {
+                            mixer.SetFloat("MasterVol", defaultMasterVol + (Mathf.Log10((float)val / 10f) * 15)); // HARD CODED SLIDER MAX VALUE OF 10!!!
+                        }
+                        break;
+                    case "UI_VOL":
+                        if (val <= 0) {
+                            mixer.SetFloat("UIVol", -80);
+                        } else {
+                            mixer.SetFloat("UIVol", defaultUIVol + (Mathf.Log10((float)val / 10f) * 15)); // HARD CODED SLIDER MAX VALUE OF 10!!!
+                        }
+                        break;
+                    case "MUSIC_VOL":
+                        if (val <= 0) {
+                            mixer.SetFloat("MusicVol", -80);
+                        } else {
+                            mixer.SetFloat("MusicVol", defaultMusicVol + (Mathf.Log10((float)val / 10f) * 15)); // HARD CODED SLIDER MAX VALUE OF 10!!!
+                        }
+                        break;
+                    case "EFFECTS_VOL":
+                        if (val <= 0) {
+                            mixer.SetFloat("EffectsVol", -80);
+                        } else {
+                            mixer.SetFloat("EffectsVol", defaultEffectsVol + (Mathf.Log10((float)val / 10f) * 15)); // HARD CODED SLIDER MAX VALUE OF 10!!!
+                        }
+                        break;
+                    case "AMBIENT_VOL":
+                        if (val <= 0) {
+                            mixer.SetFloat("AmbientVol", -80);
+                        } else {
+                            mixer.SetFloat("AmbientVol", defaultAmbientVol + (Mathf.Log10((float)val / 10f) * 15)); // HARD CODED SLIDER MAX VALUE OF 10!!!
+                        }
+                        break;
+                    case "CAMERA_SPEED":
+                        Global.CAMERA_SPEED = val;
+                        break;
+                    case "CAMERA_ZOOM_SPEED":
+                        Global.CAMERA_ZOOM_SPEED = val;
+                        break;
+
+                    default:
+                        Debug.LogWarning("Could not recognize key <" + key + "> from settings file");
+                        break;
+                }
+            }
+        }
     }
 
     private void Update() {
