@@ -76,18 +76,19 @@ public class SoundManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (GameController.activeGameController != null) {
-            int soundStateTransitionAnswer = currSoundState.TransitionPossible(GameController.activeGameController.locationsHeldByPlayer);
-            if (soundStateTransitionAnswer != 0) {
-                if (soundStateTransitionAnswer > 0) {
-                    currSoundState = currSoundState.NextState();
-                } else {
-                    currSoundState = currSoundState.BackState();
-                }
-                currSoundState.Play();
+        float currVal = 0;
+        if (GameController.activeGameController != null) currVal = GameController.activeGameController.locationsHeldByPlayer;
+
+        int soundStateTransitionAnswer = currSoundState.TransitionPossible(currVal);
+        if (soundStateTransitionAnswer != 0) {
+            if (soundStateTransitionAnswer > 0) {
+                currSoundState = currSoundState.NextState();
+            } else {
+                currSoundState = currSoundState.BackState();
             }
-            // No transition possible -> skip
+            currSoundState.Play();
         }
+        // No transition possible -> skip
     }
 
     public static void Play(SoundType st, string name) { activeSoundManager.PlaySound(st, name); }

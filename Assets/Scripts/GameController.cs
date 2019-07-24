@@ -65,8 +65,6 @@ public class GameController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        print(locationsHeldByPlayer);
-
         // ### CLICKING -> selection ###
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) { // also check if the mouse was clicked over an UI element
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -120,6 +118,7 @@ public class GameController : MonoBehaviour {
                             if (selectedLocation != null) {
                                 DeselectLocation();
                                 buildingsUI.SetActive(false);
+                                SoundManager.Play(SoundManager.SoundType.UI, "slider_click_short");
                             }
                             break;
 
@@ -192,11 +191,13 @@ public class GameController : MonoBehaviour {
                         if (targetLocation.tag == "game_location") {
                             if (IsSelLocationNeighbour(targetLocation)) {
                                 MoveTroops(targetLocation);
+                                SoundManager.Play(SoundManager.SoundType.UI, "slider_click_short");
                             }
                         } else if (targetLocation.tag == "fighting_house") {
                             targetLocation = GetFightingHouseGameLocationIfValid(targetLocation);
                             if (targetLocation != null) {
                                 MoveTroops(targetLocation);
+                                SoundManager.Play(SoundManager.SoundType.UI, "slider_click_short");
                             }
                         }
                     }

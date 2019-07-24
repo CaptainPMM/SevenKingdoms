@@ -50,7 +50,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.5
+    volume: 0.3
     source: {fileID: 0}
   - name: button1
     clip: {fileID: 8300000, guid: efb45a26daae4445eb150c95486a4e3f, type: 3}
@@ -64,7 +64,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.4
+    volume: 0.25
     source: {fileID: 0}
   - name: button_big
     clip: {fileID: 8300000, guid: 5126d118cdd5e43b4b66d2c76e038409, type: 3}
@@ -85,28 +85,28 @@ MonoBehaviour:
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.5
+    volume: 0.18
     source: {fileID: 0}
   - name: recruit_cancel
     clip: {fileID: 8300000, guid: d8d5824f411b5402abc1c0bf5826bc27, type: 3}
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.5
+    volume: 0.18
     source: {fileID: 0}
   - name: slider_click
     clip: {fileID: 8300000, guid: 97066d4e68ca84c35b930a2fb0f48e63, type: 3}
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.1
+    volume: 0.075
     source: {fileID: 0}
   - name: slider_click_short
     clip: {fileID: 8300000, guid: 7e65d11dc664f4c07a3409d9807a4501, type: 3}
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.1
+    volume: 0.075
     source: {fileID: 0}
   musicSounds:
   - name: ost_lvl1_loop
