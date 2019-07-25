@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
@@ -5,11 +6,13 @@ using UnityEditor;
 [CanEditMultipleObjects]
 public class GameLocationEditor : CombatableEditor {
     private int[] inputValues;
+    private GameLocation inputGameLocation;
     private GUIStyle headerStyle;
 
     new public void OnEnable() {
         base.OnEnable();
         inputValues = new int[soldierTypes.Length];
+        inputGameLocation = null;
         headerStyle = new GUIStyle();
         headerStyle.fontSize = 18;
         headerStyle.alignment = TextAnchor.UpperCenter;
@@ -48,6 +51,31 @@ public class GameLocationEditor : CombatableEditor {
             SerializedProperty sp = new SerializedObject(gl).FindProperty("soldiers");
             sp.prefabOverride = false;
             sp.serializedObject.ApplyModifiedProperties();
+        }
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+
+        // Add reachable location on both sides input
+        EditorGUILayout.LabelField("Location Connector", headerStyle);
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Add reachable location on both:");
+        inputGameLocation = (GameLocation)EditorGUILayout.ObjectField("Other GameLocation", inputGameLocation, typeof(GameLocation), true);
+        if (inputGameLocation != null) {
+            if (!inputGameLocation.Equals(gl)) {
+                List<GameLocation> ownLocations = new List<GameLocation>(gl.reachableLocations);
+                List<GameLocation> otherLocations = new List<GameLocation>(inputGameLocation.reachableLocations);
+
+                if (!ownLocations.Contains(inputGameLocation)) {
+                    ownLocations.Add(inputGameLocation);
+                    gl.reachableLocations = ownLocations.ToArray();
+                }
+                if (!otherLocations.Contains(gl)) {
+                    otherLocations.Add(gl);
+                    inputGameLocation.reachableLocations = otherLocations.ToArray();
+                }
+            }
+            inputGameLocation = null; // Reset input for next location
         }
 
         EditorGUILayout.Space();
