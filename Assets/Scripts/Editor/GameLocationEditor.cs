@@ -67,10 +67,12 @@ public class GameLocationEditor : CombatableEditor {
                 List<GameLocation> otherLocations = new List<GameLocation>(inputGameLocation.reachableLocations);
 
                 if (!ownLocations.Contains(inputGameLocation)) {
+                    EditorUtility.SetDirty(gl);
                     ownLocations.Add(inputGameLocation);
                     gl.reachableLocations = ownLocations.ToArray();
                 }
                 if (!otherLocations.Contains(gl)) {
+                    EditorUtility.SetDirty(inputGameLocation);
                     otherLocations.Add(gl);
                     inputGameLocation.reachableLocations = otherLocations.ToArray();
                 }

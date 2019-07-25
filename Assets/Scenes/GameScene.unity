@@ -908,7 +908,7 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: reachableLocations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -940,6 +940,11 @@ PrefabInstance:
       propertyPath: reachableLocations.Array.data[3]
       value: 
       objectReference: {fileID: 252708842}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[4]
+      value: 
+      objectReference: {fileID: 330180436}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1645,7 +1650,7 @@ PrefabInstance:
     - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: reachableLocations.Array.size
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
@@ -1662,6 +1667,21 @@ PrefabInstance:
       propertyPath: reachableLocations.Array.data[1]
       value: 
       objectReference: {fileID: 333708507}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 1163869698}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 944390042}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[4]
+      value: 
+      objectReference: {fileID: 1381189436}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -3485,7 +3505,7 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: reachableLocations.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -3502,6 +3522,11 @@ PrefabInstance:
       propertyPath: house.houseType
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 404505210}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -6703,7 +6728,7 @@ PrefabInstance:
     - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: reachableLocations.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
@@ -6719,7 +6744,7 @@ PrefabInstance:
         type: 3}
       propertyPath: reachableLocations.Array.data[1]
       value: 
-      objectReference: {fileID: 333708507}
+      objectReference: {fileID: 189935785}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -11250,7 +11275,7 @@ PrefabInstance:
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: reachableLocations.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
@@ -11277,6 +11302,11 @@ PrefabInstance:
       propertyPath: reachableLocations.Array.data[2]
       value: 
       objectReference: {fileID: 1548207227}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 189935785}
     - target: {fileID: 5212345341843511533, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_textInfo.characterCount
