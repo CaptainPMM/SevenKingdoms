@@ -71,7 +71,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.5
+    volume: 0.3
     source: {fileID: 0}
   - name: button_select
     clip: {fileID: 8300000, guid: e03f158ee01bd45c487a94a0b16cbe09, type: 3}
@@ -82,9 +82,10 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: recruit
     clip: {fileID: 8300000, guid: 5114ffbaf236047a88f612b56255f77a, type: 3}
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
+      type: 2}
     loop: 0
-    volume: 0.15
+    volume: 0.3
     source: {fileID: 0}
   - name: recruit_cancel
     clip: {fileID: 8300000, guid: 09dfc557daa0b473588b3241b8dad812, type: 3}
@@ -158,4 +159,9 @@ MonoBehaviour:
     volume: 0.5
     source: {fileID: 0}
   effectSounds: []
+  defaultMasterVol: 0
+  defaultUIVol: 0
+  defaultMusicVol: 0
+  defaultEffectsVol: 0
+  defaultAmbientVol: 0
   loopingSounds: []

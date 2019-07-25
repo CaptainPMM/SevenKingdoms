@@ -18,11 +18,11 @@ public class SoundManager : MonoBehaviour {
 
     public static SoundManager activeSoundManager;
 
-    public float defaultMasterVol;
-    public float defaultUIVol;
-    public float defaultMusicVol;
-    public float defaultEffectsVol;
-    public float defaultAmbientVol;
+    [HideInInspector] public float defaultMasterVol;
+    [HideInInspector] public float defaultUIVol;
+    [HideInInspector] public float defaultMusicVol;
+    [HideInInspector] public float defaultEffectsVol;
+    [HideInInspector] public float defaultAmbientVol;
 
     [SerializeField]
     private List<Sound> loopingSounds;

@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 
-public class Global {
+public static class Global {
+    // Game Parameters
+    public static HouseType GAME_PARAM_PLAYER_HOUSE_TYPE = HouseType.NEUTRAL;
+    // --
+
     // Camera
     public static float CAMERA_DEFAULT_SPEED = 10f;
     public static float CAMERA_DEFAULT_ZOOM_SPEED = 50f;

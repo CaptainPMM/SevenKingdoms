@@ -3403,7 +3403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   house:
-    houseType: 1
+    houseType: 3
 --- !u!4 &321086209 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,

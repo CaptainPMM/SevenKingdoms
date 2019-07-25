@@ -34,6 +34,7 @@ public class GameController : MonoBehaviour {
 
     private void Awake() {
         activeGameController = this;
+        if (Global.GAME_PARAM_PLAYER_HOUSE_TYPE != HouseType.NEUTRAL) player.GetComponent<GamePlayer>().house = new House(Global.GAME_PARAM_PLAYER_HOUSE_TYPE);
     }
 
     // Start is called before the first frame update
