@@ -16,6 +16,10 @@ public class AIPlayer {
     private Dictionary<SoldierType, int> requiredBuildingsForSoldierType;
     private int buildLocalAdminInSafeOutpostsCounter = 0;
 
+    private float goldDiffMod = 1f;
+    private float mpDiffMod = 1f;
+    private int lastMp = 0;
+
     public AIPlayer(HouseType houseType) {
         this.house = new House(houseType);
         this.persona = AIPersona.GetRandomAIPersona();
@@ -51,6 +55,27 @@ public class AIPlayer {
             }
             requiredBuildingsForSoldierType.Add(st, requiredBuildings);
         }
+
+        // Set AI difficulty
+        switch (Global.GAME_PARAM_AI_DIFF) {
+            case AIDifficulty.EASY:
+                goldDiffMod = 0.5f;
+                mpDiffMod = 0.5f;
+                break;
+            case AIDifficulty.NORMAL:
+                goldDiffMod = 1f;
+                mpDiffMod = 1f;
+                break;
+            case AIDifficulty.HARD:
+                goldDiffMod = 2f;
+                mpDiffMod = 2f;
+                break;
+            case AIDifficulty.INSANE:
+                goldDiffMod = 4f;
+                mpDiffMod = 3f;
+                break;
+        }
+        lastMp = house.manpower;
     }
 
     public void Play() {
@@ -259,11 +284,18 @@ public class AIPlayer {
     }
 
     private void ResourceManagement() {
+        house.gold = Mathf.RoundToInt(house.gold * goldDiffMod); // = income
+        int mpIncome = house.manpower - lastMp; // calc manpower income
+        mpIncome = Mathf.RoundToInt(mpIncome * mpDiffMod); // new income after difficulty
+        house.manpower = lastMp + mpIncome;
+
         // Update gold pool
         DistributeGold();
 
         ManageRecruitment();
         ManageBuilding();
+
+        lastMp = house.manpower;
     }
 
     private void DistributeGold() {

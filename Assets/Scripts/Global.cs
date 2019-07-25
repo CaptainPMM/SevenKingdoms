@@ -3,6 +3,7 @@
 public static class Global {
     // Game Parameters
     public static HouseType GAME_PARAM_PLAYER_HOUSE_TYPE = HouseType.NEUTRAL;
+    public static AIDifficulty GAME_PARAM_AI_DIFF = AIDifficulty.NORMAL;
     // --
 
     // Camera
