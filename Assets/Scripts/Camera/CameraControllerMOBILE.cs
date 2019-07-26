@@ -1,14 +1,40 @@
 ﻿using UnityEngine;
 
 public class CameraControllerMOBILE : MonoBehaviour {
-    // Start is called before the first frame update
-    void Start() {
-        // TODO
-        print("Mobile Camera Controller is TODO...");
+    public float cameraSpeed;
+    public float scrollingSpeed;
+    public float scrollHeightModifier = 0.1f;
+
+    private void Awake() {
+        cameraSpeed = Global.CAMERA_SPEED;
+        scrollingSpeed = Global.CAMERA_ZOOM_SPEED;
     }
 
     // Update is called once per frame
     void Update() {
-        // TODO
+        // ZOOMING / SCROLLING
+        if (Input.touchCount == 2) {
+            Touch touch0 = Input.GetTouch(0);
+            Touch touch1 = Input.GetTouch(1);
+
+            // Find the position in the previous frame of each touch
+            Vector2 touch0PrevPos = touch0.position - touch0.deltaPosition;
+            Vector2 touch1PrevPos = touch1.position - touch1.deltaPosition;
+
+            // Find the magnitude/length of the vector (distance) between the touches in each frame
+            float prevTouchDeltaMag = (touch0PrevPos - touch1PrevPos).magnitude;
+            float touchDeltaMag = (touch0.position - touch1.position).magnitude;
+
+            // Find the difference in the distances between each frame
+            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+
+            // Now its time to zoom/scroll the camera
+            transform.position += new Vector3(0, deltaMagnitudeDiff, 0) * scrollingSpeed * CalculateScrollHeightModifier() * Time.deltaTime;
+            Global.LimitCameraToBoundaries(this);
+        }
+    }
+
+    float CalculateScrollHeightModifier() {
+        return transform.position.y * scrollHeightModifier;
     }
 }
