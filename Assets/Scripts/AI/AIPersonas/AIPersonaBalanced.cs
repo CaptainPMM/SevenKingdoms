@@ -9,12 +9,12 @@ public class AIPersonaBalanced : AIPersona {
             { SoldierType.CONSCRIPTS, 2 },
             { SoldierType.SPEARMEN, 2 },
             { SoldierType.SWORDSMEN, 3 },
-            { SoldierType.BOWMEN, 2 },
+            { SoldierType.BOWMEN, 3 },
             { SoldierType.CAV_KNIGHTS, 4 }
         };
 
         _BuildingTypePriorities = new Dictionary<BuildingType, int>() {
-            { BuildingType.LOCAL_ADMINISTRATION, 1 }, // only in outposts because in castles they get built with highest prio already
+            { BuildingType.LOCAL_ADMINISTRATION, 2 }, // only in outposts because in castles they get built with highest prio already
             { BuildingType.MARKETPLACE, 5 },
             { BuildingType.OUTER_TOWN_RING, 7 },
             { BuildingType.WOODEN_WALL, 1 },
@@ -23,18 +23,18 @@ public class AIPersonaBalanced : AIPersona {
             { BuildingType.WOOD_MILL, 6 },
             { BuildingType.BOW_MAKER, 4 },
             { BuildingType.BLACKSMITH, 6 },
-            { BuildingType.STABLES, 4 },
+            { BuildingType.STABLES, 6 },
             { BuildingType.BARRACKS, 1 },
             { BuildingType.DRILL_GROUND, 10 }
         };
 
-        _MinMoveSoldiersNum = 10;
+        _MinMoveSoldiersNum = 30;
 
-        _BaseLocationGarrisonMod = 0.9f;
-        _BaseCastleGarrisonMod = 0.8f;
+        _BaseLocationGarrisonMod = 0.8f;
+        _BaseCastleGarrisonMod = 0.9f;
 
-        _FleeingPoint = -2;
-        _AttackingPoint = -5;
+        _FleeingPoint = -10;
+        _AttackingPoint = -10;
 
         _RecruitBuildGoldRatioToTransferToBuild = 0.75f;
         _RecruitBuildGoldRatioToTransferToRecruit = 0.2f;
@@ -42,6 +42,6 @@ public class AIPersonaBalanced : AIPersona {
 
         _MinRecruitmentGold = 25;
 
-        _LocalAdminBuildFrequency = 25;
+        _LocalAdminBuildFrequency = 20;
     }
 }

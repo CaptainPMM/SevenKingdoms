@@ -130,6 +130,10 @@ public class AIPersona {
                 return new AIPersonaAggressive();
             case AIPersonaType.DEFENSIVE:
                 return new AIPersonaDefensive();
+            case AIPersonaType.RAMBO:
+                return new AIPersonaRambo();
+            case AIPersonaType.WEALTHY:
+                return new AIPersonaWealthy();
 
             default:
                 throw new System.Exception("Invalid PersonaType <" + personaType + ">: could not be found");

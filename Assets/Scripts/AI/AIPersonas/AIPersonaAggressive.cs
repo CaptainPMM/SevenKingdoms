@@ -23,25 +23,25 @@ public class AIPersonaAggressive : AIPersona {
             { BuildingType.WOOD_MILL, 6 },
             { BuildingType.BOW_MAKER, 3 },
             { BuildingType.BLACKSMITH, 4 },
-            { BuildingType.STABLES, 4 },
+            { BuildingType.STABLES, 6 },
             { BuildingType.BARRACKS, 3 },
             { BuildingType.DRILL_GROUND, 12 }
         };
 
-        _MinMoveSoldiersNum = 5;
+        _MinMoveSoldiersNum = 20;
 
         _BaseLocationGarrisonMod = 1f;
-        _BaseCastleGarrisonMod = 0.8f;
+        _BaseCastleGarrisonMod = 0.9f;
 
-        _FleeingPoint = -4;
+        _FleeingPoint = -20;
         _AttackingPoint = 0;
 
         _RecruitBuildGoldRatioToTransferToBuild = 0.75f;
         _RecruitBuildGoldRatioToTransferToRecruit = 0.2f;
         _GoldPoolSharedDistribution = 0.66f;
 
-        _MinRecruitmentGold = 10;
+        _MinRecruitmentGold = 12;
 
-        _LocalAdminBuildFrequency = 35;
+        _LocalAdminBuildFrequency = 25;
     }
 }

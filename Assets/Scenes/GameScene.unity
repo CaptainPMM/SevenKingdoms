@@ -5797,6 +5797,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
+      propertyPath: buildings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
       propertyPath: numSoldiers
       value: 40
       objectReference: {fileID: 0}
@@ -5820,6 +5825,11 @@ PrefabInstance:
       propertyPath: reachableLocations.Array.data[2]
       value: 
       objectReference: {fileID: 377588636}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: buildings.Array.data[0].buildingType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24124,7 +24134,7 @@ PrefabInstance:
     - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: buildings.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
@@ -24171,6 +24181,11 @@ PrefabInstance:
       propertyPath: reachableLocations.Array.data[5]
       value: 
       objectReference: {fileID: 857330060}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[1].buildingType
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -25336,7 +25351,7 @@ PrefabInstance:
     - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: buildings.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
@@ -25373,6 +25388,11 @@ PrefabInstance:
       propertyPath: reachableLocations.Array.data[3]
       value: 
       objectReference: {fileID: 1865407841}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[1].buildingType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -45525,6 +45545,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
+      propertyPath: buildings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
       propertyPath: numSoldiers
       value: 40
       objectReference: {fileID: 0}
@@ -45548,6 +45573,11 @@ PrefabInstance:
       propertyPath: reachableLocations.Array.data[2]
       value: 
       objectReference: {fileID: 920393278}
+    - target: {fileID: 6617307774755983212, guid: 89f48de48beb5452790715179ee054cb,
+        type: 3}
+      propertyPath: buildings.Array.data[0].buildingType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6196380699529340685, guid: 89f48de48beb5452790715179ee054cb,
         type: 3}
       propertyPath: m_LocalPosition.x

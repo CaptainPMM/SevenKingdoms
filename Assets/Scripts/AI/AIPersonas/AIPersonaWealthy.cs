@@ -1,40 +1,40 @@
 using System.Collections.Generic;
 
-public class AIPersonaDefensive : AIPersona {
-    public AIPersonaDefensive() {
-        name = "Defensive";
-        _type = AIPersonaType.DEFENSIVE;
+public class AIPersonaWealthy : AIPersona {
+    public AIPersonaWealthy() {
+        name = "Wealthy";
+        _type = AIPersonaType.WEALTHY;
 
         _SoldierTypePriorities = new Dictionary<SoldierType, int>() {
             { SoldierType.CONSCRIPTS, 2 },
-            { SoldierType.SPEARMEN, 2 },
-            { SoldierType.SWORDSMEN, 3 },
-            { SoldierType.BOWMEN, 4 },
-            { SoldierType.CAV_KNIGHTS, 4 }
+            { SoldierType.SPEARMEN, 3 },
+            { SoldierType.SWORDSMEN, 5 },
+            { SoldierType.BOWMEN, 5 },
+            { SoldierType.CAV_KNIGHTS, 8 }
         };
 
         _BuildingTypePriorities = new Dictionary<BuildingType, int>() {
             { BuildingType.LOCAL_ADMINISTRATION, 3 }, // only in outposts because in castles they get built with highest prio already
-            { BuildingType.MARKETPLACE, 5 },
-            { BuildingType.OUTER_TOWN_RING, 7 },
+            { BuildingType.MARKETPLACE, 7 },
+            { BuildingType.OUTER_TOWN_RING, 5 },
             { BuildingType.WOODEN_WALL, 3 },
             { BuildingType.STONE_WALL, 6 },
             { BuildingType.ADVANCED_WALL, 14 },
             { BuildingType.WOOD_MILL, 6 },
             { BuildingType.BOW_MAKER, 5 },
             { BuildingType.BLACKSMITH, 6 },
-            { BuildingType.STABLES, 6 },
+            { BuildingType.STABLES, 8 },
             { BuildingType.BARRACKS, 2 },
-            { BuildingType.DRILL_GROUND, 12 }
+            { BuildingType.DRILL_GROUND, 10 }
         };
 
-        _MinMoveSoldiersNum = 40;
+        _MinMoveSoldiersNum = 30;
 
-        _BaseLocationGarrisonMod = 0.7f;
+        _BaseLocationGarrisonMod = 0.8f;
         _BaseCastleGarrisonMod = 0.9f;
 
-        _FleeingPoint = -30;
-        _AttackingPoint = -20;
+        _FleeingPoint = -25;
+        _AttackingPoint = -10;
 
         _RecruitBuildGoldRatioToTransferToBuild = 0.75f;
         _RecruitBuildGoldRatioToTransferToRecruit = 0.2f;
