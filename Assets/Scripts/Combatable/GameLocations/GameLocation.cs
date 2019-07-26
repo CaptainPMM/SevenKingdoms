@@ -189,7 +189,7 @@ public class GameLocation : Combatable {
         recruitmentSpeedBuffs = 1f;
         foreach (GameEffect ge in locationEffects) {
             if (ge.type == GameEffectType.RECRUITMENT_SPEED) {
-                recruitmentSpeed *= ge.modifierValue;
+                recruitmentSpeedBuffs *= ge.modifierValue;
             }
         }
     }
