@@ -121,7 +121,7 @@ MonoBehaviour:
     mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 1
-    volume: 0.5
+    volume: 0.45
     source: {fileID: 0}
   - name: ost_lvl2_transition
     clip: {fileID: 8300000, guid: 1ad2ae8865f774501ad5b7d244cd9e12, type: 3}
@@ -135,28 +135,28 @@ MonoBehaviour:
     mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 1
-    volume: 0.5
+    volume: 0.4
     source: {fileID: 0}
   - name: ost_lvl3_transition
     clip: {fileID: 8300000, guid: 7efa1559ad4a3497895b0f075324b509, type: 3}
     mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.5
+    volume: 0.45
     source: {fileID: 0}
   - name: ost_lvl4_loop
     clip: {fileID: 8300000, guid: 3b3fa8d249d1b44edb18a2dfe200080e, type: 3}
     mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 1
-    volume: 0.5
+    volume: 0.25
     source: {fileID: 0}
   - name: ost_lvl4_transition
     clip: {fileID: 8300000, guid: 8dbc173b4c58742c382c019c0946f07c, type: 3}
     mixerGroup: {fileID: -1070220184681616060, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.5
+    volume: 0.325
     source: {fileID: 0}
   effectSounds: []
   defaultMasterVol: 0

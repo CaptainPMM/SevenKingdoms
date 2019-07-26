@@ -38684,6 +38684,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
+      propertyPath: buildings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
       propertyPath: house.houseType
       value: 6
       objectReference: {fileID: 0}
@@ -38712,6 +38717,11 @@ PrefabInstance:
       propertyPath: reachableLocations.Array.data[4]
       value: 
       objectReference: {fileID: 857330060}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[0].buildingType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
