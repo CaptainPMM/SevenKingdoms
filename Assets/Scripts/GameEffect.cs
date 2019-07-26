@@ -34,19 +34,19 @@ public class GameEffect {
     (
         "GOLD_INCOME_MODIFIER_LOW",
         GameEffectType.GOLD_INCOME,
-        1.1f
+        1.2f
     );
     public static GameEffect GOLD_INCOME_MODIFIER_MED = new GameEffect
     (
         "GOLD_INCOME_MODIFIER_MED",
         GameEffectType.GOLD_INCOME,
-        1.2f
+        1.3f
     );
     public static GameEffect GOLD_INCOME_MODIFIER_HIGH = new GameEffect
     (
         "GOLD_INCOME_MODIFIER_HIGH",
         GameEffectType.GOLD_INCOME,
-        1.3f
+        1.4f
     );
 
     // ### MANPOWER_INCOME ###
@@ -55,7 +55,7 @@ public class GameEffect {
     (
         "MANPOWER_INCOME_MODIFIER_LOW",
         GameEffectType.MANPOWER_INCOME,
-        1.1f
+        1.2f
     );
     public static GameEffect MANPOWER_INCOME_MODIFIER_HIGH = new GameEffect
     (

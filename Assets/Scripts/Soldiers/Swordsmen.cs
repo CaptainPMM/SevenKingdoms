@@ -5,7 +5,7 @@ public class Swordsmen : Soldier {
     public Swordsmen() {
         HP = 4;
         DP = 2;
-        predictedStrength = 8;
+        predictedStrength = 10;
         soldierName = "Swordsmen";
         strengths = new Dictionary<SoldierType, float>() {
             { SoldierType.CONSCRIPTS, 1.5f },

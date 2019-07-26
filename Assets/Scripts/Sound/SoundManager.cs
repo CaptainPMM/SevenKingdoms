@@ -57,24 +57,24 @@ public class SoundManager : MonoBehaviour {
 
     private void Start() {
         // Setup sound states for the music
-        SoundState st1 = new SoundState(FindSound(SoundType.MUSIC, "ost_lvl1_loop"), 6, float.MinValue, null);
+        SoundState st1 = new SoundState(FindSound(SoundType.MUSIC, "ost_lvl1_loop"), 15, float.MinValue, null);
 
         SoundState st2trans = new SoundState(FindSound(SoundType.MUSIC, "ost_lvl2_transition"), float.MinValue, float.MinValue, null);
         st1.SetNextSoundState(st2trans);
 
-        SoundState st2 = new SoundState(FindSound(SoundType.MUSIC, "ost_lvl2_loop"), 10, 6, st1);
+        SoundState st2 = new SoundState(FindSound(SoundType.MUSIC, "ost_lvl2_loop"), 22, 15, st1);
         st2trans.SetNextSoundState(st2);
 
         SoundState st3trans = new SoundState(FindSound(SoundType.MUSIC, "ost_lvl3_transition"), float.MinValue, float.MinValue, null);
         st2.SetNextSoundState(st3trans);
 
-        SoundState st3 = new SoundState(FindSound(SoundType.MUSIC, "ost_lvl3_loop"), 15, 10, st2);
+        SoundState st3 = new SoundState(FindSound(SoundType.MUSIC, "ost_lvl3_loop"), 38, 22, st2);
         st3trans.SetNextSoundState(st3);
 
         SoundState st4trans = new SoundState(FindSound(SoundType.MUSIC, "ost_lvl4_transition"), float.MinValue, float.MinValue, null);
         st3.SetNextSoundState(st4trans);
 
-        SoundState st4 = new SoundState(FindSound(SoundType.MUSIC, "ost_lvl4_loop"), float.MaxValue, null, 15, st3);
+        SoundState st4 = new SoundState(FindSound(SoundType.MUSIC, "ost_lvl4_loop"), float.MaxValue, null, 38, st3);
         st4trans.SetNextSoundState(st4);
 
         // Init first sound state

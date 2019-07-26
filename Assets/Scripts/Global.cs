@@ -27,15 +27,15 @@ public static class Global {
     // --
 
     // Selection UI
-    public static float SEL_UI_UPDATE_TIME = 0.3f;
+    public static float SEL_UI_UPDATE_TIME = 0.1f;
     // --
 
     // Buildings UI
-    public static float BUILD_UI_REFRESH_TIME = 2f;
+    public static float BUILD_UI_REFRESH_TIME = 1f;
     // --
 
     // Game Location
-    public static float GAME_LOCATION_RESOURCES_UPDATE_TIME = 5f; // in seconds
+    public static float GAME_LOCATION_RESOURCES_UPDATE_TIME = 6f; // in seconds
     public static float GAME_LOCATION_GUI_UPDATE_TIME = 0.1f; // in seconds
     // --
 
@@ -46,7 +46,7 @@ public static class Global {
     // --
 
     // Combat
-    public static float COMBAT_SPEED = 1.5f;
+    public static float COMBAT_SPEED = 2f;
     public static float COMBAT_DAMAGE_RAND_MIN = 0.6f; // Inclusive
     public static float COMBAT_DAMAGE_RAND_MAX = 1.4f; // Inclusive
     public static float COMBAT_DAMAGE_DAMPER = 0.2f;

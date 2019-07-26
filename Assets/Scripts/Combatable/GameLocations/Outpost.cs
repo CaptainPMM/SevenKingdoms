@@ -5,7 +5,7 @@
 
         recruitmentSpeed = 4f; // in secs
 
-        BASE_GOLD_INCOME = 6;
+        BASE_GOLD_INCOME = 5;
         BASE_MANPOWER_INCOME = 1;
 
         buildableBuildings.AddRange(new BuildingType[] {
