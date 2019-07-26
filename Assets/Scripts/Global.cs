@@ -53,7 +53,7 @@ public static class Global {
     // --
 
     // Paths
-    public static string PATH_SETTINGS = Application.dataPath + "/settings.txt";
+    public static string PATH_SETTINGS = Application.persistentDataPath + "/settings.txt";
     // --
 
     public static void LimitCameraToBoundaries(Component camera) {

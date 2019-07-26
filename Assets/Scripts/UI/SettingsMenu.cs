@@ -47,6 +47,9 @@ public class SettingsMenu : MonoBehaviour {
                 }
             }
         }
+
+        GameObject scrollGO = GameObject.Find("Scroll");
+        if (scrollGO != null) scrollGO.GetComponent<ScrollRect>().verticalNormalizedPosition = 1; // Goto top scroll position
     }
 
     public void Save() {
@@ -91,16 +94,10 @@ public class SettingsMenu : MonoBehaviour {
         File.AppendAllText(path, "AMBIENT_VOL:" + volAmbient.value + "\n");
 
         // CONTROLS
-        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
-            // Mobile
-            // Currently nothing happens
-        } else {
-            // Desktop
-            Global.CAMERA_SPEED = Global.CAMERA_DEFAULT_SPEED + (ctrlMoveSpeed.value - (ctrlMoveSpeed.maxValue / 2));
-            File.AppendAllText(path, "CAMERA_SPEED:" + Global.CAMERA_SPEED + "\n");
+        Global.CAMERA_SPEED = Global.CAMERA_DEFAULT_SPEED + (ctrlMoveSpeed.value - (ctrlMoveSpeed.maxValue / 2));
+        File.AppendAllText(path, "CAMERA_SPEED:" + Global.CAMERA_SPEED + "\n");
 
-            Global.CAMERA_ZOOM_SPEED = Global.CAMERA_DEFAULT_ZOOM_SPEED + (ctrlZoomSpeed.value - (ctrlZoomSpeed.maxValue / 2));
-            File.AppendAllText(path, "CAMERA_ZOOM_SPEED:" + Global.CAMERA_ZOOM_SPEED + "\n");
-        }
+        Global.CAMERA_ZOOM_SPEED = Global.CAMERA_DEFAULT_ZOOM_SPEED + (ctrlZoomSpeed.value - (ctrlZoomSpeed.maxValue / 2));
+        File.AppendAllText(path, "CAMERA_ZOOM_SPEED:" + Global.CAMERA_ZOOM_SPEED + "\n");
     }
 }

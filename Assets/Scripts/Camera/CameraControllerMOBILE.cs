@@ -1,43 +1,27 @@
 ﻿using UnityEngine;
 
 public class CameraControllerMOBILE : MonoBehaviour {
-    public float cameraSpeed;
     public float scrollingSpeed;
     public float scrollHeightModifier = 0.1f;
 
-    private bool dragging = false;
+    private Vector3 touchStart;
 
     private void Awake() {
-        cameraSpeed = Global.CAMERA_SPEED;
-        scrollingSpeed = Global.CAMERA_ZOOM_SPEED;
+        scrollingSpeed = Global.CAMERA_ZOOM_SPEED * 0.03f; // Adjust mobile zoom speed
     }
 
     // Update is called once per frame
     void Update() {
         // MOVING
-        if (Input.touchCount == 1) {
-            Touch t = Input.GetTouch(0);
-            if (t.phase == TouchPhase.Began) {
-                Ray ray = Camera.main.ScreenPointToRay(t.position);
-                RaycastHit hit;
-
-                // Check for hit valid game objects
-                if (Physics.Raycast(ray, out hit)) {
-                    if (hit.collider.gameObject.tag == "background") {
-                        dragging = true;
-                    }
-                }
+        if (!GameController.activeGameController.dragging) {
+            if (Input.GetMouseButtonDown(0)) {
+                touchStart = GetWorldPosition();
             }
-
-            if (dragging && t.phase == TouchPhase.Moved) {
-                Vector2 movement = t.position - t.deltaPosition;
-
-                transform.position += new Vector3(movement.x, 0, movement.y) * cameraSpeed * CalculateScrollHeightModifier() * Time.deltaTime;
-
+            if (Input.GetMouseButton(0)) {
+                Vector3 direction = touchStart - GetWorldPosition();
+                gameObject.transform.position += direction;
                 Global.LimitCameraToBoundaries(this);
             }
-
-            if (dragging && t.phase == TouchPhase.Ended) dragging = false;
         }
 
         // ZOOMING / SCROLLING
@@ -64,5 +48,13 @@ public class CameraControllerMOBILE : MonoBehaviour {
 
     float CalculateScrollHeightModifier() {
         return transform.position.y * scrollHeightModifier;
+    }
+
+    private Vector3 GetWorldPosition() {
+        Ray touchPos = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane ground = new Plane(Vector3.up, new Vector3(0, 0, 0));
+        float distance;
+        ground.Raycast(touchPos, out distance);
+        return touchPos.GetPoint(distance);
     }
 }

@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour {
     public GameObject selectionUI;
     public GameObject buildingsUI;
 
-    private bool dragging = false;
+    public bool dragging = false;
 
     public int locationsHeldByPlayer = 0;
 
@@ -67,62 +67,64 @@ public class GameController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         // ### CLICKING -> selection ###
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) { // also check if the mouse was clicked over an UI element
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit)) {
-                if (!hit.collider.gameObject.Equals(selectedLocation)) {
-                    switch (hit.collider.tag) {
+        if (Input.GetMouseButtonDown(0)) {
+            if (!WasClickOnUI()) { // also check if the mouse was clicked over an UI element
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit)) {
+                    if (!hit.collider.gameObject.Equals(selectedLocation)) {
+                        switch (hit.collider.tag) {
 
-                        case "game_location":
-                            DeselectLocation();
-                            GameObject targetLocation = hit.collider.gameObject;
-                            if (IsLocationOwnedByPlayer(targetLocation)) {
-                                // Target belongs to player house
-                                SelectLocation(targetLocation);
-                            } else {
-                                // Show info panel for enemies game location if outside FOW
-                                if (IsNeighbourOfAnyPlayerLocation(targetLocation)) {
+                            case "game_location":
+                                DeselectLocation();
+                                GameObject targetLocation = hit.collider.gameObject;
+                                if (IsLocationOwnedByPlayer(targetLocation)) {
+                                    // Target belongs to player house
                                     SelectLocation(targetLocation);
+                                } else {
+                                    // Show info panel for enemies game location if outside FOW
+                                    if (IsNeighbourOfAnyPlayerLocation(targetLocation)) {
+                                        SelectLocation(targetLocation);
+                                        selectionUI.GetComponent<SelectionUI>().EnableOnlyInfoMode();
+                                    }
+                                }
+                                break;
+
+                            case "fighting_house":
+                                // Only show info panel if outside FOW
+                                DeselectLocation();
+                                GameObject target = hit.collider.gameObject;
+                                bool valid = false;
+
+                                FightingHouse fh = target.GetComponent<FightingHouse>();
+                                if (fh.combat.location != null) {
+                                    // Game location combat
+                                    if (IsNeighbourOfAnyPlayerLocation(fh.combat.location.gameObject)) {
+                                        valid = true;
+                                    }
+                                } else {
+                                    // Combat on field
+                                    Troops t = fh.firstParticipant as Troops;
+                                    if (IsNeighbourOfAnyPlayerLocation(t.toLocation) || IsLocationOwnedByPlayer(t.toLocation)) {
+                                        valid = true;
+                                    }
+                                }
+
+                                if (valid) {
+                                    SelectLocation(target);
                                     selectionUI.GetComponent<SelectionUI>().EnableOnlyInfoMode();
                                 }
-                            }
-                            break;
+                                break;
 
-                        case "fighting_house":
-                            // Only show info panel if outside FOW
-                            DeselectLocation();
-                            GameObject target = hit.collider.gameObject;
-                            bool valid = false;
-
-                            FightingHouse fh = target.GetComponent<FightingHouse>();
-                            if (fh.combat.location != null) {
-                                // Game location combat
-                                if (IsNeighbourOfAnyPlayerLocation(fh.combat.location.gameObject)) {
-                                    valid = true;
+                            default:
+                                if (selectedLocation != null) {
+                                    DeselectLocation();
+                                    buildingsUI.SetActive(false);
+                                    SoundManager.Play(SoundManager.SoundType.UI, "slider_click_short");
                                 }
-                            } else {
-                                // Combat on field
-                                Troops t = fh.firstParticipant as Troops;
-                                if (IsNeighbourOfAnyPlayerLocation(t.toLocation) || IsLocationOwnedByPlayer(t.toLocation)) {
-                                    valid = true;
-                                }
-                            }
+                                break;
 
-                            if (valid) {
-                                SelectLocation(target);
-                                selectionUI.GetComponent<SelectionUI>().EnableOnlyInfoMode();
-                            }
-                            break;
-
-                        default:
-                            if (selectedLocation != null) {
-                                DeselectLocation();
-                                buildingsUI.SetActive(false);
-                                SoundManager.Play(SoundManager.SoundType.UI, "slider_click_short");
-                            }
-                            break;
-
+                        }
                     }
                 }
             }
@@ -132,14 +134,16 @@ public class GameController : MonoBehaviour {
         if (selectedLocation != null && selectedLocation.tag != "fighting_house") {
             if (IsLocationOwnedByPlayer(selectedLocation)) {
                 // Start dragging
-                if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
-                    dragging = true;
+                if (Input.GetMouseButtonDown(0)) {
+                    if (!WasClickOnUI()) {
+                        dragging = true;
 
-                    moveSoldiersNum = 0;
-                    foreach (Slider s in selectionSliders) {
-                        moveSoldiersNum += (int)s.value;
+                        moveSoldiersNum = 0;
+                        foreach (Slider s in selectionSliders) {
+                            moveSoldiersNum += (int)s.value;
+                        }
+                        moveMarkerText.text = moveSoldiersNum.ToString();
                     }
-                    moveMarkerText.text = moveSoldiersNum.ToString();
                 }
 
                 // Dragging
@@ -352,6 +356,16 @@ public class GameController : MonoBehaviour {
         if (GameController.activeGameController.selectedLocation == disabledGameObject) {
             GameController.activeGameController.DeselectLocation();
         }
+    }
+
+    private bool WasClickOnUI() {
+        if (EventSystem.current.IsPointerOverGameObject()) return true;
+        else {
+            if (Input.touchCount > 0) {
+                if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) return true;
+            }
+        }
+        return false;
     }
 
     // Needed because a selected loaction on quit caused a little error (not too important, but bothering)
