@@ -23,6 +23,7 @@ public class GameLocation : Combatable {
     private float elapsedTimeGUI = 0f;
     private static GamePlayer player = null;
     private Button btnFastBuildLocalAdmin;
+    private TextMeshProUGUI locatioNameText;
 
     public GameObject recruitmentIndicatorGO;
     public GameObject fortificationLevelGO;
@@ -45,6 +46,7 @@ public class GameLocation : Combatable {
         locationName = name.Substring(name.IndexOf(' ') + 1); // Filter the location type e.g Outpost Northern Reach -> Northern Reach
         foreach (TextMeshProUGUI t in GetComponentsInChildren<TextMeshProUGUI>()) {
             if (t.name == "Text Location Name") {
+                locatioNameText = t;
                 t.text = locationName;
 
                 Image panel = t.transform.parent.gameObject.GetComponent<Image>();
@@ -130,15 +132,17 @@ public class GameLocation : Combatable {
             elapsedTimeGUI += Time.deltaTime;
             if (elapsedTimeGUI >= Global.GAME_LOCATION_GUI_UPDATE_TIME) {
                 UpdateGUI();
+                locatioNameText.color = Color.white;
                 if (house.houseType == player.house.houseType) {
-                    if (house.gold >= Building.GetBuildingTypeInfos(BuildingType.LOCAL_ADMINISTRATION).neededGold) {
-                        if (!btnFastBuildLocalAdmin.gameObject.activeSelf) {
-                            if (!IsLocalAdminBuilt()) {
+                    if (!IsLocalAdminBuilt()) {
+                        locatioNameText.color = Color.yellow;
+                        if (house.gold >= Building.GetBuildingTypeInfos(BuildingType.LOCAL_ADMINISTRATION).neededGold) {
+                            if (!btnFastBuildLocalAdmin.gameObject.activeSelf) {
                                 btnFastBuildLocalAdmin.gameObject.SetActive(true);
                             }
+                        } else {
+                            if (btnFastBuildLocalAdmin.gameObject.activeSelf) btnFastBuildLocalAdmin.gameObject.SetActive(false);
                         }
-                    } else {
-                        if (btnFastBuildLocalAdmin.gameObject.activeSelf) btnFastBuildLocalAdmin.gameObject.SetActive(false);
                     }
                 }
             }
@@ -198,6 +202,7 @@ public class GameLocation : Combatable {
         buildings.Add(b);
         GetEffectsFromBuildings();
         DetermineFortificationLevel();
+        if (b.buildingType == BuildingType.LOCAL_ADMINISTRATION) btnFastBuildLocalAdmin.gameObject.SetActive(false);
     }
 
     private void ResourcesIncomeForHouse() {
@@ -278,6 +283,5 @@ public class GameLocation : Combatable {
     public void FastBuildLocalAdmin() {
         house.gold -= Building.GetBuildingTypeInfos(BuildingType.LOCAL_ADMINISTRATION).neededGold;
         AddBuilding(Building.CreateBuildingInstance(BuildingType.LOCAL_ADMINISTRATION));
-        btnFastBuildLocalAdmin.gameObject.SetActive(false);
     }
 }
