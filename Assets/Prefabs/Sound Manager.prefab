@@ -64,7 +64,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.18
+    volume: 0.12
     source: {fileID: 0}
   - name: button_big
     clip: {fileID: 8300000, guid: e584d81152631427590ff907c833b700, type: 3}
