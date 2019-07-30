@@ -35,7 +35,7 @@ public static class Global {
     // --
 
     // Game Location
-    public static float GAME_LOCATION_RESOURCES_UPDATE_TIME = 6f; // in seconds
+    public static float GAME_LOCATION_RESOURCES_UPDATE_TIME = 9f; // in seconds
     public static float GAME_LOCATION_GUI_UPDATE_TIME = 0.1f; // in seconds
     // --
 
