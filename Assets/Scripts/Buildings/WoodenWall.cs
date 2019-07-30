@@ -3,7 +3,7 @@ public class WoodenWall : Building {
         buildingType = BuildingType.WOODEN_WALL;
         _buildingName = "Wooden Wall";
         _description = "The outpost defenses have to be improved. Enables basic defense bonus.";
-        _neededGold = 120;
+        _neededGold = 150;
         _gameEffects = new GameEffect[] {
             GameEffect.LOCATION_DEFENDER_CASUALTIES_MODIFIER_LOW
         };

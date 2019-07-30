@@ -3,7 +3,7 @@ public class Stables : Building {
         buildingType = BuildingType.STABLES;
         _buildingName = "Stables";
         _description = "Build a place for horses. Enables recruitment of Mounted Knights.";
-        _neededGold = 800;
+        _neededGold = 1000;
         _gameEffects = new GameEffect[] {
             GameEffect.ST_UNLOCK_MOUNTED_KNIGHTS
         };
