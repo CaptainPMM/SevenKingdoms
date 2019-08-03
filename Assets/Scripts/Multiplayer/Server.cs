@@ -23,6 +23,9 @@ namespace Multiplayer {
             }
             DontDestroyOnLoad(gameObject);
 
+            clients = new List<TcpClient>();
+            clientStreamThreads = new List<Thread>();
+
             // After start wait for clients to connect to this server
             receiveFirstRequestsThread = new Thread(new ThreadStart(ReceiveFirstRequests));
             receiveFirstRequestsThread.IsBackground = true;
@@ -33,7 +36,6 @@ namespace Multiplayer {
             listener = new TcpListener(IPAddress.Any, 4242);
             listener.Start();
 
-            clients = new List<TcpClient>();
             while (true) {
                 TcpClient client = listener.AcceptTcpClient();
                 clients.Add(client);
@@ -44,7 +46,6 @@ namespace Multiplayer {
             receiveFirstRequestsThread.Abort();
 
             // Now listen for game info from the clients
-            clientStreamThreads = new List<Thread>();
             foreach (TcpClient client in clients) {
                 Thread t = new Thread(() => ReceiveGameInfos(client));
                 t.IsBackground = true;
