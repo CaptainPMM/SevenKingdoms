@@ -54,13 +54,15 @@ public class GameController : MonoBehaviour {
         moveMarkerText = moveMarker.GetComponentInChildren<TextMeshProUGUI>();
 
         // Init AIs
-        aiPlayers = new List<AIPlayer>();
-        GamePlayer p = player.GetComponent<GamePlayer>();
-        // For singelplayer there are 6 ai players (seven kingdoms - 1 human player)
-        // Iterate through all HouseTypes and skip the player house type and the Neutral HouseType (index 0)
-        for (int i = 1; i <= 7; i++) {
-            if (p.house.houseType == (HouseType)i) continue;
-            aiPlayers.Add(new AIPlayer((HouseType)i));
+        if (!Multiplayer.NetworkManager.mpActive || Multiplayer.NetworkManager.isServer) {
+            aiPlayers = new List<AIPlayer>();
+            GamePlayer p = player.GetComponent<GamePlayer>();
+            // For singelplayer there are 6 ai players (seven kingdoms - 1 human player)
+            // Iterate through all HouseTypes and skip the player house type and the Neutral HouseType (index 0)
+            for (int i = 1; i <= 7; i++) {
+                if (p.house.houseType == (HouseType)i) continue;
+                aiPlayers.Add(new AIPlayer((HouseType)i));
+            }
         }
     }
 

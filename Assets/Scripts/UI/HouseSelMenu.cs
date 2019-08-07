@@ -39,5 +39,7 @@ public class HouseSelMenu : MonoBehaviour {
     public void Play() {
         Global.GAME_PARAM_PLAYER_HOUSE_TYPE = selHouse.houseType;
         Global.GAME_PARAM_AI_DIFF = (AIDifficulty)aiDiffSlider.value;
+
+        if (Multiplayer.NetworkManager.isServer) Multiplayer.Server.instance.StartGame();
     }
 }

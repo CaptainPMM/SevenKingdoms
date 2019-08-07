@@ -7,6 +7,8 @@ public static class AIGameActions {
             Troops t = GameController.activeGameController.InitializeTroopsMovement(fromGameLocation.gameObject, toGameLocation.gameObject, fromGameLocation.soldiers);
             fromGameLocation.soldiers = new Soldiers();
             AIPlayer.InformOfMovingTroops(t);
+
+            if (Multiplayer.NetworkManager.isServer) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCMoveTroops(fromGameLocation, toGameLocation));
         }
     }
 
@@ -22,14 +24,20 @@ public static class AIGameActions {
 
             Troops t = GameController.activeGameController.InitializeTroopsMovement(fromGameLocation.gameObject, toGameLocation.gameObject, soldiersToMove);
             AIPlayer.InformOfMovingTroops(t);
+
+            if (Multiplayer.NetworkManager.isServer) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCMoveTroops(fromGameLocation, toGameLocation, soldiers));
         }
     }
 
     public static void Build(GameLocation gameLocation, BuildingType buildingType) {
         gameLocation.AddBuilding(Building.CreateBuildingInstance(buildingType));
+
+        if (Multiplayer.NetworkManager.isServer) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCBuild(gameLocation, buildingType));
     }
 
     public static void Recruit(GameLocation gameLocation, Soldiers soldiers) {
         gameLocation.AddSoldiersToRecruitment(soldiers);
+
+        if (Multiplayer.NetworkManager.isServer) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCRecruit(gameLocation, soldiers));
     }
 }
