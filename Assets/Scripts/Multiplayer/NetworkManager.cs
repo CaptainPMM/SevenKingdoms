@@ -69,8 +69,6 @@ namespace Multiplayer {
                         dataBytes[i] = buffer[i]; // Transfer new read bytes to dataBytes from buffer
                     }
 
-                    print("FULL: " + DecodeSendData(dataBytes)); // TEST
-
                     // dataBytes may contain multiple commands, split them and execute each one of the them sequentially
                     foreach (NetworkCommands.NetworkCommand command in GetCommands(dataBytes)) {
                         switch ((NetworkCommands.NCType)command.type) {
@@ -159,8 +157,6 @@ namespace Multiplayer {
                 if (commandString.Length > 0) {
                     res.Push(NetworkCommands.NetworkCommand.CreateFromSentString(commandString));
                     dataString = dataString.Substring(commandString.Length);
-
-                    print("PARTIAL: " + dataString); // TEST
                 } else break;
             }
 
