@@ -57,11 +57,10 @@ namespace Multiplayer {
             byte[] dataBytes; // Data without zeros and old data from buffer at the end
 
             while (socket.Connected) {
-                print("CHECK"); // TEST
-
                 dataSize = 0;
                 try {
                     dataSize = ns.Read(buffer, 0, buffer.Length);
+                    if (dataSize <= 0) break; // Connection was closed
                 } catch { }
 
                 if (dataSize > 0) {
