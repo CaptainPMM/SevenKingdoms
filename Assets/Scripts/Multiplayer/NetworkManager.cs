@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
@@ -12,6 +13,9 @@ namespace Multiplayer {
         public static bool isServer;
 
         public static Queue<Action> mpActions;
+
+        public delegate void ConnectionEstablished();
+        public delegate void ConnectionFailed();
 
         private void Start() {
             if (instance == null) instance = this;
@@ -27,26 +31,25 @@ namespace Multiplayer {
         }
 
         private void Update() {
-            if (!mpActive) {
-                if (Input.GetKeyDown(KeyCode.S)) {
-                    // Start server
-                    gameObject.AddComponent<Server>();
-                    mpActive = true;
-                    isServer = true;
-                }
-                if (Input.GetKeyDown(KeyCode.C)) {
-                    // Start Client
-                    gameObject.AddComponent<Client>();
-                    mpActive = true;
-                    isServer = false;
-                }
-            } else {
-                if (mpActions.Count > 0) {
-                    for (int i = 0; i < mpActions.Count; i++) {
-                        mpActions.Dequeue().Invoke();
-                    }
+            if (mpActions.Count > 0) {
+                for (int i = 0; i < mpActions.Count; i++) {
+                    mpActions.Dequeue().Invoke();
                 }
             }
+        }
+
+        public void InitServer() {
+            // Start server
+            gameObject.AddComponent<Server>();
+            mpActive = true;
+            isServer = true;
+        }
+
+        public void InitClient(string hostIP) {
+            // Start Client
+            gameObject.AddComponent<Client>().ConnectToServer(hostIP);
+            mpActive = true;
+            isServer = false;
         }
 
         public static void ListenForNetworkData(TcpClient socket) {
@@ -174,6 +177,20 @@ namespace Multiplayer {
 
         private static string DecodeSendData(byte[] data) {
             return Encoding.UTF8.GetString(data);
+        }
+
+        public static string GetLocalIP() {
+            string localIP = "ERROR";
+
+            IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList) {
+                if (ip.AddressFamily == AddressFamily.InterNetwork) {
+                    localIP = ip.ToString();
+                    break;
+                }
+            }
+
+            return localIP;
         }
     }
 }

@@ -6,8 +6,13 @@ namespace Multiplayer {
     public class Client : MonoBehaviour {
         public static Client instance;
 
+        private string serverIP;
+
         public TcpClient server;
         private Thread receiveThread;
+
+        public static event NetworkManager.ConnectionEstablished OnConnectionEstablished;
+        public static event NetworkManager.ConnectionFailed OnConnectionFailed;
 
         private void Start() {
             if (instance == null) instance = this;
@@ -16,43 +21,50 @@ namespace Multiplayer {
                 return;
             }
             DontDestroyOnLoad(gameObject);
-
-            ConnectToServer();
         }
 
-        private void ConnectToServer() {
+        public void ConnectToServer(string hostIP) {
+            serverIP = hostIP;
             receiveThread = new Thread(new ThreadStart(ListenForData));
             receiveThread.IsBackground = true;
             receiveThread.Start();
         }
 
         private void ListenForData() {
-            // Search server in LAN...
             try {
-                server = new TcpClient("localhost", 4242); // TODO...
-            } catch (System.Exception e) {
-                Debug.LogError("Error while connecting to server: " + e);
+                // Search server in LAN...
+                try {
+                    server = new TcpClient(serverIP, 4242);
+                    if (!server.Connected) throw new System.Exception();
+                    NetworkManager.mpActions.Enqueue(() => OnConnectionEstablished());
+                } catch (System.Exception e) {
+                    Debug.LogError("Error while connecting to server: " + e);
+                    NetworkManager.mpActions.Enqueue(() => OnConnectionFailed());
+                    StopClient();
+                    return; // Stop thread
+                }
+
+                NetworkManager.ListenForNetworkData(server); // Blocks until connection closed
+
+                Debug.LogWarning("Server connection closed");
                 StopClient();
-                return; // Stop thread
-            }
-
-            NetworkManager.ListenForNetworkData(server); // Blocks until connection closed
-
-            Debug.LogWarning("Server connection closed");
-            StopClient();
+            } catch (ThreadAbortException) { }
         }
 
         private void StopClient() {
-            server.Close();
             NetworkManager.mpActions.Enqueue(() => {
-                NetworkManager.mpActive = false;
                 Destroy(this);
             });
         }
 
-        private void OnApplicationQuit() {
-            server.Close();
-            receiveThread.Abort();
+        private void OnDestroy() {
+            if (server != null) server.Close();
+            if (receiveThread != null) receiveThread.Abort();
+            instance = null;
+            NetworkManager.mpActions.Enqueue(() => {
+                NetworkManager.mpActive = false;
+                OnConnectionFailed();
+            });
         }
     }
 }
