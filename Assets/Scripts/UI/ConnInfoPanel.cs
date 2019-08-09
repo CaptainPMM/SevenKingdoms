@@ -67,6 +67,7 @@ public class ConnInfoPanel : MonoBehaviour {
     private void ShowPanel(string msg) {
         infoText.text = msg;
         panel.SetActive(true);
+        SoundManager.Play(SoundManager.SoundType.UI, "slider_click");
         StartCoroutine("DisplayOverTime");
     }
 
