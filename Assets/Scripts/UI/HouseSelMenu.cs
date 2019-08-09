@@ -7,6 +7,7 @@ public class HouseSelMenu : MonoBehaviour {
     public TextMeshProUGUI houseNameText;
     public Slider houseSelSlider;
     public Slider aiDiffSlider;
+    public Button btnPlay;
     private TextMeshProUGUI aiDiffText;
 
     public GameObject mpPanel;
@@ -147,6 +148,9 @@ public class HouseSelMenu : MonoBehaviour {
                     btnConnect.GetComponentInChildren<TextMeshProUGUI>().text = "Connect";
 
                     btnHost.interactable = true;
+
+                    btnPlay.interactable = true;
+                    btnPlay.GetComponentInChildren<TextMeshProUGUI>().text = "Conquer";
                 }
             } else {
                 SoundManager.Play(SoundManager.SoundType.UI, "button1");
@@ -163,6 +167,9 @@ public class HouseSelMenu : MonoBehaviour {
         btnConnect.GetComponentInChildren<TextMeshProUGUI>().text = "Disconnect";
 
         btnHost.interactable = false;
+
+        btnPlay.interactable = false;
+        btnPlay.GetComponentInChildren<TextMeshProUGUI>().text = "Wait for host...";
     }
 
     private void ConnFailed() {
@@ -178,6 +185,9 @@ public class HouseSelMenu : MonoBehaviour {
         mpConnected = false;
         inputIP.interactable = true;
         btnHost.interactable = true;
+
+        btnPlay.interactable = true;
+        btnPlay.GetComponentInChildren<TextMeshProUGUI>().text = "Conquer";
     }
 
     public void RemoveNetworkManager() {

@@ -2475,6 +2475,7 @@ MonoBehaviour:
   houseNameText: {fileID: 255336513}
   houseSelSlider: {fileID: 1597810374}
   aiDiffSlider: {fileID: 1469803791}
+  btnPlay: {fileID: 1237566524}
   mpPanel: {fileID: 1645529870}
   inputIP: {fileID: 146385856}
   btnConnect: {fileID: 456955043}
