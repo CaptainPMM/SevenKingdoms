@@ -19,6 +19,9 @@ namespace Multiplayer {
         public static event NetworkManager.ConnectionEstablished OnConnectionEstablished;
         public static event NetworkManager.ConnectionFailed OnConnectionFailed;
 
+        public static event NetworkManager.ConnectionEstablished OnClientConnect;
+        public static event NetworkManager.ConnectionFailed OnClientDisconnect;
+
         private TMPro.TextMeshProUGUI hostStatusText;
 
         private void Start() {
@@ -59,6 +62,7 @@ namespace Multiplayer {
                         // Inform UI of new connection
                         NetworkManager.mpActions.Enqueue(() => {
                             hostStatusText.text = "Hosting (" + clients.Count + " connected)";
+                            OnClientConnect();
                         });
                     } else {
                         // Player limit reached -> reject
@@ -87,6 +91,7 @@ namespace Multiplayer {
                         // Inform UI of lost connection
                         NetworkManager.mpActions.Enqueue(() => {
                             hostStatusText.text = "Hosting (" + clients.Count + " connected)";
+                            OnClientDisconnect();
                         });
                     }
                 }
@@ -116,6 +121,7 @@ namespace Multiplayer {
                 Debug.LogWarning("Client connection lost");
                 clients.Remove(client);
                 clientStreamThreads.Remove(Thread.CurrentThread);
+                NetworkManager.mpActions.Enqueue(() => OnClientDisconnect());
                 if (clients.Count < 1) {
                     Debug.LogWarning("No clients connected, stopping server");
                     StopServer();
