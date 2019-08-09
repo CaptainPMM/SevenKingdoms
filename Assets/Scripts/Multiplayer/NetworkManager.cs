@@ -17,7 +17,7 @@ namespace Multiplayer {
         public delegate void ConnectionEstablished();
         public delegate void ConnectionFailed();
 
-        private void Start() {
+        private void Awake() {
             if (instance == null) instance = this;
             else {
                 Destroy(gameObject);

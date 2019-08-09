@@ -14,7 +14,7 @@ namespace Multiplayer {
         public static event NetworkManager.ConnectionEstablished OnConnectionEstablished;
         public static event NetworkManager.ConnectionFailed OnConnectionFailed;
 
-        private void Start() {
+        private void Awake() {
             if (instance == null) instance = this;
             else {
                 Destroy(gameObject);
