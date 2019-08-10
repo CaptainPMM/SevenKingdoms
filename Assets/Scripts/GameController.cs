@@ -61,6 +61,7 @@ public class GameController : MonoBehaviour {
             // Iterate through all HouseTypes and skip the player house type and the Neutral HouseType (index 0)
             for (int i = 1; i <= 7; i++) {
                 if (p.house.houseType == (HouseType)i) continue;
+                if (Multiplayer.NetworkManager.mpActive && Multiplayer.Server.instance.clientHouseTypes.ContainsValue((HouseType)i)) continue;
                 aiPlayers.Add(new AIPlayer((HouseType)i));
             }
         }
