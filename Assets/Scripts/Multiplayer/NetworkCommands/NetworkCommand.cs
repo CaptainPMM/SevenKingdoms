@@ -1,7 +1,7 @@
 namespace Multiplayer {
     namespace NetworkCommands {
         public abstract class NetworkCommand {
-            public int type;
+            public abstract int type { get; }
 
             /// <summary>Create a string that is sendable over network.
             /// The command is converted into JSON data and a header for the command type added.
@@ -23,6 +23,10 @@ namespace Multiplayer {
                         return UnityEngine.JsonUtility.FromJson<NCMoveTroops>(json);
                     case NCType.RECRUIT:
                         return UnityEngine.JsonUtility.FromJson<NCRecruit>(json);
+                    case NCType.SELECT_HOUSE:
+                        return UnityEngine.JsonUtility.FromJson<NCSelectHouse>(json);
+                    case NCType.FREE_HOUSE:
+                        return UnityEngine.JsonUtility.FromJson<NCFreeHouse>(json);
 
                     default:
                         UnityEngine.Debug.LogWarning("Could not find NCType <" + type + ">");

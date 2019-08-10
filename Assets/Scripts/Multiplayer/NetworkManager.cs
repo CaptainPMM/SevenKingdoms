@@ -66,7 +66,7 @@ namespace Multiplayer {
                     if (dataSize <= 0) break; // Connection was closed
                 } catch { }
 
-                if (dataSize > 0) {
+                if (dataSize > 1) { // Ignore ping byte
                     dataBytes = new byte[dataSize];
                     for (int i = 0; i < dataBytes.Length; i++) {
                         dataBytes[i] = buffer[i]; // Transfer new read bytes to dataBytes from buffer
@@ -121,7 +121,22 @@ namespace Multiplayer {
             }
         }
 
-        public static void Send(NetworkCommands.NetworkCommand command) {
+        /// <summary>If receiver is specified only to him the message will be sent.
+        /// If receiver is null or not given (optional) a Server call broadcasts to all clients and a Client call sends to his server.</summary>
+        public static void Send(NetworkCommands.NetworkCommand command, TcpClient receiver = null) {
+            if (receiver != null) {
+                // To specified receiver
+                try {
+                    NetworkStream ns = receiver.GetStream();
+
+                    string jsonData = command.ToSendableString();
+                    byte[] sendData = EncodeSendData(jsonData);
+
+                    ns.Write(sendData, 0, sendData.Length);
+                } catch (Exception e) {
+                    Debug.LogError("Sending to receiver failed: " + e);
+                }
+            } else {
             if (isServer) {
                 // Server to client(s)
                 try {
@@ -149,6 +164,7 @@ namespace Multiplayer {
                     Debug.LogError("Sending as client failed: " + e);
                 }
             }
+        }
         }
 
         private static Stack<NetworkCommands.NetworkCommand> GetCommands(byte[] data) {
