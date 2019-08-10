@@ -76,6 +76,7 @@ namespace Multiplayer {
                     foreach (NetworkCommands.NetworkCommand command in GetCommands(dataBytes)) {
                         switch ((NetworkCommands.NCType)command.type) {
                             case NetworkCommands.NCType.BEGIN_GAME:
+                                // Only relevant for clients
                                 mpActions.Enqueue(() => GameObject.Find("Btn Play").GetComponent<UnityEngine.UI.Button>().onClick.Invoke());
                                 break;
                             case NetworkCommands.NCType.BUILD:
@@ -110,13 +111,57 @@ namespace Multiplayer {
                                     AIGameActions.Recruit(GameObject.Find(recruitCmd.locationName).GetComponent<GameLocation>(), NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(recruitCmd.soldierNums));
                                 });
                                 break;
+                            case NetworkCommands.NCType.SELECT_HOUSE_REQUEST:
+                                // Only relevant for server -> server approves house selection or not depending on the picked houses already
+                                NetworkCommands.NCSelectHouseReq selHouseReqCmd = (NetworkCommands.NCSelectHouseReq)command;
+                                if (Server.instance.clientHouseTypes.ContainsValue((HouseType)selHouseReqCmd.houseTypeInt)) {
+                                    // Not approved
+                                    if (selHouseReqCmd.init) {
+                                        // Was an initial request after connecting
+                                        // Suggest a free house type to the client
+                                        int houseTypeSuggestion = 0; // Would be the neutral house
+
+                                        for (int i = 1; i < Enum.GetValues(typeof(HouseType)).Length; i++) { // Ignore neutral house (index 0)
+                                            if (!Server.instance.clientHouseTypes.ContainsValue((HouseType)i)) {
+                                                houseTypeSuggestion = i;
+                                                break;
+                                            }
+                                        }
+
+                                        Send(new NetworkCommands.NCSelectHouseRes((HouseType)selHouseReqCmd.houseTypeInt, false, true, (HouseType)houseTypeSuggestion), socket);
+                                    } else {
+                                        Send(new NetworkCommands.NCSelectHouseRes((HouseType)selHouseReqCmd.houseTypeInt, false), socket);
+                                    }
+                                } else {
+                                    // Approved
+                                    Send(new NetworkCommands.NCSelectHouseRes((HouseType)selHouseReqCmd.houseTypeInt, true), socket);
+
+                                    // Update selected houses list
+                                    Server.instance.RemoveClientHouseType(socket);
+                                    Server.instance.clientHouseTypes.Add(socket, (HouseType)selHouseReqCmd.houseTypeInt);
+                                }
+                                break;
+                            case NetworkCommands.NCType.SELECT_HOUSE_RESPONSE:
+                                // Only relevant for clients
+                                NetworkCommands.NCSelectHouseRes selHouseResCmd = (NetworkCommands.NCSelectHouseRes)command;
+                                if (selHouseResCmd.houseTypeIntApproved) {
+                                    mpActions.Enqueue(() => HouseSelMenu.instance.UpdateSelectionUI(selHouseResCmd.houseTypeInt));
+                                } else {
+                                    if (selHouseResCmd.init) {
+                                        // Was an initial response after connecting
+                                        // Apply server suggestion (select free house type)
+                                        mpActions.Enqueue(() => HouseSelMenu.instance.houseSelSlider.onValueChanged.Invoke(selHouseResCmd.houseTypeSuggestionInt));
+                                    } else {
+                                        mpActions.Enqueue(() => HouseSelMenu.instance.UpdateSelectionUIOnPickedHouse(selHouseResCmd.houseTypeInt));
+                                    }
+                                }
+                                break;
 
                             default:
                                 Debug.LogWarning("NetworkCommand <" + command.type + "> not found");
                                 break;
                         }
                     }
-
                 }
             }
         }
@@ -137,34 +182,34 @@ namespace Multiplayer {
                     Debug.LogError("Sending to receiver failed: " + e);
                 }
             } else {
-            if (isServer) {
-                // Server to client(s)
-                try {
-                    foreach (TcpClient client in Server.instance.clients) {
-                        NetworkStream ns = client.GetStream();
+                if (isServer) {
+                    // Server to client(s)
+                    try {
+                        foreach (TcpClient client in Server.instance.clients) {
+                            NetworkStream ns = client.GetStream();
+
+                            string jsonData = command.ToSendableString();
+                            byte[] sendData = EncodeSendData(jsonData);
+
+                            ns.Write(sendData, 0, sendData.Length);
+                        }
+                    } catch (Exception e) {
+                        Debug.LogError("Sending as server failed: " + e);
+                    }
+                } else {
+                    // Client to server
+                    try {
+                        NetworkStream ns = Client.instance.server.GetStream();
 
                         string jsonData = command.ToSendableString();
                         byte[] sendData = EncodeSendData(jsonData);
 
                         ns.Write(sendData, 0, sendData.Length);
+                    } catch (Exception e) {
+                        Debug.LogError("Sending as client failed: " + e);
                     }
-                } catch (Exception e) {
-                    Debug.LogError("Sending as server failed: " + e);
-                }
-            } else {
-                // Client to server
-                try {
-                    NetworkStream ns = Client.instance.server.GetStream();
-
-                    string jsonData = command.ToSendableString();
-                    byte[] sendData = EncodeSendData(jsonData);
-
-                    ns.Write(sendData, 0, sendData.Length);
-                } catch (Exception e) {
-                    Debug.LogError("Sending as client failed: " + e);
                 }
             }
-        }
         }
 
         private static Stack<NetworkCommands.NetworkCommand> GetCommands(byte[] data) {
@@ -207,6 +252,13 @@ namespace Multiplayer {
             }
 
             return localIP;
+        }
+
+        private void OnDestroy() {
+            instance = null;
+            mpActive = false;
+            isServer = false;
+            mpActions = null;
         }
     }
 }

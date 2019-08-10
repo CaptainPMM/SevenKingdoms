@@ -44,6 +44,9 @@ namespace Multiplayer {
                     return; // Stop thread
                 }
 
+                // Ask for init selectable house
+                NetworkManager.Send(new NetworkCommands.NCSelectHouseReq(HouseSelMenu.UISelectedHouseType, true));
+
                 NetworkManager.ListenForNetworkData(server); // Blocks until connection closed
 
                 Debug.LogWarning("Server connection closed");
@@ -52,7 +55,7 @@ namespace Multiplayer {
         }
 
         private void StopClient() {
-            NetworkManager.mpActions.Enqueue(() => {
+            NetworkManager.mpActions?.Enqueue(() => {
                 Destroy(this);
             });
         }
@@ -61,7 +64,7 @@ namespace Multiplayer {
             if (server != null) server.Close();
             if (receiveThread != null) receiveThread.Abort();
             instance = null;
-            NetworkManager.mpActions.Enqueue(() => {
+            NetworkManager.mpActions?.Enqueue(() => {
                 NetworkManager.mpActive = false;
                 OnConnectionFailed();
             });

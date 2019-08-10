@@ -8,12 +8,14 @@ namespace Multiplayer {
     public class Server : MonoBehaviour {
         public static Server instance;
 
+        private bool inGame;
+
         private TcpListener connectionListener;
         private Thread connectionListenerThread;
 
-        private Thread connectionTesterThread;
-
         public List<TcpClient> clients;
+        public Dictionary<TcpClient, HouseType> clientHouseTypes;
+        public TcpClient serverTCPClientObject;
         private List<Thread> clientStreamThreads;
 
         public static event NetworkManager.ConnectionEstablished OnConnectionEstablished;
@@ -33,7 +35,12 @@ namespace Multiplayer {
             DontDestroyOnLoad(gameObject);
 
             clients = new List<TcpClient>();
+            clientHouseTypes = new Dictionary<TcpClient, HouseType>();
             clientStreamThreads = new List<Thread>();
+
+            serverTCPClientObject = new TcpClient();
+
+            clientHouseTypes.Add(serverTCPClientObject, HouseSelMenu.UISelectedHouseType);
 
             hostStatusText = GameObject.Find("Text Host Status").GetComponent<TMPro.TextMeshProUGUI>();
 
@@ -44,20 +51,22 @@ namespace Multiplayer {
         }
 
         private void ListenForConnections() {
+            inGame = false;
             try {
                 connectionListener = new TcpListener(IPAddress.Any, 4242);
                 connectionListener.Server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, 1);
                 connectionListener.Start();
                 NetworkManager.mpActions.Enqueue(() => OnConnectionEstablished());
 
-                connectionTesterThread = new Thread(new ThreadStart(TestConnections));
-                connectionTesterThread.IsBackground = true;
-                connectionTesterThread.Start();
-
                 while (true) {
                     TcpClient client = connectionListener.AcceptTcpClient();
-                    if (clients.Count < System.Enum.GetValues(typeof(HouseType)).Length - 1) { // - 1 for the neutral house (not playable)
+                    if (clients.Count < System.Enum.GetValues(typeof(HouseType)).Length - 2) { // - 2 for the neutral house (not playable) and server player
                         clients.Add(client);
+
+                        Thread t = new Thread(() => ListenForData(client));
+                        t.IsBackground = true;
+                        t.Start();
+                        clientStreamThreads.Add(t);
 
                         // Inform UI of new connection
                         NetworkManager.mpActions.Enqueue(() => {
@@ -79,50 +88,21 @@ namespace Multiplayer {
             }
         }
 
-        private void TestConnections() {
-            while (!connectionListenerThread.ThreadState.HasFlag(ThreadState.Stopped)) {
-                Thread.Sleep(3000);
-                foreach (TcpClient c in clients.ToArray()) {
-                    try {
-                        c.GetStream().WriteByte(0);
-                    } catch (System.Exception) {
-                        c.Close();
-                        clients.Remove(c);
-                        // Inform UI of lost connection
-                        NetworkManager.mpActions.Enqueue(() => {
-                            hostStatusText.text = "Hosting (" + clients.Count + " connected)";
-                            OnClientDisconnect();
-                        });
-                    }
-                }
-            }
-        }
-
-        public void StartGame() {
-            connectionListener.Stop();
-            connectionListenerThread.Abort();
-
-            // Inform clients of game start
-            NetworkManager.Send(new NetworkCommands.NCBeginGame());
-
-            // Now listen for game info from the clients
-            foreach (TcpClient client in clients) {
-                Thread t = new Thread(() => ListenForData(client));
-                t.IsBackground = true;
-                t.Start();
-                clientStreamThreads.Add(t);
-            }
-        }
-
         private void ListenForData(TcpClient client) {
             try {
                 NetworkManager.ListenForNetworkData(client); // Blocks until connection closed
 
                 Debug.LogWarning("Client connection lost");
+                client.Close();
                 clients.Remove(client);
                 clientStreamThreads.Remove(Thread.CurrentThread);
-                NetworkManager.mpActions.Enqueue(() => OnClientDisconnect());
-                if (clients.Count < 1) {
+                RemoveClientHouseType(client);
+                // Inform UI of lost connection
+                NetworkManager.mpActions.Enqueue(() => {
+                    if (!inGame) hostStatusText.text = "Hosting (" + clients.Count + " connected)";
+                    OnClientDisconnect();
+                });
+                if (inGame && clients.Count < 1) {
                     Debug.LogWarning("No clients connected, stopping server");
                     StopServer();
                 }
@@ -135,8 +115,25 @@ namespace Multiplayer {
             }
         }
 
+        public void StartGame() {
+            inGame = true;
+
+            connectionListener.Stop();
+            connectionListenerThread.Abort();
+
+            // Inform clients of game start
+            NetworkManager.Send(new NetworkCommands.NCBeginGame());
+        }
+
+        public void RemoveClientHouseType(TcpClient client) {
+            HouseType houseType;
+            if (clientHouseTypes.TryGetValue(client, out houseType)) {
+                clientHouseTypes.Remove(client);
+            }
+        }
+
         private void StopServer() {
-            NetworkManager.mpActions.Enqueue(() => {
+            NetworkManager.mpActions?.Enqueue(() => {
                 Destroy(this);
             });
         }
@@ -150,7 +147,7 @@ namespace Multiplayer {
 
             instance = null;
 
-            NetworkManager.mpActions.Enqueue(() => {
+            NetworkManager.mpActions?.Enqueue(() => {
                 NetworkManager.isServer = false;
                 NetworkManager.mpActive = false;
             });

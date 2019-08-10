@@ -5,8 +5,8 @@ namespace Multiplayer {
             BUILD,
             MOVE_TROOPS,
             RECRUIT,
-            SELECT_HOUSE,
-            FREE_HOUSE
+            SELECT_HOUSE_REQUEST,
+            SELECT_HOUSE_RESPONSE
         }
     }
 }

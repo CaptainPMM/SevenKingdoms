@@ -23,10 +23,10 @@ namespace Multiplayer {
                         return UnityEngine.JsonUtility.FromJson<NCMoveTroops>(json);
                     case NCType.RECRUIT:
                         return UnityEngine.JsonUtility.FromJson<NCRecruit>(json);
-                    case NCType.SELECT_HOUSE:
-                        return UnityEngine.JsonUtility.FromJson<NCSelectHouse>(json);
-                    case NCType.FREE_HOUSE:
-                        return UnityEngine.JsonUtility.FromJson<NCFreeHouse>(json);
+                    case NCType.SELECT_HOUSE_REQUEST:
+                        return UnityEngine.JsonUtility.FromJson<NCSelectHouseReq>(json);
+                    case NCType.SELECT_HOUSE_RESPONSE:
+                        return UnityEngine.JsonUtility.FromJson<NCSelectHouseRes>(json);
 
                     default:
                         UnityEngine.Debug.LogWarning("Could not find NCType <" + type + ">");

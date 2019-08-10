@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 
 public class HouseSelMenu : MonoBehaviour {
+    public static HouseSelMenu instance;
+
     public Image houseFlagImage;
     public TextMeshProUGUI houseNameText;
     public Slider houseSelSlider;
@@ -22,6 +24,13 @@ public class HouseSelMenu : MonoBehaviour {
     public GameObject networkManagerPrefab;
 
     public House selHouse;
+    public static HouseType UISelectedHouseType {
+        get {
+            return _uiSelHouseType;
+        }
+    }
+    private static HouseType _uiSelHouseType;
+
     private bool mpHosting = false;
     private bool mpConnected = false;
     private Multiplayer.NetworkManager networkManager;
@@ -33,10 +42,13 @@ public class HouseSelMenu : MonoBehaviour {
     private Multiplayer.NetworkManager.ConnectionFailed clientConnFailedHandler;
 
     private void Start() {
+        HouseSelMenu.instance = this;
+
         // Set sliders
         houseSelSlider.minValue = 1; // Ingore neutral (index 0)
         houseSelSlider.maxValue = System.Enum.GetValues(typeof(HouseType)).Length - 1;
         houseSelSlider.value = houseSelSlider.maxValue / 2;
+        _uiSelHouseType = (HouseType)houseSelSlider.value;
 
         aiDiffSlider.minValue = 0;
         aiDiffSlider.maxValue = System.Enum.GetValues(typeof(AIDifficulty)).Length - 1;
@@ -65,9 +77,36 @@ public class HouseSelMenu : MonoBehaviour {
     }
 
     public void ChangeSelHouse(float index) {
+        if (Multiplayer.NetworkManager.mpActive) {
+            if (Multiplayer.NetworkManager.isServer) {
+                if (!Multiplayer.Server.instance.clientHouseTypes.ContainsValue((HouseType)index)) {
+                    UpdateSelectionUI(index);
+
+                    // Update picked house type list
+                    Multiplayer.Server.instance.RemoveClientHouseType(Multiplayer.Server.instance.serverTCPClientObject);
+                    Multiplayer.Server.instance.clientHouseTypes.Add(Multiplayer.Server.instance.serverTCPClientObject, _uiSelHouseType);
+                } else {
+                    // House is already picked -> display small info message
+                    UpdateSelectionUIOnPickedHouse(index);
+                }
+            } else {
+                // Ask server if new selected house is approved and not already picked
+                Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCSelectHouseReq((HouseType)index));
+            }
+        } else UpdateSelectionUI(index);
+    }
+
+    public void UpdateSelectionUI(float index) {
         selHouse = new House((HouseType)index);
         houseFlagImage.sprite = selHouse.houseFlag;
         houseNameText.text = "House " + selHouse.houseName;
+        houseNameText.alpha = 1f;
+        _uiSelHouseType = selHouse.houseType;
+    }
+
+    public void UpdateSelectionUIOnPickedHouse(float index) {
+        houseNameText.text = "House " + new House((HouseType)index).houseName + " (picked)";
+        houseNameText.alpha = .75f;
     }
 
     public void ChangeAIDiff(float index) {
