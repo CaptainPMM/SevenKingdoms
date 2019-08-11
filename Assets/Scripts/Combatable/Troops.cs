@@ -5,14 +5,11 @@ public class Troops : Combatable {
 
     public GameObject toLocation;
 
-    [SerializeField] private float moveSpeed;
     private static AudioClip marchSoundWithHorses = null;
 
     // Start is called before the first frame update
     new void Start() {
         base.Start();
-
-        moveSpeed = Global.TROOPS_BASE_MOVE_SPEED * Random.Range(Global.TROOPS_MOVE_SPEED_RAND_MIN, Global.TROOPS_MOVE_SPEED_RAND_MAX);
 
         if (marchSoundWithHorses == null) {
             marchSoundWithHorses = Resources.Load<AudioClip>("Sounds/3D/Effects/marching_lvl2");
@@ -25,7 +22,7 @@ public class Troops : Combatable {
 
     // Update is called once per frame
     void Update() {
-        transform.position = Vector3.MoveTowards(transform.position, toLocation.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, toLocation.transform.position, Global.TROOPS_BASE_MOVE_SPEED * Time.deltaTime);
     }
 
     void OnTriggerEnter(Collider other) {
