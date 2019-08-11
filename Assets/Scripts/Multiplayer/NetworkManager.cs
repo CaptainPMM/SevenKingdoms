@@ -81,12 +81,14 @@ namespace Multiplayer {
                                 break;
                             case NetworkCommands.NCType.BUILD:
                                 NetworkCommands.NCBuild buildCmd = (NetworkCommands.NCBuild)command;
+                                if (isServer) Send(buildCmd, ignoreClient: socket); // Broadcast to clients except the sender
                                 mpActions.Enqueue(() => {
-                                    AIGameActions.Build(GameObject.Find(buildCmd.locationName).GetComponent<GameLocation>(), (BuildingType)buildCmd.buildingTypeInt);
+                                    AIGameActions.Build(GameObject.Find(buildCmd.locationName).GetComponent<GameLocation>(), (BuildingType)buildCmd.buildingTypeInt, false);
                                 });
                                 break;
                             case NetworkCommands.NCType.MOVE_TROOPS:
                                 NetworkCommands.NCMoveTroops moveCmd = (NetworkCommands.NCMoveTroops)command;
+                                if (isServer) Send(moveCmd, ignoreClient: socket); // Broadcast to clients except the sender
                                 if (moveCmd.soldierNums != null) {
                                     // Move troops with soldiers parameter
                                     Soldiers soldiers = NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(moveCmd.soldierNums);
@@ -94,21 +96,22 @@ namespace Multiplayer {
                                     mpActions.Enqueue(() => {
                                         GameLocation origin = GameObject.Find(moveCmd.originLocationName).GetComponent<GameLocation>();
                                         GameLocation destination = GameObject.Find(moveCmd.destLocationName).GetComponent<GameLocation>();
-                                        AIGameActions.MoveTroops(origin, destination, soldiers);
+                                        AIGameActions.MoveTroops(origin, destination, soldiers, false);
                                     });
                                 } else {
                                     // Move troops without soldiers parameter
                                     mpActions.Enqueue(() => {
                                         GameLocation origin = GameObject.Find(moveCmd.originLocationName).GetComponent<GameLocation>();
                                         GameLocation destination = GameObject.Find(moveCmd.destLocationName).GetComponent<GameLocation>();
-                                        AIGameActions.MoveTroops(origin, destination);
+                                        AIGameActions.MoveTroops(origin, destination, false);
                                     });
                                 }
                                 break;
                             case NetworkCommands.NCType.RECRUIT:
                                 NetworkCommands.NCRecruit recruitCmd = (NetworkCommands.NCRecruit)command;
+                                if (isServer) Send(recruitCmd, ignoreClient: socket); // Broadcast to clients except the sender
                                 mpActions.Enqueue(() => {
-                                    AIGameActions.Recruit(GameObject.Find(recruitCmd.locationName).GetComponent<GameLocation>(), NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(recruitCmd.soldierNums));
+                                    AIGameActions.Recruit(GameObject.Find(recruitCmd.locationName).GetComponent<GameLocation>(), NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(recruitCmd.soldierNums), false);
                                 });
                                 break;
                             case NetworkCommands.NCType.SELECT_HOUSE_REQUEST:
@@ -167,17 +170,13 @@ namespace Multiplayer {
         }
 
         /// <summary>If receiver is specified only to him the message will be sent.
-        /// If receiver is null or not given (optional) a Server call broadcasts to all clients and a Client call sends to his server.</summary>
-        public static void Send(NetworkCommands.NetworkCommand command, TcpClient receiver = null) {
+        /// If receiver is null or not given (optional) a Server call broadcasts to all clients and a Client call sends to his server.
+        /// If ignoreClient is specified a broadcast ignores him.</summary>
+        public static void Send(NetworkCommands.NetworkCommand command, TcpClient receiver = null, TcpClient ignoreClient = null) {
             if (receiver != null) {
                 // To specified receiver
                 try {
-                    NetworkStream ns = receiver.GetStream();
-
-                    string jsonData = command.ToSendableString();
-                    byte[] sendData = EncodeSendData(jsonData);
-
-                    ns.Write(sendData, 0, sendData.Length);
+                    SendDataTo(receiver, command);
                 } catch (Exception e) {
                     Debug.LogError("Sending to receiver failed: " + e);
                 }
@@ -185,13 +184,17 @@ namespace Multiplayer {
                 if (isServer) {
                     // Server to client(s)
                     try {
-                        foreach (TcpClient client in Server.instance.clients) {
-                            NetworkStream ns = client.GetStream();
-
-                            string jsonData = command.ToSendableString();
-                            byte[] sendData = EncodeSendData(jsonData);
-
-                            ns.Write(sendData, 0, sendData.Length);
+                        if (ignoreClient == null) {
+                            // Broadcast to all clients
+                            foreach (TcpClient client in Server.instance.clients) {
+                                SendDataTo(client, command);
+                            }
+                        } else {
+                            // Broadcast to all clients except the ignoreClient
+                            foreach (TcpClient client in Server.instance.clients) {
+                                if (client == ignoreClient) continue;
+                                SendDataTo(client, command);
+                            }
                         }
                     } catch (Exception e) {
                         Debug.LogError("Sending as server failed: " + e);
@@ -199,17 +202,21 @@ namespace Multiplayer {
                 } else {
                     // Client to server
                     try {
-                        NetworkStream ns = Client.instance.server.GetStream();
-
-                        string jsonData = command.ToSendableString();
-                        byte[] sendData = EncodeSendData(jsonData);
-
-                        ns.Write(sendData, 0, sendData.Length);
+                        SendDataTo(Client.instance.server, command);
                     } catch (Exception e) {
                         Debug.LogError("Sending as client failed: " + e);
                     }
                 }
             }
+        }
+
+        private static void SendDataTo(TcpClient client, NetworkCommands.NetworkCommand command) {
+            NetworkStream ns = client.GetStream();
+
+            string jsonData = command.ToSendableString();
+            byte[] sendData = EncodeSendData(jsonData);
+
+            ns.Write(sendData, 0, sendData.Length);
         }
 
         private static Stack<NetworkCommands.NetworkCommand> GetCommands(byte[] data) {

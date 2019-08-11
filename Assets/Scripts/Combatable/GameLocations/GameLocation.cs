@@ -198,11 +198,12 @@ public class GameLocation : Combatable {
         }
     }
 
-    public void AddBuilding(Building b) {
+    public void AddBuilding(Building b, bool mpSend = true) {
         buildings.Add(b);
         GetEffectsFromBuildings();
         DetermineFortificationLevel();
         if (b.buildingType == BuildingType.LOCAL_ADMINISTRATION) btnFastBuildLocalAdmin.gameObject.SetActive(false);
+        if (Multiplayer.NetworkManager.mpActive && mpSend) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCBuild(this, b.buildingType));
     }
 
     private void ResourcesIncomeForHouse() {
@@ -234,9 +235,10 @@ public class GameLocation : Combatable {
         }
     }
 
-    public void AddSoldiersToRecruitment(Soldiers s) {
+    public void AddSoldiersToRecruitment(Soldiers s, bool mpSend = true) {
         soldiersInRecruitment.AddSoldiers(s);
         recruitmentIndicatorGO.GetComponent<Image>().enabled = true;
+        if (Multiplayer.NetworkManager.mpActive && mpSend) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCRecruit(this, s));
     }
 
     public Soldiers GetSoldiersInRecruitment() {

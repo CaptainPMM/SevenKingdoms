@@ -324,7 +324,7 @@ public class GameController : MonoBehaviour {
             }
 
             if (moveSoldiers.GetNumSoldiersInTotal() > 0) {
-                Troops t = InitializeTroopsMovement(selectedLocation, toLocation, moveSoldiers);
+                Troops t = InitializeTroopsMovement(selectedLocation, toLocation, moveSoldiers, true);
                 AIPlayer.InformOfMovingTroops(t);
                 SoundManager.Play(SoundManager.SoundType.UI, "slider_click_short");
             }
@@ -333,7 +333,7 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public Troops InitializeTroopsMovement(GameObject fromLocation, GameObject toLocation, Soldiers soldiers) {
+    public Troops InitializeTroopsMovement(GameObject fromLocation, GameObject toLocation, Soldiers soldiers, bool mpSend = true) {
         GameObject troopsGO = Instantiate(troopsPrefab, fromLocation.transform.position, fromLocation.transform.rotation);
         troopsGO.name = "Troops " + fromLocation.name + "-" + toLocation.name;
         Troops troops = troopsGO.GetComponent<Troops>();
@@ -343,6 +343,8 @@ public class GameController : MonoBehaviour {
         troops.soldiers = soldiers;
         fromGameLocation.UpdateGUI();
         troops.toLocation = toLocation;
+
+        if (Multiplayer.NetworkManager.mpActive && mpSend) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCMoveTroops(fromGameLocation, toLocation.GetComponent<GameLocation>(), soldiers));
 
         return troops;
     }
