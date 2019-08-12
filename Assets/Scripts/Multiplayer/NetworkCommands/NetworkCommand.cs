@@ -27,6 +27,8 @@ namespace Multiplayer {
                         return UnityEngine.JsonUtility.FromJson<NCSelectHouseReq>(json);
                     case NCType.SELECT_HOUSE_RESPONSE:
                         return UnityEngine.JsonUtility.FromJson<NCSelectHouseRes>(json);
+                    case NCType.SYNC_COMBAT:
+                        return UnityEngine.JsonUtility.FromJson<NCSyncCombat>(json);
 
                     default:
                         UnityEngine.Debug.LogWarning("Could not find NCType <" + type + ">");

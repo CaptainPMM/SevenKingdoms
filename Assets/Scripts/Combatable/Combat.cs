@@ -32,7 +32,7 @@ public class Combat : MonoBehaviour {
                 elapsedTime = 0;
 
                 if (DetermineCombatStatus() == true) {
-                    CalcCasualties();
+                    if (!Multiplayer.NetworkManager.mpActive || Multiplayer.NetworkManager.isServer) CalcCasualties();
                 } else {
                     Destroy(this.gameObject);
                 }
@@ -140,6 +140,7 @@ public class Combat : MonoBehaviour {
                                 );
 
                     defender.ApplyCasualties(targetSoldierType, damage);
+                    if (Multiplayer.NetworkManager.mpActive) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCSyncCombat(defender, targetSoldierType, damage));
                 }
             }
         }
@@ -173,7 +174,6 @@ public class Combat : MonoBehaviour {
         foreach (FightingHouse fh in removeFightingHouses) {
             fightingHouses.Remove(fh);
         }
-
 
         // Check if only 1 or less fighting houses have soldiers left
         if (fightingHouses.Count <= 1) {

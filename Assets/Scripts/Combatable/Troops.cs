@@ -3,6 +3,7 @@
 public class Troops : Combatable {
     public GameObject combatPrefab;
 
+    public GameObject fromLocation;
     public GameObject toLocation;
 
     private static AudioClip marchSoundWithHorses = null;

@@ -74,98 +74,113 @@ namespace Multiplayer {
 
                     // dataBytes may contain multiple commands, split them and execute each one of the them sequentially
                     foreach (NetworkCommands.NetworkCommand command in GetCommands(dataBytes)) {
-                        switch ((NetworkCommands.NCType)command.type) {
-                            case NetworkCommands.NCType.BEGIN_GAME:
-                                // Only relevant for clients
-                                mpActions.Enqueue(() => GameObject.Find("Btn Play").GetComponent<UnityEngine.UI.Button>().onClick.Invoke());
-                                break;
-                            case NetworkCommands.NCType.BUILD:
-                                NetworkCommands.NCBuild buildCmd = (NetworkCommands.NCBuild)command;
-                                if (isServer) Send(buildCmd, ignoreClient: socket); // Broadcast to clients except the sender
-                                mpActions.Enqueue(() => {
-                                    AIGameActions.Build(GameObject.Find(buildCmd.locationName).GetComponent<GameLocation>(), (BuildingType)buildCmd.buildingTypeInt, false);
-                                });
-                                break;
-                            case NetworkCommands.NCType.MOVE_TROOPS:
-                                NetworkCommands.NCMoveTroops moveCmd = (NetworkCommands.NCMoveTroops)command;
-                                if (isServer) Send(moveCmd, ignoreClient: socket); // Broadcast to clients except the sender
-                                if (moveCmd.soldierNums != null) {
-                                    // Move troops with soldiers parameter
-                                    Soldiers soldiers = NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(moveCmd.soldierNums);
-
-                                    mpActions.Enqueue(() => {
-                                        GameLocation origin = GameObject.Find(moveCmd.originLocationName).GetComponent<GameLocation>();
-                                        GameLocation destination = GameObject.Find(moveCmd.destLocationName).GetComponent<GameLocation>();
-                                        AIGameActions.MoveTroops(origin, destination, soldiers, false);
-                                    });
-                                } else {
-                                    // Move troops without soldiers parameter
-                                    mpActions.Enqueue(() => {
-                                        GameLocation origin = GameObject.Find(moveCmd.originLocationName).GetComponent<GameLocation>();
-                                        GameLocation destination = GameObject.Find(moveCmd.destLocationName).GetComponent<GameLocation>();
-                                        AIGameActions.MoveTroops(origin, destination, false);
-                                    });
-                                }
-                                break;
-                            case NetworkCommands.NCType.RECRUIT:
-                                NetworkCommands.NCRecruit recruitCmd = (NetworkCommands.NCRecruit)command;
-                                if (isServer) Send(recruitCmd, ignoreClient: socket); // Broadcast to clients except the sender
-                                mpActions.Enqueue(() => {
-                                    AIGameActions.Recruit(GameObject.Find(recruitCmd.locationName).GetComponent<GameLocation>(), NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(recruitCmd.soldierNums), false);
-                                });
-                                break;
-                            case NetworkCommands.NCType.SELECT_HOUSE_REQUEST:
-                                // Only relevant for server -> server approves house selection or not depending on the picked houses already
-                                NetworkCommands.NCSelectHouseReq selHouseReqCmd = (NetworkCommands.NCSelectHouseReq)command;
-                                if (Server.instance.clientHouseTypes.ContainsValue((HouseType)selHouseReqCmd.houseTypeInt)) {
-                                    // Not approved
-                                    if (selHouseReqCmd.init) {
-                                        // Was an initial request after connecting
-                                        // Suggest a free house type to the client
-                                        int houseTypeSuggestion = 0; // Would be the neutral house
-
-                                        for (int i = 1; i < Enum.GetValues(typeof(HouseType)).Length; i++) { // Ignore neutral house (index 0)
-                                            if (!Server.instance.clientHouseTypes.ContainsValue((HouseType)i)) {
-                                                houseTypeSuggestion = i;
-                                                break;
-                                            }
-                                        }
-
-                                        Send(new NetworkCommands.NCSelectHouseRes((HouseType)selHouseReqCmd.houseTypeInt, false, true, (HouseType)houseTypeSuggestion), socket);
-                                    } else {
-                                        Send(new NetworkCommands.NCSelectHouseRes((HouseType)selHouseReqCmd.houseTypeInt, false), socket);
-                                    }
-                                } else {
-                                    // Approved
-                                    Send(new NetworkCommands.NCSelectHouseRes((HouseType)selHouseReqCmd.houseTypeInt, true), socket);
-
-                                    // Update selected houses list
-                                    Server.instance.RemoveClientHouseType(socket);
-                                    Server.instance.clientHouseTypes.Add(socket, (HouseType)selHouseReqCmd.houseTypeInt);
-                                }
-                                break;
-                            case NetworkCommands.NCType.SELECT_HOUSE_RESPONSE:
-                                // Only relevant for clients
-                                NetworkCommands.NCSelectHouseRes selHouseResCmd = (NetworkCommands.NCSelectHouseRes)command;
-                                if (selHouseResCmd.houseTypeIntApproved) {
-                                    mpActions.Enqueue(() => HouseSelMenu.instance.UpdateSelectionUI(selHouseResCmd.houseTypeInt));
-                                } else {
-                                    if (selHouseResCmd.init) {
-                                        // Was an initial response after connecting
-                                        // Apply server suggestion (select free house type)
-                                        mpActions.Enqueue(() => HouseSelMenu.instance.houseSelSlider.onValueChanged.Invoke(selHouseResCmd.houseTypeSuggestionInt));
-                                    } else {
-                                        mpActions.Enqueue(() => HouseSelMenu.instance.UpdateSelectionUIOnPickedHouse(selHouseResCmd.houseTypeInt));
-                                    }
-                                }
-                                break;
-
-                            default:
-                                Debug.LogWarning("NetworkCommand <" + command.type + "> not found");
-                                break;
-                        }
+                        ExecuteCommand(command, socket);
                     }
                 }
+            }
+        }
+
+        private static void ExecuteCommand(NetworkCommands.NetworkCommand command, TcpClient socket) {
+            switch ((NetworkCommands.NCType)command.type) {
+                case NetworkCommands.NCType.BEGIN_GAME:
+                    // Only relevant for clients
+                    mpActions.Enqueue(() => GameObject.Find("Btn Play").GetComponent<UnityEngine.UI.Button>().onClick.Invoke());
+                    break;
+                case NetworkCommands.NCType.BUILD:
+                    NetworkCommands.NCBuild buildCmd = (NetworkCommands.NCBuild)command;
+                    if (isServer) Send(buildCmd, ignoreClient: socket); // Broadcast to clients except the sender
+                    mpActions.Enqueue(() => {
+                        AIGameActions.Build(GameLocation.allGameLocations.Find(gl => gl.name == buildCmd.locationName), (BuildingType)buildCmd.buildingTypeInt, false);
+                    });
+                    break;
+                case NetworkCommands.NCType.MOVE_TROOPS:
+                    NetworkCommands.NCMoveTroops moveCmd = (NetworkCommands.NCMoveTroops)command;
+                    if (isServer) Send(moveCmd, ignoreClient: socket); // Broadcast to clients except the sender
+                    if (moveCmd.soldierNums != null) {
+                        // Move troops with soldiers parameter
+                        Soldiers soldiers = NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(moveCmd.soldierNums);
+
+                        mpActions.Enqueue(() => {
+                            GameLocation origin = GameLocation.allGameLocations.Find(gl => gl.name == moveCmd.originLocationName);
+                            GameLocation destination = GameLocation.allGameLocations.Find(gl => gl.name == moveCmd.destLocationName);
+                            AIGameActions.MoveTroops(origin, destination, soldiers, false);
+                        });
+                    } else {
+                        // Move troops without soldiers parameter
+                        mpActions.Enqueue(() => {
+                            GameLocation origin = GameLocation.allGameLocations.Find(gl => gl.name == moveCmd.originLocationName);
+                            GameLocation destination = GameLocation.allGameLocations.Find(gl => gl.name == moveCmd.destLocationName);
+                            AIGameActions.MoveTroops(origin, destination, false);
+                        });
+                    }
+                    break;
+                case NetworkCommands.NCType.RECRUIT:
+                    NetworkCommands.NCRecruit recruitCmd = (NetworkCommands.NCRecruit)command;
+                    if (isServer) Send(recruitCmd, ignoreClient: socket); // Broadcast to clients except the sender
+                    mpActions.Enqueue(() => {
+                        AIGameActions.Recruit(GameLocation.allGameLocations.Find(gl => gl.name == recruitCmd.locationName), NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(recruitCmd.soldierNums), false);
+                    });
+                    break;
+                case NetworkCommands.NCType.SELECT_HOUSE_REQUEST:
+                    // Only relevant for server -> server approves house selection or not depending on the picked houses already
+                    NetworkCommands.NCSelectHouseReq selHouseReqCmd = (NetworkCommands.NCSelectHouseReq)command;
+                    if (Server.instance.clientHouseTypes.ContainsValue((HouseType)selHouseReqCmd.houseTypeInt)) {
+                        // Not approved
+                        if (selHouseReqCmd.init) {
+                            // Was an initial request after connecting
+                            // Suggest a free house type to the client
+                            int houseTypeSuggestion = 0; // Would be the neutral house
+
+                            for (int i = 1; i < Enum.GetValues(typeof(HouseType)).Length; i++) { // Ignore neutral house (index 0)
+                                if (!Server.instance.clientHouseTypes.ContainsValue((HouseType)i)) {
+                                    houseTypeSuggestion = i;
+                                    break;
+                                }
+                            }
+
+                            Send(new NetworkCommands.NCSelectHouseRes((HouseType)selHouseReqCmd.houseTypeInt, false, true, (HouseType)houseTypeSuggestion), socket);
+                        } else {
+                            Send(new NetworkCommands.NCSelectHouseRes((HouseType)selHouseReqCmd.houseTypeInt, false), socket);
+                        }
+                    } else {
+                        // Approved
+                        Send(new NetworkCommands.NCSelectHouseRes((HouseType)selHouseReqCmd.houseTypeInt, true), socket);
+
+                        // Update selected houses list
+                        Server.instance.RemoveClientHouseType(socket);
+                        Server.instance.clientHouseTypes.Add(socket, (HouseType)selHouseReqCmd.houseTypeInt);
+                    }
+                    break;
+                case NetworkCommands.NCType.SELECT_HOUSE_RESPONSE:
+                    // Only relevant for clients
+                    NetworkCommands.NCSelectHouseRes selHouseResCmd = (NetworkCommands.NCSelectHouseRes)command;
+                    if (selHouseResCmd.houseTypeIntApproved) {
+                        mpActions.Enqueue(() => HouseSelMenu.instance.UpdateSelectionUI(selHouseResCmd.houseTypeInt));
+                    } else {
+                        if (selHouseResCmd.init) {
+                            // Was an initial response after connecting
+                            // Apply server suggestion (select free house type)
+                            mpActions.Enqueue(() => HouseSelMenu.instance.houseSelSlider.onValueChanged.Invoke(selHouseResCmd.houseTypeSuggestionInt));
+                        } else {
+                            mpActions.Enqueue(() => HouseSelMenu.instance.UpdateSelectionUIOnPickedHouse(selHouseResCmd.houseTypeInt));
+                        }
+                    }
+                    break;
+                case NetworkCommands.NCType.SYNC_COMBAT:
+                    // Only relevant for clients
+                    NetworkCommands.NCSyncCombat syncCombatCmd = (NetworkCommands.NCSyncCombat)command;
+                    mpActions.Enqueue(() => {
+                        foreach (FightingHouse fh in FightingHouse.allFightingHouses) {
+                            if (fh.ID == syncCombatCmd.fightingHouseID) {
+                                fh.ApplyCasualties((SoldierType)syncCombatCmd.soldierTypeInt, syncCombatCmd.damage);
+                            }
+                        }
+                    });
+                    break;
+
+                default:
+                    Debug.LogWarning("NetworkCommand <" + command.type + "> not found");
+                    break;
             }
         }
 

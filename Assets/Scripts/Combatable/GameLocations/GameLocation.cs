@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using TMPro;
 
 public class GameLocation : Combatable {
+    public static List<GameLocation> allGameLocations = new List<GameLocation>();
+
     public GameObject connectionLinePrefab;
 
     public string locationName;
@@ -106,6 +108,8 @@ public class GameLocation : Combatable {
                 lr.colorGradient = g;
             }
         }
+
+        allGameLocations.Add(this);
     }
 
     protected void Update() {

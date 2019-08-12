@@ -6,7 +6,8 @@ namespace Multiplayer {
             MOVE_TROOPS,
             RECRUIT,
             SELECT_HOUSE_REQUEST,
-            SELECT_HOUSE_RESPONSE
+            SELECT_HOUSE_RESPONSE,
+            SYNC_COMBAT
         }
     }
 }

@@ -5,7 +5,20 @@ using TMPro;
 
 [System.Serializable]
 public class FightingHouse : Combatable {
+    public static List<FightingHouse> allFightingHouses = new List<FightingHouse>();
+
     public GameObject casualtiesPopupPrefab;
+
+    /// <summary>If the fighting house originates from a location, this is simply the location name.
+    /// If the firstParticipant was a Troops object the ID is generated like this:
+    /// (houseType as int)#(soldiers numbers of every type seperated by ,)#(fromLocation)#(toLocation)
+    /// E.g. 2#0,0,0,10,5,#Castle Castle Black#Outpost Last Hearth</summary>
+    public string ID {
+        get {
+            return id;
+        }
+    }
+    [SerializeField] private string id;
 
     public HouseType houseType {
         get {
@@ -54,7 +67,22 @@ public class FightingHouse : Combatable {
             } else {
                 _locationEffects = null;
             }
+
+            id = location.name;
+        } else {
+            // Create soldiers string for id
+            string soldiersString = "";
+            foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
+                soldiersString += firstParticipant.soldiers.GetSoldierTypeNum(st) + ",";
+            }
+
+            // If the location is null the Combatable must be of type Troops -> has fromLocation and toLocation
+            Troops t = (Troops)firstParticipant;
+
+            id = $"{(int)houseType}#{soldiersString}#{t.fromLocation.name}#{t.toLocation.name}";
         }
+
+        allFightingHouses.Add(this);
     }
 
     void Update() {
@@ -101,5 +129,9 @@ public class FightingHouse : Combatable {
             _firstParticipant.UpdateGUI();
         }
         Destroy(this.gameObject);
+    }
+
+    private void OnDestroy() {
+        allFightingHouses.Remove(this);
     }
 }

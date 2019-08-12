@@ -342,6 +342,7 @@ public class GameController : MonoBehaviour {
         troops.house = fromGameLocation.house;
         troops.soldiers = soldiers;
         fromGameLocation.UpdateGUI();
+        troops.fromLocation = fromLocation;
         troops.toLocation = toLocation;
 
         if (Multiplayer.NetworkManager.mpActive && mpSend) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCMoveTroops(fromGameLocation, toLocation.GetComponent<GameLocation>(), soldiers));
