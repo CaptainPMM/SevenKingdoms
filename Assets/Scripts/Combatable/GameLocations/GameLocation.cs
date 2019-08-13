@@ -172,8 +172,10 @@ public class GameLocation : Combatable {
         wasOccupied = true;
 
         // Destroy a random building after occupation combat
-        if (buildings.Count > 0) {
-            buildings.RemoveAt(Random.Range(0, buildings.Count));
+        if ((!Multiplayer.NetworkManager.mpActive || Multiplayer.NetworkManager.isServer) && buildings.Count > 0) {
+            int rand = Random.Range(0, buildings.Count);
+            if (Multiplayer.NetworkManager.isServer) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCDestroyBuilding(this, buildings[rand].buildingType));
+            buildings.RemoveAt(rand);
             GetEffectsFromBuildings();
         }
 
@@ -188,7 +190,7 @@ public class GameLocation : Combatable {
         }
     }
 
-    protected void GetEffectsFromBuildings() {
+    public void GetEffectsFromBuildings() {
         locationEffects.Clear();
         foreach (Building b in buildings) {
             locationEffects.AddRange(b.gameEffects);

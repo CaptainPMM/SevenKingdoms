@@ -98,12 +98,12 @@ namespace Multiplayer {
                     if (isServer) Send(moveCmd, ignoreClient: socket); // Broadcast to clients except the sender
                     if (moveCmd.soldierNums != null) {
                         // Move troops with soldiers parameter
-                        Soldiers soldiers = NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(moveCmd.soldierNums);
+                        Soldiers moveSoldiers = NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(moveCmd.soldierNums);
 
                         mpActions.Enqueue(() => {
                             GameLocation origin = GameLocation.allGameLocations.Find(gl => gl.name == moveCmd.originLocationName);
                             GameLocation destination = GameLocation.allGameLocations.Find(gl => gl.name == moveCmd.destLocationName);
-                            AIGameActions.MoveTroops(origin, destination, soldiers, false);
+                            AIGameActions.MoveTroops(origin, destination, moveSoldiers, false);
                         });
                     } else {
                         // Move troops without soldiers parameter
@@ -117,8 +117,10 @@ namespace Multiplayer {
                 case NetworkCommands.NCType.RECRUIT:
                     NetworkCommands.NCRecruit recruitCmd = (NetworkCommands.NCRecruit)command;
                     if (isServer) Send(recruitCmd, ignoreClient: socket); // Broadcast to clients except the sender
+
+                    Soldiers recruitSoldiers = NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(recruitCmd.soldierNums);
                     mpActions.Enqueue(() => {
-                        AIGameActions.Recruit(GameLocation.allGameLocations.Find(gl => gl.name == recruitCmd.locationName), NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(recruitCmd.soldierNums), false);
+                        AIGameActions.Recruit(GameLocation.allGameLocations.Find(gl => gl.name == recruitCmd.locationName), recruitSoldiers, false);
                     });
                     break;
                 case NetworkCommands.NCType.SELECT_HOUSE_REQUEST:
@@ -169,23 +171,42 @@ namespace Multiplayer {
                 case NetworkCommands.NCType.SYNC_COMBAT:
                     // Only relevant for clients
                     NetworkCommands.NCSyncCombat syncCombatCmd = (NetworkCommands.NCSyncCombat)command;
-                    mpActions.Enqueue(() => {
-                        foreach (FightingHouse fh in FightingHouse.allFightingHouses) {
-                            if (fh.ID == syncCombatCmd.fightingHouseID) {
-                                fh.ApplyCasualties((SoldierType)syncCombatCmd.soldierTypeInt, syncCombatCmd.damage);
-                            }
+                    foreach (FightingHouse fh in FightingHouse.allFightingHouses) {
+                        if (fh.ID == syncCombatCmd.fightingHouseID) {
+                            fh.ApplyCasualties((SoldierType)syncCombatCmd.soldierTypeInt, syncCombatCmd.damage);
                         }
-                    });
+                    }
                     break;
                 case NetworkCommands.NCType.SYNC_COMBAT_END:
                     // Only relevant for clients
                     NetworkCommands.NCSyncCombatEnd syncCombatEndCmd = (NetworkCommands.NCSyncCombatEnd)command;
-                    mpActions.Enqueue(() => {
-                        foreach (FightingHouse fh in FightingHouse.allFightingHouses) {
-                            if (fh.ID == syncCombatEndCmd.winnerFightingHouseID) {
-                                fh.combat.DetermineCombatStatus();
-                            }
+
+                    FightingHouse fightingHouse = null;
+                    foreach (FightingHouse fh in FightingHouse.allFightingHouses) {
+                        if (fh.ID == syncCombatEndCmd.winnerFightingHouseID) {
+                            fightingHouse = fh;
                         }
+                    }
+
+                    mpActions.Enqueue(() => {
+                        if (fightingHouse != null) fightingHouse.combat.DetermineCombatStatus();
+                        else Debug.LogError("NetworkManager Error: SYNC_COMBAT_END FightingHouse <" + syncCombatEndCmd.winnerFightingHouseID + "> not found");
+                    });
+                    break;
+                case NetworkCommands.NCType.DESTROY_BUILDING:
+                    // Only relevant for clients
+                    NetworkCommands.NCDestroyBuilding remBuildingCmd = (NetworkCommands.NCDestroyBuilding)command;
+                    mpActions.Enqueue(() => {
+                        GameLocation remLocation = GameLocation.allGameLocations.Find(gl => gl.name == remBuildingCmd.locationName);
+                        Building remBuilding = null;
+                        foreach (Building b in remLocation.buildings) {
+                            if (b.buildingType == (BuildingType)remBuildingCmd.buildingTypeInt) remBuilding = b;
+                        }
+
+                        if (remBuilding != null) {
+                            remLocation.buildings.Remove(remBuilding);
+                            remLocation.GetEffectsFromBuildings();
+                        } else Debug.LogError("NetworkManager Error: DESTROY_BUILDING buildingTypeInt <" + remBuildingCmd.buildingTypeInt + "> not found");
                     });
                     break;
 
