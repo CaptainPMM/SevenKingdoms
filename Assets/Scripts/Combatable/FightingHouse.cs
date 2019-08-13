@@ -46,6 +46,8 @@ public class FightingHouse : Combatable {
 
     private Dictionary<SoldierType, int> deadSoldiersPerTick;
 
+    private float clientUpdaterCounter = 0f;
+
     /**
         This has to be called before adding participants
      */
@@ -85,6 +87,20 @@ public class FightingHouse : Combatable {
     }
 
     void Update() {
+        if (!Multiplayer.NetworkManager.mpActive || Multiplayer.NetworkManager.isServer) {
+            Updater();
+        } else {
+            // Is Client (check only after a couple of frames to collect all infos from server first)
+            clientUpdaterCounter += Time.deltaTime;
+            if (clientUpdaterCounter >= Global.FIGHTING_HOUSE_MP_CLIENT_UPDATER_TIME) {
+                // Delay
+                clientUpdaterCounter = 0f;
+                Updater();
+            }
+        }
+    }
+
+    private void Updater() {
         if (deadSoldiersPerTick.Count > 0) {
             int oldNumSoldiers = numSoldiers;
             int casualties = 0;

@@ -50,6 +50,10 @@ public static class Global {
     public const float COMBAT_DAMAGE_DAMPER = 0.2f;
     // --
 
+    // Fighting House
+    public const float FIGHTING_HOUSE_MP_CLIENT_UPDATER_TIME = 0.2f; // 200ms
+    // --
+
     // Paths
     public static readonly string PATH_SETTINGS = Application.persistentDataPath + "/settings.txt";
     // --
