@@ -196,8 +196,10 @@ public class Combat : MonoBehaviour {
                 defeatedLocation.CombatIsOver();
             }
 
-            if (winner != null) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCSyncCombatEnd(winner));
-            else Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCSyncCombatEnd(mpSendFightingHouse)); // In case there is no winner
+            if (Multiplayer.NetworkManager.isServer) {
+                if (winner != null) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCSyncCombatEnd(winner));
+                else Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCSyncCombatEnd(mpSendFightingHouse)); // In case there is no winner
+            }
 
             Destroy(this.gameObject);
             return false;
