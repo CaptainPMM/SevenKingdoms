@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class Soldiers {
     [SerializeField] private List<Soldier> conscripts = new List<Soldier>();
     [SerializeField] private List<Soldier> spearmen = new List<Soldier>();
@@ -13,12 +11,31 @@ public class Soldiers {
 
     public Soldiers() { }
     public Soldiers(Soldiers soldiersToCopy) {
+        ShallowCopy(soldiersToCopy);
+    }
+    public Soldiers(Soldiers soldiersToCopy, bool deepCopy) {
+        if (deepCopy) {
+            DeepCopy(soldiersToCopy);
+        } else {
+            ShallowCopy(soldiersToCopy);
+        }
+    }
+
+    private void ShallowCopy(Soldiers soldiersToCopy) {
         foreach (SoldierType st in CreateSoldierTypesArray()) {
             SetSoldierTypeNum(st, soldiersToCopy.GetSoldierTypeNum(st));
         }
     }
 
-    private List<Soldier> FindSoldiersByType(SoldierType soldierType) {
+    private void DeepCopy(Soldiers soldiersToCopy) {
+        foreach (SoldierType st in CreateSoldierTypesArray()) {
+            foreach (Soldier s in soldiersToCopy.FindSoldiersByType(st)) {
+                FindSoldiersByType(st).Add(CreateSoldierInstance(st, s));
+            }
+        }
+    }
+
+    public List<Soldier> FindSoldiersByType(SoldierType soldierType) {
         switch (soldierType) {
             case SoldierType.CONSCRIPTS:
                 return conscripts;
@@ -36,18 +53,18 @@ public class Soldiers {
         }
     }
 
-    private static Soldier CreateSoldierInstance(SoldierType soldierType) {
+    private static Soldier CreateSoldierInstance(SoldierType soldierType, Soldier copySoldier = null) {
         switch (soldierType) {
             case SoldierType.CONSCRIPTS:
-                return new Conscripts();
+                return new Conscripts(copySoldier);
             case SoldierType.SPEARMEN:
-                return new Spearmen();
+                return new Spearmen(copySoldier);
             case SoldierType.SWORDSMEN:
-                return new Swordsmen();
+                return new Swordsmen(copySoldier);
             case SoldierType.BOWMEN:
-                return new Bowmen();
+                return new Bowmen(copySoldier);
             case SoldierType.CAV_KNIGHTS:
-                return new CavKnights();
+                return new CavKnights(copySoldier);
 
             default:
                 throw new Exception("Invalid SoldierType <" + soldierType + ">: could not be found");
@@ -108,14 +125,15 @@ public class Soldiers {
     public int DealDamageToSoldierType(SoldierType soldierType, int amount) {
         int casualties = 0;
         List<Soldier> soldiers = FindSoldiersByType(soldierType);
+
         int soldiersCount = soldiers.Count;
         for (int i = 0; i < soldiersCount; i++) {
-            soldiers[i].HP -= amount;
-            if (soldiers[i].HP <= 0) {
+            if (amount >= soldiers[i].HP) {
                 // Soldier is dead
-                amount = Math.Abs(soldiers[i].HP); // Reduce damage amount
+                amount -= soldiers[i].HP;
                 casualties++;
             } else {
+                soldiers[i].HP -= (byte)amount; // Reduce HP by remaining amount (may be 0 as well)
                 // Amount is 0 now -> done
                 break;
             }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -108,7 +107,7 @@ public class FightingHouse : Combatable {
     }
 
     public void AddParticipant(Combatable participant) {
-        soldiers.AddSoldiers(participant.soldiers);
+        soldiers.AddSoldiers(new Soldiers(participant.soldiers, true));
         UpdateGUI();
         Destroy(participant.gameObject);
     }

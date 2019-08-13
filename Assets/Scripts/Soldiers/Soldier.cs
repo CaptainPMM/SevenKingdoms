@@ -1,13 +1,22 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-[System.Serializable]
-public class Soldier {
-    public int HP;
-    [HideInInspector] public int DP;
-    [HideInInspector] public int predictedStrength;
-    [HideInInspector] public string soldierName;
-    [HideInInspector] public Dictionary<SoldierType, float> strengths;
-    [HideInInspector] public int goldCosts;
+public abstract class Soldier {
+    public byte HP;
+    public byte DP;
+    public byte predictedStrength;
+    public string soldierName;
+    public Dictionary<SoldierType, float> strengths;
+    public byte goldCosts;
+
+    public Soldier() {
+        SetupStats();
+    }
+    public Soldier(Soldier soldierToCopy) {
+        SetupStats();
+        if (soldierToCopy != null) {
+            HP = soldierToCopy.HP;
+        }
+    }
+
+    protected abstract void SetupStats();
 }
