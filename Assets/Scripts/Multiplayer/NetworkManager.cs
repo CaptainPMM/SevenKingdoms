@@ -177,6 +177,17 @@ namespace Multiplayer {
                         }
                     });
                     break;
+                case NetworkCommands.NCType.SYNC_COMBAT_END:
+                    // Only relevant for clients
+                    NetworkCommands.NCSyncCombatEnd syncCombatEndCmd = (NetworkCommands.NCSyncCombatEnd)command;
+                    mpActions.Enqueue(() => {
+                        foreach (FightingHouse fh in FightingHouse.allFightingHouses) {
+                            if (fh.ID == syncCombatEndCmd.winnerFightingHouseID) {
+                                fh.combat.DetermineCombatStatus();
+                            }
+                        }
+                    });
+                    break;
 
                 default:
                     Debug.LogWarning("NetworkCommand <" + command.type + "> not found");
