@@ -324,8 +324,7 @@ public class GameController : MonoBehaviour {
             }
 
             if (moveSoldiers.GetNumSoldiersInTotal() > 0) {
-                Troops t = InitializeTroopsMovement(selectedLocation, toLocation, moveSoldiers, true);
-                AIPlayer.InformOfMovingTroops(t);
+                InitializeTroopsMovement(selectedLocation, toLocation, moveSoldiers, true);
                 SoundManager.Play(SoundManager.SoundType.UI, "slider_click_short");
             }
 
@@ -333,21 +332,23 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public Troops InitializeTroopsMovement(GameObject fromLocation, GameObject toLocation, Soldiers soldiers, bool mpSend = true) {
-        GameObject troopsGO = Instantiate(troopsPrefab, fromLocation.transform.position, fromLocation.transform.rotation);
-        troopsGO.name = "Troops " + fromLocation.name + "-" + toLocation.name;
-        Troops troops = troopsGO.GetComponent<Troops>();
+    public void InitializeTroopsMovement(GameObject fromLocation, GameObject toLocation, Soldiers soldiers, bool mpSend = true) {
+        if (fromLocation.GetComponent<GameLocation>().combat == null) {
+            GameObject troopsGO = Instantiate(troopsPrefab, fromLocation.transform.position, fromLocation.transform.rotation);
+            troopsGO.name = "Troops " + fromLocation.name + "-" + toLocation.name;
+            Troops troops = troopsGO.GetComponent<Troops>();
 
-        GameLocation fromGameLocation = fromLocation.GetComponent<GameLocation>();
-        troops.house = fromGameLocation.house;
-        troops.soldiers = soldiers;
-        fromGameLocation.UpdateGUI();
-        troops.fromLocation = fromLocation;
-        troops.toLocation = toLocation;
+            GameLocation fromGameLocation = fromLocation.GetComponent<GameLocation>();
+            troops.house = fromGameLocation.house;
+            troops.soldiers = soldiers;
+            fromGameLocation.UpdateGUI();
+            troops.fromLocation = fromLocation;
+            troops.toLocation = toLocation;
 
-        if (Multiplayer.NetworkManager.mpActive && mpSend) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCMoveTroops(fromGameLocation, toLocation.GetComponent<GameLocation>(), soldiers));
+            if (Multiplayer.NetworkManager.mpActive && mpSend) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCMoveTroops(fromGameLocation, toLocation.GetComponent<GameLocation>(), soldiers));
 
-        return troops;
+            AIPlayer.InformOfMovingTroops(troops);
+        }
     }
 
     public void OpenBuildingsMenu() {

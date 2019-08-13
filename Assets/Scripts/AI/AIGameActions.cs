@@ -4,9 +4,8 @@ public static class AIGameActions {
      */
     public static void MoveTroops(GameLocation fromGameLocation, GameLocation toGameLocation, bool mpSend = true) {
         if (fromGameLocation.numSoldiers > 0) {
-            Troops t = GameController.activeGameController.InitializeTroopsMovement(fromGameLocation.gameObject, toGameLocation.gameObject, fromGameLocation.soldiers, mpSend);
+            GameController.activeGameController.InitializeTroopsMovement(fromGameLocation.gameObject, toGameLocation.gameObject, fromGameLocation.soldiers, mpSend);
             fromGameLocation.soldiers = new Soldiers();
-            AIPlayer.InformOfMovingTroops(t);
         }
     }
 
@@ -20,8 +19,7 @@ public static class AIGameActions {
                 soldiersToMove.SetSoldierType(st, fromGameLocation.soldiers.ExtractSoldiers(st, soldiers.GetSoldierTypeNum(st)));
             }
 
-            Troops t = GameController.activeGameController.InitializeTroopsMovement(fromGameLocation.gameObject, toGameLocation.gameObject, soldiersToMove, mpSend);
-            AIPlayer.InformOfMovingTroops(t);
+            GameController.activeGameController.InitializeTroopsMovement(fromGameLocation.gameObject, toGameLocation.gameObject, soldiersToMove, mpSend);
         }
     }
 

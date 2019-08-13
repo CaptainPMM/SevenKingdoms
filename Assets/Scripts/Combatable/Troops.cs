@@ -32,7 +32,7 @@ public class Troops : Combatable {
             GameLocation destination = other.GetComponent<GameLocation>();
             if (destination.house.houseType == house.houseType) {
                 // Peacfully put troops in location (Reinforcements)
-                destination.soldiers.AddSoldiers(soldiers);
+                destination.soldiers.AddSoldiers(new Soldiers(soldiers, true));
                 destination.UpdateGUI();
                 Destroy(gameObject);
             } else {
