@@ -181,15 +181,15 @@ namespace Multiplayer {
                     // Only relevant for clients
                     NetworkCommands.NCSyncCombatEnd syncCombatEndCmd = (NetworkCommands.NCSyncCombatEnd)command;
 
-                    FightingHouse fightingHouse = null;
+                    FightingHouse winnerFightingHouse = null;
                     foreach (FightingHouse fh in FightingHouse.allFightingHouses) {
                         if (fh.ID == syncCombatEndCmd.winnerFightingHouseID) {
-                            fightingHouse = fh;
+                            winnerFightingHouse = fh;
                         }
                     }
 
                     mpActions.Enqueue(() => {
-                        if (fightingHouse != null) {
+                        if (winnerFightingHouse != null) {
                             // Sync soldiers of the combat participants
                             // ATTENTION! The winner gets comnpletly new soldiers with refreshed HP. Mostly this will only be the first soldier of a type.
                             // But if soldier types with very high HP are introduced in the future this can cause invincible soldiers!
@@ -197,12 +197,17 @@ namespace Multiplayer {
                             // ==> ACTUALLY the calculation of damage etc. is on server where this "feauture" is not present, so everything should be fine.
                             // Here only the UI presentation is important not the soldier stats. The only thing that may be off is the casualties popup (only by small numbners).
 
-                            fightingHouse.soldiers = NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(syncCombatEndCmd.winnerRemainingSoldierNums);
-                            foreach (FightingHouse fh in fightingHouse.combat.fightingHouses) {
-                                if (fh != fightingHouse) fh.soldiers = new Soldiers(); // All loosers have 0 soldiers now
+                            // Set winner soldiers
+                            int i = 0;
+                            foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
+                                winnerFightingHouse.soldiers.SetSoldierTypeNum(st, syncCombatEndCmd.winnerRemainingSoldierNums[i++]);
+                            }
+                            // Remove loosers soldiers
+                            foreach (FightingHouse fh in winnerFightingHouse.combat.fightingHouses) {
+                                if (fh != winnerFightingHouse) fh.soldiers.RemoveSoldiers(fh.soldiers); // All loosers have 0 soldiers now
                             }
 
-                            fightingHouse.combat.DetermineCombatStatus();
+                            winnerFightingHouse.combat.DetermineCombatStatus();
                         } else Debug.LogError("NetworkManager Error: SYNC_COMBAT_END FightingHouse <" + syncCombatEndCmd.winnerFightingHouseID + "> not found");
                     });
                     break;
