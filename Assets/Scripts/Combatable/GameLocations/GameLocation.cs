@@ -21,6 +21,7 @@ public class GameLocation : Combatable {
     protected float recruitmentSpeed;
     private float recruitmentSpeedBuffs = 1f;
     private float elapsedTimeRecruitment = 0f;
+    private int recruitmentCurrSoldierTypeInt = 0;
 
     private float elapsedTimeGUI = 0f;
     private static GamePlayer player = null;
@@ -252,20 +253,35 @@ public class GameLocation : Combatable {
     }
 
     private void Recruit() {
+        // Iterate through all available soldier types and recruit them in order
         // Get soldier types in recruitment
         List<SoldierType> soldierTypes = new List<SoldierType>();
         foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
             if (soldiersInRecruitment.GetSoldierTypeNum(st) > 0) soldierTypes.Add(st);
         }
 
-        // Determine random recruitment of a soldier type in this iteration
-        int rand = Random.Range(0, soldierTypes.Count);
+        if (soldierTypes.Count > 1) {
+            // Find next recruit soldier type
+            while (!soldierTypes.Contains((SoldierType)recruitmentCurrSoldierTypeInt)) {
+                IncrementRecruitmentCurrSoldierTypeInt();
+            }
+        } else {
+            recruitmentCurrSoldierTypeInt = (int)soldierTypes[0];
+        }
 
         // Recruit the soldier type (one soldier), extract from recruitment list
-        soldiers.AddSoldierTypeNum(soldierTypes[rand], 1);
-        soldiersInRecruitment.SetSoldierTypeNum(soldierTypes[rand], soldiersInRecruitment.GetSoldierTypeNum(soldierTypes[rand]) - 1);
+        SoldierType recruitType = (SoldierType)recruitmentCurrSoldierTypeInt;
+        soldiers.AddSoldierTypeNum(recruitType, 1);
+        soldiersInRecruitment.SetSoldierTypeNum(recruitType, soldiersInRecruitment.GetSoldierTypeNum(recruitType) - 1);
 
         if (soldiersInRecruitment.GetNumSoldiersInTotal() <= 0) recruitmentIndicatorGO.GetComponent<Image>().enabled = false;
+
+        // Switch soldier type to next one after recruitment
+        IncrementRecruitmentCurrSoldierTypeInt();
+    }
+
+    private void IncrementRecruitmentCurrSoldierTypeInt() {
+        recruitmentCurrSoldierTypeInt = (recruitmentCurrSoldierTypeInt + 1) % Soldiers.CreateSoldierTypesArray().Length;
     }
 
     public void DetermineFortificationLevel() {
