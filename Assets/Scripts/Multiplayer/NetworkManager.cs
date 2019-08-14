@@ -189,8 +189,21 @@ namespace Multiplayer {
                     }
 
                     mpActions.Enqueue(() => {
-                        if (fightingHouse != null) fightingHouse.combat.DetermineCombatStatus();
-                        else Debug.LogError("NetworkManager Error: SYNC_COMBAT_END FightingHouse <" + syncCombatEndCmd.winnerFightingHouseID + "> not found");
+                        if (fightingHouse != null) {
+                            // Sync soldiers of the combat participants
+                            // ATTENTION! The winner gets comnpletly new soldiers with refreshed HP. Mostly this will only be the first soldier of a type.
+                            // But if soldier types with very high HP are introduced in the future this can cause invincible soldiers!
+                            // A fix would be to send the HPs for each soldier, but this bloats the network traffic quite a bit, so currently this little "feature" is O.K.
+                            // ==> ACTUALLY the calculation of damage etc. is on server where this "feauture" is not present, so everything should be fine.
+                            // Here only the UI presentation is important not the soldier stats. The only thing that may be off is the casualties popup (only by small numbners).
+
+                            fightingHouse.soldiers = NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(syncCombatEndCmd.winnerRemainingSoldierNums);
+                            foreach (FightingHouse fh in fightingHouse.combat.fightingHouses) {
+                                if (fh != fightingHouse) fh.soldiers = new Soldiers(); // All loosers have 0 soldiers now
+                            }
+
+                            fightingHouse.combat.DetermineCombatStatus();
+                        } else Debug.LogError("NetworkManager Error: SYNC_COMBAT_END FightingHouse <" + syncCombatEndCmd.winnerFightingHouseID + "> not found");
                     });
                     break;
                 case NetworkCommands.NCType.DESTROY_BUILDING:

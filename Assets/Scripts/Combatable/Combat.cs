@@ -7,7 +7,7 @@ public class Combat : MonoBehaviour {
 
     public GameLocation location;
 
-    [SerializeField] private List<FightingHouse> fightingHouses;
+    public List<FightingHouse> fightingHouses;
     [SerializeField] private bool inProgress;
     private FightingHouse defeatedLocation = null;
 
