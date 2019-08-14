@@ -7,7 +7,7 @@ public class Combat : MonoBehaviour {
 
     public GameLocation location;
 
-    [SerializeField] private List<FightingHouse> fightingHouses;
+    public List<FightingHouse> fightingHouses;
     [SerializeField] private bool inProgress;
     private FightingHouse defeatedLocation = null;
 
@@ -25,7 +25,7 @@ public class Combat : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (inProgress) {
+        if ((!Multiplayer.NetworkManager.mpActive || Multiplayer.NetworkManager.isServer) && inProgress) {
             elapsedTime += Time.deltaTime;
 
             if (elapsedTime >= Global.COMBAT_SPEED) {
@@ -33,8 +33,6 @@ public class Combat : MonoBehaviour {
 
                 if (DetermineCombatStatus() == true) {
                     CalcCasualties();
-                } else {
-                    Destroy(this.gameObject);
                 }
             }
         }
@@ -140,6 +138,7 @@ public class Combat : MonoBehaviour {
                                 );
 
                     defender.ApplyCasualties(targetSoldierType, damage);
+                    if (Multiplayer.NetworkManager.mpActive) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCSyncCombat(defender, targetSoldierType, damage));
                 }
             }
         }
@@ -152,7 +151,9 @@ public class Combat : MonoBehaviour {
     /**
         Returns true if combat still running or false if its over
      */
-    bool DetermineCombatStatus() {
+    public bool DetermineCombatStatus() {
+        FightingHouse mpSendFightingHouse = fightingHouses[0]; // Save one fighting house in case the combat is over and the server has to send a participant to his clients for ending
+
         // Check for fighting houses with no more soldiers and remove them
         List<FightingHouse> removeFightingHouses = new List<FightingHouse>();
         for (int i = 0; i < fightingHouses.Count; i++) {
@@ -174,12 +175,12 @@ public class Combat : MonoBehaviour {
             fightingHouses.Remove(fh);
         }
 
-
         // Check if only 1 or less fighting houses have soldiers left
         if (fightingHouses.Count <= 1) {
             // Combat is over
+            FightingHouse winner = null;
             if (fightingHouses.Count > 0) { // With this branch we are safe in the case: nobody has soldiers left, and fightingHouses[0] is safe
-                FightingHouse winner = fightingHouses[0];
+                winner = fightingHouses[0];
                 winner.CombatIsOver();
 
                 if (location != null) {
@@ -195,6 +196,12 @@ public class Combat : MonoBehaviour {
                 defeatedLocation.CombatIsOver();
             }
 
+            if (Multiplayer.NetworkManager.isServer) {
+                if (winner != null) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCSyncCombatEnd(winner));
+                else Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCSyncCombatEnd(mpSendFightingHouse)); // In case there is no winner
+            }
+
+            Destroy(this.gameObject);
             return false;
         } else {
             return true;

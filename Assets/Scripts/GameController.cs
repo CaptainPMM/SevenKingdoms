@@ -54,13 +54,16 @@ public class GameController : MonoBehaviour {
         moveMarkerText = moveMarker.GetComponentInChildren<TextMeshProUGUI>();
 
         // Init AIs
-        aiPlayers = new List<AIPlayer>();
-        GamePlayer p = player.GetComponent<GamePlayer>();
-        // For singelplayer there are 6 ai players (seven kingdoms - 1 human player)
-        // Iterate through all HouseTypes and skip the player house type and the Neutral HouseType (index 0)
-        for (int i = 1; i <= 7; i++) {
-            if (p.house.houseType == (HouseType)i) continue;
-            aiPlayers.Add(new AIPlayer((HouseType)i));
+        if (!Multiplayer.NetworkManager.mpActive || Multiplayer.NetworkManager.isServer) {
+            aiPlayers = new List<AIPlayer>();
+            GamePlayer p = player.GetComponent<GamePlayer>();
+            // For singelplayer there are 6 ai players (seven kingdoms - 1 human player)
+            // Iterate through all HouseTypes and skip the player house type and the Neutral HouseType (index 0)
+            for (int i = 1; i <= 7; i++) {
+                if (p.house.houseType == (HouseType)i) continue;
+                if (Multiplayer.NetworkManager.mpActive && Multiplayer.Server.instance.clientHouseTypes.ContainsValue((HouseType)i)) continue;
+                aiPlayers.Add(new AIPlayer((HouseType)i));
+            }
         }
     }
 
@@ -321,8 +324,7 @@ public class GameController : MonoBehaviour {
             }
 
             if (moveSoldiers.GetNumSoldiersInTotal() > 0) {
-                Troops t = InitializeTroopsMovement(selectedLocation, toLocation, moveSoldiers);
-                AIPlayer.InformOfMovingTroops(t);
+                InitializeTroopsMovement(selectedLocation, toLocation, moveSoldiers, true);
                 SoundManager.Play(SoundManager.SoundType.UI, "slider_click_short");
             }
 
@@ -330,18 +332,23 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public Troops InitializeTroopsMovement(GameObject fromLocation, GameObject toLocation, Soldiers soldiers) {
-        GameObject troopsGO = Instantiate(troopsPrefab, fromLocation.transform.position, fromLocation.transform.rotation);
-        troopsGO.name = "Troops " + fromLocation.name + "-" + toLocation.name;
-        Troops troops = troopsGO.GetComponent<Troops>();
+    public void InitializeTroopsMovement(GameObject fromLocation, GameObject toLocation, Soldiers soldiers, bool mpSend = true) {
+        if (fromLocation.GetComponent<GameLocation>().combat == null) {
+            GameObject troopsGO = Instantiate(troopsPrefab, fromLocation.transform.position, fromLocation.transform.rotation);
+            troopsGO.name = "Troops " + fromLocation.name + "-" + toLocation.name;
+            Troops troops = troopsGO.GetComponent<Troops>();
 
-        GameLocation fromGameLocation = fromLocation.GetComponent<GameLocation>();
-        troops.house = fromGameLocation.house;
-        troops.soldiers = soldiers;
-        fromGameLocation.UpdateGUI();
-        troops.toLocation = toLocation;
+            GameLocation fromGameLocation = fromLocation.GetComponent<GameLocation>();
+            troops.house = fromGameLocation.house;
+            troops.soldiers = soldiers;
+            fromGameLocation.UpdateGUI();
+            troops.fromLocation = fromLocation;
+            troops.toLocation = toLocation;
 
-        return troops;
+            if (Multiplayer.NetworkManager.mpActive && mpSend) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCMoveTroops(fromGameLocation, toLocation.GetComponent<GameLocation>(), soldiers));
+
+            AIPlayer.InformOfMovingTroops(troops);
+        }
     }
 
     public void OpenBuildingsMenu() {

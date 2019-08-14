@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 
-[System.Serializable]
 public class Bowmen : Soldier {
-    public Bowmen() {
+    public Bowmen() : base() { }
+    public Bowmen(Soldier soldierToCopy) : base(soldierToCopy) { }
+
+    protected override void SetupStats() {
         HP = 1;
         DP = 4;
         predictedStrength = 8;

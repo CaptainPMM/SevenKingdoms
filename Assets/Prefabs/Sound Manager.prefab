@@ -71,7 +71,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.3
+    volume: 0.12
     source: {fileID: 0}
   - name: button_select
     clip: {fileID: 8300000, guid: e03f158ee01bd45c487a94a0b16cbe09, type: 3}
@@ -85,7 +85,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 5726680702451935600, guid: badd9c97e419440b4a248f685bd496ac,
       type: 2}
     loop: 0
-    volume: 0.15
+    volume: 0.14
     source: {fileID: 0}
   - name: recruit_cancel
     clip: {fileID: 8300000, guid: 09dfc557daa0b473588b3241b8dad812, type: 3}

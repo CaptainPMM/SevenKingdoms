@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using TMPro;
 
 public class GameLocation : Combatable {
+    public static List<GameLocation> allGameLocations = new List<GameLocation>();
+
     public GameObject connectionLinePrefab;
 
     public string locationName;
@@ -19,6 +21,7 @@ public class GameLocation : Combatable {
     protected float recruitmentSpeed;
     private float recruitmentSpeedBuffs = 1f;
     private float elapsedTimeRecruitment = 0f;
+    private int recruitmentCurrSoldierTypeInt = 0;
 
     private float elapsedTimeGUI = 0f;
     private static GamePlayer player = null;
@@ -106,6 +109,8 @@ public class GameLocation : Combatable {
                 lr.colorGradient = g;
             }
         }
+
+        allGameLocations.Add(this);
     }
 
     protected void Update() {
@@ -168,8 +173,10 @@ public class GameLocation : Combatable {
         wasOccupied = true;
 
         // Destroy a random building after occupation combat
-        if (buildings.Count > 0) {
-            buildings.RemoveAt(Random.Range(0, buildings.Count));
+        if ((!Multiplayer.NetworkManager.mpActive || Multiplayer.NetworkManager.isServer) && buildings.Count > 0) {
+            int rand = Random.Range(0, buildings.Count);
+            if (Multiplayer.NetworkManager.isServer) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCDestroyBuilding(this, buildings[rand].buildingType));
+            buildings.RemoveAt(rand);
             GetEffectsFromBuildings();
         }
 
@@ -184,7 +191,7 @@ public class GameLocation : Combatable {
         }
     }
 
-    protected void GetEffectsFromBuildings() {
+    public void GetEffectsFromBuildings() {
         locationEffects.Clear();
         foreach (Building b in buildings) {
             locationEffects.AddRange(b.gameEffects);
@@ -198,11 +205,12 @@ public class GameLocation : Combatable {
         }
     }
 
-    public void AddBuilding(Building b) {
+    public void AddBuilding(Building b, bool mpSend = true) {
         buildings.Add(b);
         GetEffectsFromBuildings();
         DetermineFortificationLevel();
         if (b.buildingType == BuildingType.LOCAL_ADMINISTRATION) btnFastBuildLocalAdmin.gameObject.SetActive(false);
+        if (Multiplayer.NetworkManager.mpActive && mpSend) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCBuild(this, b.buildingType));
     }
 
     private void ResourcesIncomeForHouse() {
@@ -234,9 +242,10 @@ public class GameLocation : Combatable {
         }
     }
 
-    public void AddSoldiersToRecruitment(Soldiers s) {
+    public void AddSoldiersToRecruitment(Soldiers s, bool mpSend = true) {
         soldiersInRecruitment.AddSoldiers(s);
         recruitmentIndicatorGO.GetComponent<Image>().enabled = true;
+        if (Multiplayer.NetworkManager.mpActive && mpSend) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCRecruit(this, s));
     }
 
     public Soldiers GetSoldiersInRecruitment() {
@@ -244,20 +253,35 @@ public class GameLocation : Combatable {
     }
 
     private void Recruit() {
+        // Iterate through all available soldier types and recruit them in order
         // Get soldier types in recruitment
         List<SoldierType> soldierTypes = new List<SoldierType>();
         foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
             if (soldiersInRecruitment.GetSoldierTypeNum(st) > 0) soldierTypes.Add(st);
         }
 
-        // Determine random recruitment of a soldier type in this iteration
-        int rand = Random.Range(0, soldierTypes.Count);
+        if (soldierTypes.Count > 1) {
+            // Find next recruit soldier type
+            while (!soldierTypes.Contains((SoldierType)recruitmentCurrSoldierTypeInt)) {
+                IncrementRecruitmentCurrSoldierTypeInt();
+            }
+        } else {
+            recruitmentCurrSoldierTypeInt = (int)soldierTypes[0];
+        }
 
         // Recruit the soldier type (one soldier), extract from recruitment list
-        soldiers.AddSoldierTypeNum(soldierTypes[rand], 1);
-        soldiersInRecruitment.SetSoldierTypeNum(soldierTypes[rand], soldiersInRecruitment.GetSoldierTypeNum(soldierTypes[rand]) - 1);
+        SoldierType recruitType = (SoldierType)recruitmentCurrSoldierTypeInt;
+        soldiers.AddSoldierTypeNum(recruitType, 1);
+        soldiersInRecruitment.SetSoldierTypeNum(recruitType, soldiersInRecruitment.GetSoldierTypeNum(recruitType) - 1);
 
         if (soldiersInRecruitment.GetNumSoldiersInTotal() <= 0) recruitmentIndicatorGO.GetComponent<Image>().enabled = false;
+
+        // Switch soldier type to next one after recruitment
+        IncrementRecruitmentCurrSoldierTypeInt();
+    }
+
+    private void IncrementRecruitmentCurrSoldierTypeInt() {
+        recruitmentCurrSoldierTypeInt = (recruitmentCurrSoldierTypeInt + 1) % Soldiers.CreateSoldierTypesArray().Length;
     }
 
     public void DetermineFortificationLevel() {
