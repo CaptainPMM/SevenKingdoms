@@ -79,6 +79,9 @@ namespace Multiplayer {
                     }
                 }
             } catch (System.Exception e) {
+                if (e.GetType() == typeof(SocketException)) {
+                    if (((SocketException)e).Message == "interrupted") return; // Stop thread before next exception check (iOS only)
+                }
                 if (e.GetType() != typeof(ThreadAbortException)) {
                     Debug.LogError("Error while listening for connections: " + e);
                     NetworkManager.mpActions.Enqueue(() => OnConnectionFailed());
