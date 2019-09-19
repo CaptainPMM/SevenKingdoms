@@ -55,7 +55,7 @@ namespace Multiplayer {
         public static void ListenForNetworkData(TcpClient socket) {
             NetworkStream ns = socket.GetStream();
             ns.ReadTimeout = 5000;
-            byte[] buffer = new byte[1024]; // Raw byte space to receive data
+            byte[] buffer = new byte[1024 * 25]; // Raw byte space to receive data
             int dataSize; // Length of read bytes
             byte[] dataBytes; // Data without zeros and old data from buffer at the end
 
@@ -74,7 +74,7 @@ namespace Multiplayer {
 
                     // dataBytes may contain multiple commands, split them and execute each one of the them sequentially
                     foreach (NetworkCommands.NetworkCommand command in GetCommands(dataBytes)) {
-                        ExecuteCommand(command, socket);
+                        if (command != null) ExecuteCommand(command, socket);
                     }
                 }
             }

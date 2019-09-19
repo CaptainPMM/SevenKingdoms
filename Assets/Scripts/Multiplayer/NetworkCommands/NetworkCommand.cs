@@ -12,31 +12,36 @@ namespace Multiplayer {
 
             /// <summary>Create a NetworkCommand object from a sent string formatted by ToSendableString().</summary>
             public static NetworkCommand CreateFromSentString(string receivedString) {
-                NCType type = (NCType)int.Parse(receivedString.Substring(0, 1)); // ATTENTION! This line only works as long as there are max 10 NCTypes
-                string json = receivedString.Substring(2); // ATTENTION! This line only works as long as there are max 10 NCTypes
-                switch (type) {
-                    case NCType.BEGIN_GAME:
-                        return UnityEngine.JsonUtility.FromJson<NCBeginGame>(json);
-                    case NCType.BUILD:
-                        return UnityEngine.JsonUtility.FromJson<NCBuild>(json);
-                    case NCType.MOVE_TROOPS:
-                        return UnityEngine.JsonUtility.FromJson<NCMoveTroops>(json);
-                    case NCType.RECRUIT:
-                        return UnityEngine.JsonUtility.FromJson<NCRecruit>(json);
-                    case NCType.SELECT_HOUSE_REQUEST:
-                        return UnityEngine.JsonUtility.FromJson<NCSelectHouseReq>(json);
-                    case NCType.SELECT_HOUSE_RESPONSE:
-                        return UnityEngine.JsonUtility.FromJson<NCSelectHouseRes>(json);
-                    case NCType.SYNC_COMBAT:
-                        return UnityEngine.JsonUtility.FromJson<NCSyncCombat>(json);
-                    case NCType.SYNC_COMBAT_END:
-                        return UnityEngine.JsonUtility.FromJson<NCSyncCombatEnd>(json);
-                    case NCType.DESTROY_BUILDING:
-                        return UnityEngine.JsonUtility.FromJson<NCDestroyBuilding>(json);
+                try {
+                    NCType type = (NCType)int.Parse(receivedString.Substring(0, 1)); // ATTENTION! This line only works as long as there are max 10 NCTypes
+                    string json = receivedString.Substring(2); // ATTENTION! This line only works as long as there are max 10 NCTypes
+                    switch (type) {
+                        case NCType.BEGIN_GAME:
+                            return UnityEngine.JsonUtility.FromJson<NCBeginGame>(json);
+                        case NCType.BUILD:
+                            return UnityEngine.JsonUtility.FromJson<NCBuild>(json);
+                        case NCType.MOVE_TROOPS:
+                            return UnityEngine.JsonUtility.FromJson<NCMoveTroops>(json);
+                        case NCType.RECRUIT:
+                            return UnityEngine.JsonUtility.FromJson<NCRecruit>(json);
+                        case NCType.SELECT_HOUSE_REQUEST:
+                            return UnityEngine.JsonUtility.FromJson<NCSelectHouseReq>(json);
+                        case NCType.SELECT_HOUSE_RESPONSE:
+                            return UnityEngine.JsonUtility.FromJson<NCSelectHouseRes>(json);
+                        case NCType.SYNC_COMBAT:
+                            return UnityEngine.JsonUtility.FromJson<NCSyncCombat>(json);
+                        case NCType.SYNC_COMBAT_END:
+                            return UnityEngine.JsonUtility.FromJson<NCSyncCombatEnd>(json);
+                        case NCType.DESTROY_BUILDING:
+                            return UnityEngine.JsonUtility.FromJson<NCDestroyBuilding>(json);
 
-                    default:
-                        UnityEngine.Debug.LogWarning("Could not find NCType <" + type + ">");
-                        return null;
+                        default:
+                            UnityEngine.Debug.LogWarning("Could not find NCType <" + type + ">");
+                            return null;
+                    }
+                } catch (System.Exception e) {
+                    UnityEngine.Debug.LogError("Parsing error: " + e);
+                    return null;
                 }
             }
 
