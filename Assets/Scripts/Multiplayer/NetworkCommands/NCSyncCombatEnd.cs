@@ -4,6 +4,7 @@ namespace Multiplayer {
             /// <summary>The winner of a combat. It may be that this is not the winner and only one participating fighting house.
             /// This is the case for example if all fighitng houses end with 0 soldiers.</summary>
             public string winnerFightingHouseID;
+            public string winnerFhFallbackID;
             public int[] winnerRemainingSoldierNums;
 
             public override int type {
@@ -14,6 +15,7 @@ namespace Multiplayer {
 
             public NCSyncCombatEnd(FightingHouse winnerFightingHouse) {
                 winnerFightingHouseID = winnerFightingHouse.ID;
+                winnerFhFallbackID = winnerFightingHouse.fallbackID;
                 winnerRemainingSoldierNums = SoldiersObjToNumsArray(winnerFightingHouse.soldiers);
             }
         }

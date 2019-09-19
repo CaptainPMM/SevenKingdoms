@@ -2,6 +2,7 @@ namespace Multiplayer {
     namespace NetworkCommands {
         public class NCSyncCombat : NetworkCommand {
             public string fightingHouseID;
+            public string fhFallbackID;
             public int soldierTypeInt;
             public int damage;
 
@@ -13,6 +14,7 @@ namespace Multiplayer {
 
             public NCSyncCombat(FightingHouse fightingHouse, SoldierType soldierType, int damage) {
                 fightingHouseID = fightingHouse.ID;
+                fhFallbackID = fightingHouse.fallbackID;
                 soldierTypeInt = (int)soldierType;
                 this.damage = damage;
             }

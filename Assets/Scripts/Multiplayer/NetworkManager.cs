@@ -171,22 +171,17 @@ namespace Multiplayer {
                 case NetworkCommands.NCType.SYNC_COMBAT:
                     // Only relevant for clients
                     NetworkCommands.NCSyncCombat syncCombatCmd = (NetworkCommands.NCSyncCombat)command;
-                    foreach (FightingHouse fh in FightingHouse.allFightingHouses) {
-                        if (fh.ID == syncCombatCmd.fightingHouseID) {
-                            fh.ApplyCasualties((SoldierType)syncCombatCmd.soldierTypeInt, syncCombatCmd.damage);
-                        }
-                    }
+
+                    FightingHouse foundFh = FindFightingHouseByID(syncCombatCmd.fightingHouseID, syncCombatCmd.fhFallbackID);
+
+                    if (foundFh != null) foundFh.ApplyCasualties((SoldierType)syncCombatCmd.soldierTypeInt, syncCombatCmd.damage);
+                    else Debug.LogError("NetworkManager Error: SYNC_COMBAT FightingHouse <" + syncCombatCmd.fightingHouseID + "> not found");
                     break;
                 case NetworkCommands.NCType.SYNC_COMBAT_END:
                     // Only relevant for clients
                     NetworkCommands.NCSyncCombatEnd syncCombatEndCmd = (NetworkCommands.NCSyncCombatEnd)command;
 
-                    FightingHouse winnerFightingHouse = null;
-                    foreach (FightingHouse fh in FightingHouse.allFightingHouses) {
-                        if (fh.ID == syncCombatEndCmd.winnerFightingHouseID) {
-                            winnerFightingHouse = fh;
-                        }
-                    }
+                    FightingHouse winnerFightingHouse = FindFightingHouseByID(syncCombatEndCmd.winnerFightingHouseID, syncCombatEndCmd.winnerFhFallbackID);
 
                     mpActions.Enqueue(() => {
                         if (winnerFightingHouse != null) {
@@ -302,6 +297,24 @@ namespace Multiplayer {
         private static string FindNextCommand(string s) {
             int endIndex = s.IndexOf('}');
             return s.Substring(0, endIndex + 1);
+        }
+
+        private static FightingHouse FindFightingHouseByID(string ID, string fallbackID) {
+            foreach (FightingHouse fh in FightingHouse.allFightingHouses) {
+                if (fh.ID == ID) {
+                    return fh;
+                }
+            }
+
+            // Fallback fighting house id search
+            foreach (FightingHouse fh in FightingHouse.allFightingHouses) {
+                if (fh.fallbackID == fallbackID) {
+                    return fh;
+                }
+            }
+
+            // No luck today :(
+            return null;
         }
 
         private static byte[] EncodeSendData(string data) {

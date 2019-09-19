@@ -19,6 +19,15 @@ public class FightingHouse : Combatable {
     }
     [SerializeField] private string id;
 
+    /// <summary>Similar to the ID but without the soldier nums. If fighting house originates from a location this is equal to ID.
+    /// Important for multiplayer if sync issues appear.</summary>
+    public string fallbackID {
+        get {
+            return _fallbackID;
+        }
+    }
+    [SerializeField] private string _fallbackID;
+
     public HouseType houseType {
         get {
             return house.houseType;
@@ -70,6 +79,7 @@ public class FightingHouse : Combatable {
             }
 
             id = location.name;
+            _fallbackID = id;
         } else {
             // Create soldiers string for id
             string soldiersString = "";
@@ -81,6 +91,7 @@ public class FightingHouse : Combatable {
             Troops t = (Troops)firstParticipant;
 
             id = $"{(int)houseType}#{soldiersString}#{t.fromLocation.name}#{t.toLocation.name}";
+            _fallbackID = $"{(int)houseType}#{t.fromLocation.name}#{t.toLocation.name}";
         }
 
         allFightingHouses.Add(this);
