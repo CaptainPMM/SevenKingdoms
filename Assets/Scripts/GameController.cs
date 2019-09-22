@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour {
     public GameObject moveTargetMarker;
     public GameObject selectionUI;
     public GameObject buildingsUI;
+    public GameObject mpResyncBtn;
 
     public bool dragging = false;
 
@@ -71,6 +72,9 @@ public class GameController : MonoBehaviour {
         if (Global.SAVE_GAME != null) {
             LoadSaveGame();
         }
+
+        if (Multiplayer.NetworkManager.mpActive && Multiplayer.NetworkManager.isServer) mpResyncBtn.SetActive(true);
+        else mpResyncBtn.SetActive(false);
     }
 
     // Update is called once per frame
@@ -409,6 +413,8 @@ public class GameController : MonoBehaviour {
         foreach (GameLocation gl in GameLocation.allGameLocations) {
             res += JsonUtility.ToJson(new SaveGameLocationData(gl)) + "#";
         }
+        // Replace closing brackets because of the multiple commands per tcp read occurence
+        res = res.Replace('}', '>');
         // Remove last #
         res = res.Remove(res.Length - 1);
         return res;
@@ -416,6 +422,8 @@ public class GameController : MonoBehaviour {
 
     /// <summary>Handles savegame by FastSaveGame()</summary>
     public void HandleFastSaveGameData(string data) {
+        // Restore original JSON data
+        data = data.Replace('>', '}');
         Global.SAVE_GAME = data;
 
         GamePlayer p = player.GetComponent<GamePlayer>();
@@ -436,21 +444,27 @@ public class GameController : MonoBehaviour {
         string[] rawLocationData = Global.SAVE_GAME.Split('#');
         List<SaveGameLocationData> locationData = new List<SaveGameLocationData>();
 
-        foreach (string s in rawLocationData) {
-            locationData.Add(JsonUtility.FromJson<SaveGameLocationData>(s));
+        try {
+            foreach (string s in rawLocationData) {
+                locationData.Add(JsonUtility.FromJson<SaveGameLocationData>(s));
+            }
+        } catch (System.Exception e) {
+            Debug.LogError("Could not parse location data while loading a savegame: " + e);
+            Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCSyncGame(true));
+            return;
         }
 
         // Setup saved game state
         SaveGameLocationData ld = null;
         foreach (GameLocation gl in GameLocation.allGameLocations) {
-            ld = locationData.Find(curr => curr.locationName == gl.locationName);
+            ld = locationData.Find(curr => curr.n == gl.locationName);
 
             if (ld != null) {
-                if (ld.houseTypeInt != (int)gl.house.houseType) gl.OccupyBy(House.FindHouseByType((HouseType)ld.houseTypeInt), true);
+                if (ld.h != (int)gl.house.houseType) gl.OccupyBy(House.FindHouseByType((HouseType)ld.h), true);
 
                 gl.buildings.Clear();
-                if (ld.buildingTypeInts.Length > 0) {
-                    foreach (int btInt in ld.buildingTypeInts) {
+                if (ld.b.Length > 0) {
+                    foreach (int btInt in ld.b) {
                         gl.AddBuilding(Building.CreateBuildingInstance((BuildingType)btInt), false);
                     }
                 } else {
@@ -458,11 +472,13 @@ public class GameController : MonoBehaviour {
                     gl.DetermineFortificationLevel();
                 }
 
-                gl.soldiers = Multiplayer.NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(ld.soldiers);
-                Soldiers recSoldiers = Multiplayer.NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(ld.soldiersInRecruitment);
+                gl.soldiers = Multiplayer.NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(ld.s);
+                Soldiers recSoldiers = Multiplayer.NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(ld.r);
                 if (recSoldiers.GetNumSoldiersInTotal() > 0) gl.AddSoldiersToRecruitment(recSoldiers, false);
             } else {
-                Debug.LogError("Could not find location by name while loading a save game");
+                Debug.LogError($"Could not find location data for <{gl.locationName}> while loading a save game");
+                Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCSyncGame(true));
+                return;
             }
         }
 
@@ -478,7 +494,9 @@ public class GameController : MonoBehaviour {
                 ai.house.gold = hd.gold;
                 ai.house.manpower = hd.mp;
             } else {
-                Debug.LogError("Could not find house data with house type while loading a save game");
+                Debug.LogError($"Could not find house data for <{ai.house.houseName}> while loading a save game");
+                Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCSyncGame(true));
+                return;
             }
         }
 
@@ -486,5 +504,8 @@ public class GameController : MonoBehaviour {
         Global.SAVE_GAME_GOLD = 0;
         Global.SAVE_GAME_MP = 0;
         Global.SAVE_GAME_HOUSE_DATA.Clear();
+
+        ConnInfoPanel.instance.ShowPanel("Game resynced");
+        Debug.Log("Game resynced");
     }
 }

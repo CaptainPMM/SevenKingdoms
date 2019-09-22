@@ -34,13 +34,17 @@ namespace Multiplayer {
                             return UnityEngine.JsonUtility.FromJson<NCSyncCombatEnd>(json);
                         case NCType.DESTROY_BUILDING:
                             return UnityEngine.JsonUtility.FromJson<NCDestroyBuilding>(json);
+                        case NCType.SYNC_GAME:
+                            return UnityEngine.JsonUtility.FromJson<NCSyncGame>(json);
 
                         default:
                             UnityEngine.Debug.LogWarning("Could not find NCType <" + type + ">");
+                            NetworkManager.Send(new NCSyncGame(true));
                             return null;
                     }
                 } catch (System.Exception e) {
                     UnityEngine.Debug.LogError("Parsing error: " + e);
+                    NetworkManager.Send(new NCSyncGame(true));
                     return null;
                 }
             }

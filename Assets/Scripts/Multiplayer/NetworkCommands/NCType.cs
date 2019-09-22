@@ -9,7 +9,8 @@ namespace Multiplayer {
             SELECT_HOUSE_RESPONSE,
             SYNC_COMBAT,
             SYNC_COMBAT_END,
-            DESTROY_BUILDING
+            DESTROY_BUILDING,
+            SYNC_GAME
         }
     }
 }

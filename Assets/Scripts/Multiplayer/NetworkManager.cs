@@ -57,7 +57,8 @@ namespace Multiplayer {
             ns.ReadTimeout = 5000;
             byte[] buffer = new byte[1024 * 25]; // Raw byte space to receive data
             int dataSize; // Length of read bytes
-            byte[] dataBytes; // Data without zeros and old data from buffer at the end
+            byte[] dataBytes = new byte[0]; // Data without zeros and old data from buffer at the end, also collects data from multiple chunks of a command
+            byte[] oldBytes = new byte[0]; // Temp storage for old data bytes for chunked commands/data
 
             while (socket.Connected) {
                 dataSize = 0;
@@ -67,15 +68,40 @@ namespace Multiplayer {
                 } catch { }
 
                 if (dataSize > 1) { // Ignore ping byte
-                    dataBytes = new byte[dataSize];
-                    for (int i = 0; i < dataBytes.Length; i++) {
-                        dataBytes[i] = buffer[i]; // Transfer new read bytes to dataBytes from buffer
+                    // If dataBytes contains old chunks...
+                    if (dataBytes.Length > 0) {
+                        // ...copy old bytes from data bytes array for temp storage
+                        oldBytes = new byte[dataBytes.Length];
+                        for (int i = 0; i < oldBytes.Length; i++) {
+                            oldBytes[i] = dataBytes[i];
+                        }
+                    }
+
+                    // Resize data bytes array
+                    dataBytes = new byte[oldBytes.Length + dataSize];
+
+                    // Copy old bytes into new resized data bytes array if any
+                    for (int i = 0; i < oldBytes.Length; i++) {
+                        dataBytes[i] = oldBytes[i];
+                    }
+
+                    // Copy new bytes from buffer
+                    for (int i = 0; i < dataSize; i++) {
+                        dataBytes[oldBytes.Length + i] = buffer[i];
+                    }
+
+                    // Check if command end reached or chunks are missing
+                    if (buffer[dataSize - 1] != '}') {
+                        continue;
                     }
 
                     // dataBytes may contain multiple commands, split them and execute each one of the them sequentially
                     foreach (NetworkCommands.NetworkCommand command in GetCommands(dataBytes)) {
                         if (command != null) ExecuteCommand(command, socket);
                     }
+
+                    dataBytes = new byte[0];
+                    oldBytes = new byte[0];
                 }
             }
         }
@@ -175,7 +201,10 @@ namespace Multiplayer {
                     FightingHouse foundFh = FindFightingHouseByID(syncCombatCmd.fightingHouseID, syncCombatCmd.fhFallbackID);
 
                     if (foundFh != null) foundFh.ApplyCasualties((SoldierType)syncCombatCmd.soldierTypeInt, syncCombatCmd.damage);
-                    else Debug.LogError("NetworkManager Error: SYNC_COMBAT FightingHouse <" + syncCombatCmd.fightingHouseID + "> not found");
+                    else {
+                        Debug.LogError("NetworkManager Error: SYNC_COMBAT FightingHouse <" + syncCombatCmd.fightingHouseID + "> not found");
+                        NetworkManager.Send(new NetworkCommands.NCSyncGame(true));
+                    }
                     break;
                 case NetworkCommands.NCType.SYNC_COMBAT_END:
                     // Only relevant for clients
@@ -203,7 +232,10 @@ namespace Multiplayer {
                             }
 
                             winnerFightingHouse.combat.DetermineCombatStatus();
-                        } else Debug.LogError("NetworkManager Error: SYNC_COMBAT_END FightingHouse <" + syncCombatEndCmd.winnerFightingHouseID + "> not found");
+                        } else {
+                            Debug.LogError("NetworkManager Error: SYNC_COMBAT_END FightingHouse <" + syncCombatEndCmd.winnerFightingHouseID + "> not found");
+                            NetworkManager.Send(new NetworkCommands.NCSyncGame(true));
+                        }
                     });
                     break;
                 case NetworkCommands.NCType.DESTROY_BUILDING:
@@ -219,12 +251,31 @@ namespace Multiplayer {
                         if (remBuilding != null) {
                             remLocation.buildings.Remove(remBuilding);
                             remLocation.GetEffectsFromBuildings();
-                        } else Debug.LogError("NetworkManager Error: DESTROY_BUILDING buildingTypeInt <" + remBuildingCmd.buildingTypeInt + "> not found");
+                        } else {
+                            Debug.LogError("NetworkManager Error: DESTROY_BUILDING buildingTypeInt <" + remBuildingCmd.buildingTypeInt + "> not found");
+                            NetworkManager.Send(new NetworkCommands.NCSyncGame(true));
+                        }
                     });
+                    break;
+                case NetworkCommands.NCType.SYNC_GAME:
+                    NetworkCommands.NCSyncGame syncGameCmd = (NetworkCommands.NCSyncGame)command;
+
+                    if (syncGameCmd.isRequest) {
+                        // Only relevant for server
+                        // Show UI info for host player
+                        mpActions.Enqueue(() => ConnInfoPanel.instance.ShowPanel("Game desync detected"));
+                        Debug.LogWarning("Game desync detected");
+                    } else {
+                        // Only relevant for clients
+                        // Load save game
+                        mpActions.Clear();
+                        mpActions.Enqueue(() => GameController.activeGameController.HandleFastSaveGameData(syncGameCmd.saveGameData));
+                    }
                     break;
 
                 default:
                     Debug.LogWarning("NetworkCommand <" + command.type + "> not found");
+                    NetworkManager.Send(new NetworkCommands.NCSyncGame(true));
                     break;
             }
         }

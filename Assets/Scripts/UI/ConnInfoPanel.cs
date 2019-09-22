@@ -3,6 +3,8 @@ using TMPro;
 using Multiplayer;
 
 public class ConnInfoPanel : MonoBehaviour {
+    public static ConnInfoPanel instance;
+
     public GameObject panel;
     public TextMeshProUGUI infoText;
     private const float DISPLAY_TIME = 4f; // in sec
@@ -15,6 +17,11 @@ public class ConnInfoPanel : MonoBehaviour {
 
     private NetworkManager.ConnectionEstablished serverClientConnectHandler;
     private NetworkManager.ConnectionFailed serverClientDisconnectHandler;
+
+    private void Awake() {
+        instance = this;
+        panel.SetActive(false);
+    }
 
     // Start is called before the first frame update
     void Start() {
@@ -36,8 +43,6 @@ public class ConnInfoPanel : MonoBehaviour {
 
         Server.OnClientConnect += serverClientConnectHandler;
         Server.OnClientDisconnect += serverClientDisconnectHandler;
-
-        panel.SetActive(false);
     }
 
     private void ClientConnEstablishedHandler() {
@@ -64,7 +69,7 @@ public class ConnInfoPanel : MonoBehaviour {
         ShowPanel($"Client lost (now {Server.instance.clients.Count})");
     }
 
-    private void ShowPanel(string msg) {
+    public void ShowPanel(string msg) {
         infoText.text = msg;
         panel.SetActive(true);
         SoundManager.Play(SoundManager.SoundType.UI, "slider_click");

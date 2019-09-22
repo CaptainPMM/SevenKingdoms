@@ -1,20 +1,25 @@
 public class SaveGameLocationData {
-    public string locationName;
-    public int houseTypeInt;
-    public int[] buildingTypeInts;
-    public int[] soldiers;
-    public int[] soldiersInRecruitment;
+    /// <summary>Location name</summary>
+    public string n;
+    /// <summary>House type as integer of the location</summary>
+    public int h;
+    /// <summary>Buildings built as building types array</summary>
+    public int[] b;
+    /// <summary>Soldiers of the location</summary>
+    public int[] s;
+    /// <summary>Soldiers in recruitment</summary>
+    public int[] r;
 
     public SaveGameLocationData(GameLocation gl) {
-        locationName = gl.locationName;
-        houseTypeInt = (int)gl.house.houseType;
+        n = gl.locationName;
+        h = (int)gl.house.houseType;
 
-        buildingTypeInts = new int[gl.buildings.Count];
+        b = new int[gl.buildings.Count];
         for (int i = 0; i < gl.buildings.Count; i++) {
-            buildingTypeInts[i] = (int)gl.buildings[i].buildingType;
+            b[i] = (int)gl.buildings[i].buildingType;
         }
 
-        soldiers = Multiplayer.NetworkCommands.NetworkCommand.SoldiersObjToNumsArray(gl.soldiers);
-        soldiersInRecruitment = Multiplayer.NetworkCommands.NetworkCommand.SoldiersObjToNumsArray(gl.GetSoldiersInRecruitment());
+        s = Multiplayer.NetworkCommands.NetworkCommand.SoldiersObjToNumsArray(gl.soldiers);
+        r = Multiplayer.NetworkCommands.NetworkCommand.SoldiersObjToNumsArray(gl.GetSoldiersInRecruitment());
     }
 }
