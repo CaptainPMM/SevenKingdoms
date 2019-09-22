@@ -46,7 +46,7 @@ namespace Multiplayer {
             }
 
             /// <summary>Convert a soldiers object to a network sendable int array containing soldier type nums.</summary>
-            protected static int[] SoldiersObjToNumsArray(Soldiers s) {
+            public static int[] SoldiersObjToNumsArray(Soldiers s) {
                 System.Collections.Generic.List<int> list = new System.Collections.Generic.List<int>();
                 foreach (SoldierType st in Soldiers.CreateSoldierTypesArray()) {
                     list.Add(s.GetSoldierTypeNum(st));

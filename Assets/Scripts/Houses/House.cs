@@ -3,12 +3,16 @@ using UnityEngine;
 
 [System.Serializable]
 public class House {
-    private static Dictionary<HouseType, House> houseInstances;
+    private static List<House> houses = new List<House>();
+    private static Dictionary<HouseType, House> houseTypeInstances;
 
     public HouseType houseType;
 
-    public House() { }
+    public House() {
+        houses.Add(this);
+    }
     public House(HouseType ht) {
+        houses.Add(this);
         houseType = ht;
     }
 
@@ -66,19 +70,34 @@ public class House {
     protected int _manpower;
 
     private House GetHouse() {
-        if (houseInstances == null) {
-            houseInstances = new Dictionary<HouseType, House>() {
-                { HouseType.NEUTRAL, new Neutral() },
-                { HouseType.STARK, new Stark() },
-                { HouseType.TULLY, new Tully() },
-                { HouseType.ARRYN, new Arryn() },
-                { HouseType.LANNISTER, new Lannister() },
-                { HouseType.BARATHEON, new Baratheon() },
-                { HouseType.TYRELL, new Tyrell() },
-                { HouseType.MARTELL, new Martell() }
-            };
+        if (houseTypeInstances == null) {
+            InitHouseTypeInstances();
         }
+        return houseTypeInstances[houseType];
+    }
 
-        return houseInstances[houseType];
+    private static void InitHouseTypeInstances() {
+        houseTypeInstances = new Dictionary<HouseType, House>() {
+            { HouseType.NEUTRAL, new Neutral() },
+            { HouseType.STARK, new Stark() },
+            { HouseType.TULLY, new Tully() },
+            { HouseType.ARRYN, new Arryn() },
+            { HouseType.LANNISTER, new Lannister() },
+            { HouseType.BARATHEON, new Baratheon() },
+            { HouseType.TYRELL, new Tyrell() },
+            { HouseType.MARTELL, new Martell() }
+        };
+    }
+
+    public static House FindHouseByType(HouseType ht) {
+        if (houseTypeInstances == null) {
+            InitHouseTypeInstances();
+        }
+        return houses.Find(h => h.houseType == ht);
+    }
+
+    public static void ResetHouses() {
+        houses.Clear();
+        houseTypeInstances = null;
     }
 }

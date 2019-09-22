@@ -1,4 +1,13 @@
 ﻿public class Castle : GameLocation {
+    new void Awake() {
+        base.Awake();
+
+        buildings.Add(new LocalAdministration());
+        buildings.Add(new StoneWall());
+        GetEffectsFromBuildings();
+        DetermineFortificationLevel();
+    }
+
     // Start is called before the first frame update
     new void Start() {
         base.Start();
@@ -20,11 +29,5 @@
             BuildingType.STABLES,
             BuildingType.DRILL_GROUND
         });
-
-        buildings.Add(new LocalAdministration());
-        buildings.Add(new StoneWall());
-        GetEffectsFromBuildings();
-
-        DetermineFortificationLevel();
     }
 }

@@ -1,4 +1,12 @@
 ﻿public class Outpost : GameLocation {
+    new void Awake() {
+        base.Awake();
+
+        buildings.Add(new LocalAdministration());
+        GetEffectsFromBuildings();
+        DetermineFortificationLevel();
+    }
+
     // Start is called before the first frame update
     new void Start() {
         base.Start();
@@ -13,10 +21,5 @@
             BuildingType.WOODEN_WALL,
             BuildingType.BARRACKS
         });
-
-        buildings.Add(new LocalAdministration());
-        GetEffectsFromBuildings();
-
-        DetermineFortificationLevel();
     }
 }

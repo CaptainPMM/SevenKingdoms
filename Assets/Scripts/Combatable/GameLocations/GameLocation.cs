@@ -34,19 +34,25 @@ public class GameLocation : Combatable {
     protected int BASE_GOLD_INCOME;
     protected int BASE_MANPOWER_INCOME;
 
+    protected void Awake() {
+        allGameLocations.Add(this);
+        locationName = name.Substring(name.IndexOf(' ') + 1); // Filter the location type e.g Outpost Northern Reach -> Northern Reach
+        soldiersInRecruitment = new Soldiers();
+        recruitmentIndicatorGO.GetComponent<Image>().enabled = false;
+        foreach (Button b in GetComponentsInChildren<Button>()) {
+            if (b.name == "Button Build Local Admin") btnFastBuildLocalAdmin = b;
+        }
+    }
+
     // Start is called before the first frame update
     new protected void Start() {
         base.Start();
 
         if (player == null) player = GameController.activeGameController.player.GetComponent<GamePlayer>();
-        foreach (Button b in GetComponentsInChildren<Button>()) {
-            if (b.name == "Button Build Local Admin") btnFastBuildLocalAdmin = b;
-        }
         if (player.house.houseType == this.house.houseType) GameController.activeGameController.locationsHeldByPlayer++;
         btnFastBuildLocalAdmin.gameObject.SetActive(false);
 
         // Setup UI panel
-        locationName = name.Substring(name.IndexOf(' ') + 1); // Filter the location type e.g Outpost Northern Reach -> Northern Reach
         foreach (TextMeshProUGUI t in GetComponentsInChildren<TextMeshProUGUI>()) {
             if (t.name == "Text Location Name") {
                 locatioNameText = t;
@@ -61,10 +67,7 @@ public class GameLocation : Combatable {
                 break;
             }
         }
-        recruitmentIndicatorGO.GetComponent<Image>().enabled = false;
         DetermineFortificationLevel();
-
-        soldiersInRecruitment = new Soldiers();
 
         // Create GUI lines to reachable locations
         foreach (GameLocation location in reachableLocations) {
@@ -109,8 +112,6 @@ public class GameLocation : Combatable {
                 lr.colorGradient = g;
             }
         }
-
-        allGameLocations.Add(this);
     }
 
     protected void Update() {
@@ -154,7 +155,10 @@ public class GameLocation : Combatable {
         }
     }
 
-    public void OccupyBy(House house) {
+    public void OccupyBy(House house, bool afterSave = false) {
+        // Safety for savegame loading
+        if (player == null) player = GameController.activeGameController.player.GetComponent<GamePlayer>();
+
         // Let AIs and game controller know of the change
         // Remove location from old owner
         if (player.house.houseType != this.house.houseType) {
@@ -173,7 +177,7 @@ public class GameLocation : Combatable {
         wasOccupied = true;
 
         // Destroy a random building after occupation combat
-        if ((!Multiplayer.NetworkManager.mpActive || Multiplayer.NetworkManager.isServer) && buildings.Count > 0) {
+        if ((!Multiplayer.NetworkManager.mpActive || Multiplayer.NetworkManager.isServer) && !afterSave && buildings.Count > 0) {
             int rand = Random.Range(0, buildings.Count);
             if (Multiplayer.NetworkManager.isServer) Multiplayer.NetworkManager.Send(new Multiplayer.NetworkCommands.NCDestroyBuilding(this, buildings[rand].buildingType));
             buildings.RemoveAt(rand);

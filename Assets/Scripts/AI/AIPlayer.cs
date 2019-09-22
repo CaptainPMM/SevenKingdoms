@@ -11,7 +11,7 @@ public class AIPlayer {
     private static List<Troops> troops = new List<Troops>();
     private List<TroopsOrder> troopsOrders = new List<TroopsOrder>();
 
-    private AIGoldPool goldPool; // only work with this gold in AI, normal house.gold doesnt work here!!
+    public AIGoldPool goldPool; // only work with this gold in AI, normal house.gold doesnt work here!!
 
     private Dictionary<SoldierType, int> requiredBuildingsForSoldierType;
     private int buildLocalAdminInSafeOutpostsCounter = 0;

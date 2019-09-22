@@ -6822,6 +6822,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle Blackhaven
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1861835259}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 565269137}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 1541499757}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 2044880687}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6892,36 +6922,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.049999997
       objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1861835259}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 565269137}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 1541499757}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 2044880687}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -9822,6 +9822,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle Sunspear
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[0].buildingType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1553206533}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1159737043}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 525803596}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9892,41 +9927,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.049999997
       objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[0].buildingType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1553206533}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1159737043}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 525803596}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -23914,6 +23914,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle Oldtown
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[0].buildingType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 638840584}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1978048362}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 1665445813}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 857330060}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[4]
+      value: 
+      objectReference: {fileID: 1534725593}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[5]
+      value: 
+      objectReference: {fileID: 857330060}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[1].buildingType
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[2].buildingType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23983,66 +24043,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.049999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[0].buildingType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 638840584}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1978048362}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 1665445813}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 857330060}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[4]
-      value: 
-      objectReference: {fileID: 1534725593}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[5]
-      value: 
-      objectReference: {fileID: 857330060}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[1].buildingType
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[2].buildingType
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
@@ -25136,6 +25136,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle Riverrun
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[0].buildingType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1749276962}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 640921374}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 1273468340}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1865407841}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[1].buildingType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25205,51 +25250,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.049999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[0].buildingType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1749276962}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 640921374}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 1273468340}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 1865407841}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[1].buildingType
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
@@ -29132,6 +29132,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle Harrenhal
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[0].buildingType
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 2124127912}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 771927878}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 640921374}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1186919137}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[4]
+      value: 
+      objectReference: {fileID: 1865407841}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29202,51 +29247,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.049999997
       objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[0].buildingType
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 2124127912}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 771927878}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 640921374}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 1186919137}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[4]
-      value: 
-      objectReference: {fileID: 1865407841}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -31802,6 +31802,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle King's Landing
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[0].buildingType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[1].buildingType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[2].buildingType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 451135119}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 920393278}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 756185459}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1128869146}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31872,56 +31922,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.049999997
       objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[0].buildingType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[1].buildingType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[2].buildingType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 451135119}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 920393278}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 756185459}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 1128869146}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -32713,6 +32713,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle The Eyrie
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 477028387}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 869176154}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 874731206}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32783,31 +32808,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.049999997
       objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 477028387}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 869176154}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 874731206}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -36163,6 +36163,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle Winterfell
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1623570164}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1792611636}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 2107434635}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1987959137}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[4]
+      value: 
+      objectReference: {fileID: 1864796087}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[5]
+      value: 
+      objectReference: {fileID: 1563063309}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36233,46 +36273,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.049999997
       objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1623570164}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1792611636}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 2107434635}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 1987959137}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[4]
-      value: 
-      objectReference: {fileID: 1864796087}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[5]
-      value: 
-      objectReference: {fileID: 1563063309}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -38185,6 +38185,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle Castamere
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1639403743}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 769138235}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38255,26 +38275,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.049999997
       objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1639403743}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 769138235}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -38485,6 +38485,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle Highgarden
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1897716514}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1196958788}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 1973014183}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 848030945}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[4]
+      value: 
+      objectReference: {fileID: 857330060}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[0].buildingType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38554,51 +38599,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.049999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1897716514}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1196958788}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 1973014183}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 848030945}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[4]
-      value: 
-      objectReference: {fileID: 857330060}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[0].buildingType
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
@@ -38822,6 +38822,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle The Twins
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[0].buildingType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1245627863}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 1486307928}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 2124127912}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 2075063533}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[1].buildingType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38891,51 +38936,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.049999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[0].buildingType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1245627863}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 1486307928}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 2124127912}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 2075063533}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[1].buildingType
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
@@ -40889,6 +40889,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle Castle Black
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1957140885}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40959,21 +40974,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.049999997
       objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1957140885}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -44724,6 +44724,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle Storm's End
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1849530698}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 2044880687}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 915599576}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1997256798}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -44794,36 +44824,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.049999997
       objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1849530698}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 2044880687}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 915599576}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 1997256798}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -45903,6 +45903,7 @@ MonoBehaviour:
   moveTargetMarker: {fileID: 2126810546}
   selectionUI: {fileID: 1840205501}
   buildingsUI: {fileID: 2012325242}
+  map: {fileID: 2032286524}
   dragging: 0
   locationsHeldByPlayer: 0
   selectedLocation: {fileID: 0}
@@ -49021,6 +49022,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle Casterly Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: house.houseType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: buildings.Array.data[0].buildingType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1639403743}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 711324273}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 449389414}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1880007481}
+    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
+        type: 3}
+      propertyPath: reachableLocations.Array.data[4]
+      value: 
+      objectReference: {fileID: 421936446}
     - target: {fileID: 2045944737871558556, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -49091,51 +49137,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.049999997
       objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: house.houseType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: buildings.Array.data[0].buildingType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1639403743}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 711324273}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 449389414}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 1880007481}
-    - target: {fileID: 7717615919715921084, guid: 79dc072e2db054f7ba909c3cdc59dc98,
-        type: 3}
-      propertyPath: reachableLocations.Array.data[4]
-      value: 
-      objectReference: {fileID: 421936446}
     - target: {fileID: 1128717849083830794, guid: 79dc072e2db054f7ba909c3cdc59dc98,
         type: 3}
       propertyPath: m_textInfo.characterCount

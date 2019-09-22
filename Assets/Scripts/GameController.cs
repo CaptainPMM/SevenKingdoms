@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameController : MonoBehaviour {
@@ -64,6 +65,11 @@ public class GameController : MonoBehaviour {
                 if (Multiplayer.NetworkManager.mpActive && Multiplayer.Server.instance.clientHouseTypes.ContainsValue((HouseType)i)) continue;
                 aiPlayers.Add(new AIPlayer((HouseType)i));
             }
+        }
+
+        // Load savegame if present
+        if (Global.SAVE_GAME != null) {
+            LoadSaveGame();
         }
     }
 
@@ -395,5 +401,90 @@ public class GameController : MonoBehaviour {
                 }
             }
         }
+    }
+
+    /// <summary>Returns a string with Jsonified SaveGameLocationData of all locations seperated by #</summary>
+    public string FastSaveGame() {
+        string res = "";
+        foreach (GameLocation gl in GameLocation.allGameLocations) {
+            res += JsonUtility.ToJson(new SaveGameLocationData(gl)) + "#";
+        }
+        // Remove last #
+        res = res.Remove(res.Length - 1);
+        return res;
+    }
+
+    /// <summary>Handles savegame by FastSaveGame()</summary>
+    public void HandleFastSaveGameData(string data) {
+        Global.SAVE_GAME = data;
+
+        GamePlayer p = player.GetComponent<GamePlayer>();
+        Global.SAVE_GAME_GOLD = p.house.gold;
+        Global.SAVE_GAME_MP = p.house.manpower;
+
+        foreach (AIPlayer ai in aiPlayers) {
+            Global.SAVE_GAME_HOUSE_DATA.Add(new SaveGameHouseData(ai.house, ai.goldPool));
+        }
+
+        House.ResetHouses();
+        GameLocation.allGameLocations.Clear();
+        if (Multiplayer.NetworkManager.mpActive) Multiplayer.NetworkManager.mpActions.Clear();
+        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+    }
+
+    private void LoadSaveGame() {
+        string[] rawLocationData = Global.SAVE_GAME.Split('#');
+        List<SaveGameLocationData> locationData = new List<SaveGameLocationData>();
+
+        foreach (string s in rawLocationData) {
+            locationData.Add(JsonUtility.FromJson<SaveGameLocationData>(s));
+        }
+
+        // Setup saved game state
+        SaveGameLocationData ld = null;
+        foreach (GameLocation gl in GameLocation.allGameLocations) {
+            ld = locationData.Find(curr => curr.locationName == gl.locationName);
+
+            if (ld != null) {
+                if (ld.houseTypeInt != (int)gl.house.houseType) gl.OccupyBy(House.FindHouseByType((HouseType)ld.houseTypeInt), true);
+
+                gl.buildings.Clear();
+                if (ld.buildingTypeInts.Length > 0) {
+                    foreach (int btInt in ld.buildingTypeInts) {
+                        gl.AddBuilding(Building.CreateBuildingInstance((BuildingType)btInt), false);
+                    }
+                } else {
+                    gl.GetEffectsFromBuildings();
+                    gl.DetermineFortificationLevel();
+                }
+
+                gl.soldiers = Multiplayer.NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(ld.soldiers);
+                Soldiers recSoldiers = Multiplayer.NetworkCommands.NetworkCommand.SoldiersNumsArrayToObj(ld.soldiersInRecruitment);
+                if (recSoldiers.GetNumSoldiersInTotal() > 0) gl.AddSoldiersToRecruitment(recSoldiers, false);
+            } else {
+                Debug.LogError("Could not find location by name while loading a save game");
+            }
+        }
+
+        GamePlayer p = player.GetComponent<GamePlayer>();
+        p.house.gold = Global.SAVE_GAME_GOLD;
+        p.house.manpower = Global.SAVE_GAME_MP;
+
+        SaveGameHouseData hd = null;
+        foreach (AIPlayer ai in aiPlayers) {
+            hd = Global.SAVE_GAME_HOUSE_DATA.Find(curr => curr.houseTypeInt == (int)ai.house.houseType);
+
+            if (hd != null) {
+                ai.house.gold = hd.gold;
+                ai.house.manpower = hd.mp;
+            } else {
+                Debug.LogError("Could not find house data with house type while loading a save game");
+            }
+        }
+
+        Global.SAVE_GAME = null;
+        Global.SAVE_GAME_GOLD = 0;
+        Global.SAVE_GAME_MP = 0;
+        Global.SAVE_GAME_HOUSE_DATA.Clear();
     }
 }
