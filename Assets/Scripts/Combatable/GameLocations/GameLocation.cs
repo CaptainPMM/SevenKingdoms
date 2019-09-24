@@ -175,6 +175,8 @@ public class GameLocation : Combatable {
 
         this.house = house;
         wasOccupied = true;
+        soldiersInRecruitment = new Soldiers();
+        recruitmentIndicatorGO.GetComponent<Image>().enabled = false;
 
         // Destroy a random building after occupation combat
         if ((!Multiplayer.NetworkManager.mpActive || Multiplayer.NetworkManager.isServer) && !afterSave && buildings.Count > 0) {
